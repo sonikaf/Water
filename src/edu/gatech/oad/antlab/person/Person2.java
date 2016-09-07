@@ -5,7 +5,7 @@ package edu.gatech.oad.antlab.person;
  *  returns their name and a
  *  modified string 
  *
- * @author Bob
+ * @author Scott Wolfe
  * @version 1.1
  */
 public class Person2 {
@@ -30,8 +30,21 @@ public class Person2 {
 	 * @return the modified string
 	 */
 	private String calc(String input) {
-	  //Person 2 put your implementation here
-	  return null;
+	  java.util.Random rand = new java.util.Random();
+	  java.util.ArrayList<Integer> list = new java.util.ArrayList<>(input.length());
+	  for (int i = 0; i < input.length(); i++) {
+	      int index;
+	      do {
+	          index = rand.nextInt(input.length());
+	      }
+	      while (list.contains(index));
+	      list.add(index);
+	  }
+	  String output = "";
+	  for (int i = 0; i < input.length(); i++) {
+	      output = output + input.charAt(list.get(i));
+	  }
+	  return output;
 	}
 	/**
 	 * Return a string rep of this object
@@ -44,4 +57,5 @@ public class Person2 {
 	public String toString(String input) {
 	  return name + calc(input);
 	}
+
 }
