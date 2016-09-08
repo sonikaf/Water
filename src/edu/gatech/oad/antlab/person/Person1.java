@@ -30,8 +30,21 @@ public class Person1 {
 	 * @return the modified string
 	 */
 	private String calc(String input) {
-	  //Person 1 put your implementation here
-	  return null;
+		  if (input.length() == 0 
+				  || input.length() == 1
+				  || input.length() == 2) {
+			  return input;
+		  }
+		  int i = 2;
+		  String toReturn = "";
+		  while (toReturn.length() < input.length()) {
+			  if (i == input.length()) {
+				  i = 0;
+			  }
+			  toReturn += input.charAt(i);
+			  i++;
+		  }
+		  return toReturn;
 	}
 	
 	/**
