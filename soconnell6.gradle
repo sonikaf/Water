@@ -3,6 +3,8 @@ apply plugin: 'application'
 
 mainClassName = 'edu.gatech.oad.antlab.pkg1.AntLabMain'
 
+defaultTasks 'jar'
+
 jar {
     baseName = 'AntLab'
     version =  '1.0'
