@@ -18,6 +18,6 @@ jar {
 	version =  '1.0'
 	manifest {
 		attributes('Main-Class': 'edu.gatech.oad.antlab.pkg1.AntLabMain',
-		'Class-Path' : '../../lib/resouces.jar')
+		'Class-Path': '../../lib/resources.jar')
 	}
 }
