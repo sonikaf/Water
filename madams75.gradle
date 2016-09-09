@@ -2,14 +2,15 @@ apply plugin: 'java'
 apply plugin: 'application'
 defaultTasks 'jar'
 
+mainClassName = 'edu.gatech.oad.antlab.pkg1.AntLabMain'
+
 jar {
 	version = '1.0'
 	baseName = 'AntLabMain'
-	//manifest.attributes "Main-Class" : 'edu.gatech.oad.antlab.pkg1.AntLabMain'
 	manifest {
 		attributes( 
-			'Main-Class' : 'src.main.java.edu.gatech.oad.antlab.pkg1.AntLabMain',
-			'Class-Path' : 'Team19/lib/resources.jar'
+			"Main-Class" : 'edu.gatech.oad.antlab.pkg1.AntLabMain',
+			"Class-Path" : '../../lib/resources.jar'
 		)
 	}
 }
