@@ -1,0 +1,25 @@
+apply plugin: 'java'
+apply plugin: 'application'
+defaultTasks 'jar'
+
+jar {
+	version = '1.0'
+	baseName = 'AntLabMain'
+	//manifest.attributes "Main-Class" : 'edu.gatech.oad.antlab.pkg1.AntLabMain'
+	manifest {
+		attributes( 
+			'Main-Class' : 'src.main.java.edu.gatech.oad.antlab.pkg1.AntLabMain',
+			'Class-Path' : 'Team19/lib/resources.jar'
+		)
+	}
+}
+
+repositories {
+	flatDir {
+		dirs 'lib'
+	}
+}
+
+dependencies {
+	compile name: 'resources'
+}
