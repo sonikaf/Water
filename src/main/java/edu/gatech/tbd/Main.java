@@ -18,8 +18,8 @@ public class Main extends Application {
 		Parent root;
 		stage = primaryStage;
 		try {
-			root = FXMLLoader.load(getClass().getResource("/edu/gatech/tbd/stages/MainStage.fxml"));
-		    Scene scene = new Scene(root, 800, 600);
+			root = FXMLLoader.load(getClass().getResource("/edu/gatech/tbd/stages/LoginStage.fxml"));
+		    Scene scene = new Scene(root);
 		    
 	        stage.setTitle("Team 19");
 	        stage.setScene(scene);
