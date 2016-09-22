@@ -1,5 +1,6 @@
 package edu.gatech.tbd.controllers;
 
+import edu.gatech.tbd.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -8,13 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import edu.gatech.tbd.Main;
 
-public class LoginStageController {
-	
-    /**
-     * Reference to main application class
-     */
-    Main mainApp;
-    
+public class LoginStageController extends SceneController{
+	   
 	@FXML
 	Label errorLabel;
 	
@@ -38,7 +34,7 @@ public class LoginStageController {
 	    
 	    // if username/password combo matches stored data
 	    if (username.equals("user") && password.equals("pass")) {
-	        mainApp.showApplicationStage();
+	        mainApp.changeScene("ApplicationScene");
 	    }
 	    // if username/password combo does not match stored data
 	    else {
@@ -49,9 +45,9 @@ public class LoginStageController {
 	    }
 	}
 	
-	/**setter for mainApp*/
-	public void setMainApp(Main mainApp) {
-	    this.mainApp = mainApp;
+	@FXML
+	protected void onGoBackButtonPressed(ActionEvent e) {
+		mainApp.changeScene("WelcomeScene");
 	}
 
 }

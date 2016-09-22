@@ -45,6 +45,7 @@
                   <Font name="Avenir Next Regular" size="18.0" />
                </font>
             </Label>
+            <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#onGoBackButtonPressed" text="Go Back" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP" />
          </children>
       </GridPane>
    </children>
