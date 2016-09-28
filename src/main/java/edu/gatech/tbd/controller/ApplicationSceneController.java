@@ -1,4 +1,4 @@
-package edu.gatech.tbd.controllers;
+package edu.gatech.tbd.controller;
 
 import edu.gatech.tbd.Main;
 import javafx.fxml.FXML;
