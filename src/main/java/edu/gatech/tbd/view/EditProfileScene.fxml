@@ -13,7 +13,7 @@
 <?import javafx.stage.Popup?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gatech.tbd.controllers.EditProfileStageController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gatech.tbd.controller.EditProfileStageController">
     <children>
 
         <GridPane prefHeight="400.0" prefWidth="600.0">

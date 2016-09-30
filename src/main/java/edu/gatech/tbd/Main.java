@@ -35,7 +35,12 @@ public class Main extends Application {
 		try {
             // loading LoginStage
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/edu/gatech/tbd/scenes/" + path + ".fxml"));
+            loader.setLocation(getClass().getResource("/edu/gatech/tbd/view/" + path + ".fxml"));
+            if(loader.getLocation() == null) {
+            	System.err.println("Error loading scene '/edu/gatech/tbd/view/" + path + ".fxml'");
+            	System.err.println("Make sure the file exists!");
+            	return;
+            }
             Parent root = loader.load();
             Scene scene = new Scene(root);
             
@@ -57,3 +62,5 @@ public class Main extends Application {
 	}
 	
 }
+
+
