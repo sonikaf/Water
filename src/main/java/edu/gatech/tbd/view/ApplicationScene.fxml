@@ -22,8 +22,8 @@
             </rowConstraints>
 
             <children>
-                <Button fx:id="logoutButton" mnemonicParsing="false" text="Logout" GridPane.halignment="CENTER" GridPane.columnIndex="2" />
-                <Button fx:id="editProfileButton" mnemonicParsing="false" text="Edit Profile" GridPane.halignment="CENTER" GridPane.columnIndex="1" />
+                <Button fx:id="logoutButton" onAction="#onLogoutButtonPressed" mnemonicParsing="false" text="Logout" GridPane.halignment="CENTER" GridPane.columnIndex="2" />
+                <Button fx:id="editProfileButton" onAction="#onEditProfileButtonPressed" mnemonicParsing="false" text="Edit Profile" GridPane.halignment="CENTER" GridPane.columnIndex="1" />
             </children>
 
         </GridPane>

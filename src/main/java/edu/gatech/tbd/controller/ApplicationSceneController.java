@@ -15,4 +15,9 @@ public class ApplicationSceneController extends SceneController {
     protected void onLogoutButtonPressed() {
         mainApp.changeScene("WelcomeScene");
     }
+    
+    @FXML
+    protected void onEditProfileButtonPressed() {
+    	mainApp.changeScene("EditProfileScene");
+    }
 }

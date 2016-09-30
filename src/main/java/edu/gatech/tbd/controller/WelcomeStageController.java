@@ -14,7 +14,6 @@ public class WelcomeStageController extends SceneController{
 	@FXML
 	Button selectRegisterButton;
 	
-	
 	@FXML
 	protected void onSelectLoginButtonPressed(ActionEvent e) {
 		mainApp.changeScene("LoginScene");
@@ -22,7 +21,7 @@ public class WelcomeStageController extends SceneController{
 	
 	@FXML
 	protected void onSelectRegisterButtonPressed(ActionEvent e) {
-		 
+		mainApp.changeScene("RegistrationScene");
 	}
 
 }
