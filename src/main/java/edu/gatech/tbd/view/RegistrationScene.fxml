@@ -37,7 +37,7 @@
             <children>
 
                 <!-- TITLE -->
-                <Label text="Registration" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+                <Label text="Registration" GridPane.columnSpan = "3" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.halignment="CENTER">
                     <font>
                         <Font name="Avenir Next Regular" size="18.0" />
                     </font>

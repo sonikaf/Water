@@ -1,19 +1,27 @@
 package edu.gatech.tbd.controller;
 
-import edu.gatech.tbd.Main;
-import javafx.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
+import edu.gatech.tbd.model.UserType;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import edu.gatech.tbd.Main;
+import javafx.scene.control.ComboBox;
 
 public class RegistrationSceneController extends SceneController{
 
+    @FXML
+    private ComboBox<String> typeField;
+    
 	@FXML
 	public void initialize() {
-		
+        List<String> list = new ArrayList<String>();
+        list.add(UserType.User.toString());
+        list.add(UserType.Worker.toString());
+        list.add(UserType.Manager.toString());
+        list.add(UserType.Administrator.toString());
+        ObservableList<String> obList = FXCollections.observableList(list);
+        typeField.setItems(obList);
 	} 
 	
 	@FXML
