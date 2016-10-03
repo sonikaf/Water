@@ -38,13 +38,14 @@ public class UserManager {
 	/**
 	 * Create a new user object, and logs it in
 	 * 
+	 * @param name
 	 * @param username
 	 * @param password
 	 * @param type
 	 * @param email
 	 * @param address
 	 */
-	public static void registerUser(String username, String password, UserType type, String email, String address)
+	public static void registerUser(String name, String username, String password, UserType type, String email, String address)
 			throws UserException {
 		// *NOTE* M5 doesn't really say anything about what is needed to store per
 		// user so add any other data fields that seem necessary
@@ -54,13 +55,17 @@ public class UserManager {
 		if (userList.get(username) != null) {
 			throw new UserException("Another user with that username already exists.");
 		}
+		if (username.equals("") || password.equals("") || email.equals("") || address.equals("")) {
+			throw new UserException("Please fill out all of the fields");
+		}
 
-		currentUser = new User(username, password, type, email, address);
+		currentUser = new User(name, username, password, type, email, address);
 		userList.put(username, currentUser);
 	}
 
-	public void updateUserInformation(User u, String username, String password, UserType type, String email,
+	public void updateUserInformation(User u, String name, String username, String password, UserType type, String email,
 			String address) {
+		u._username = username;
 		u._name = username;
 		u._pass = password;
 		u._type = type;

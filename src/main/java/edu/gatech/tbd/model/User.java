@@ -2,6 +2,7 @@ package edu.gatech.tbd.model;
 
 public class User {
 
+	protected String _username;
 	protected String _name;
 	protected String _pass;
 	protected String _email;
@@ -11,7 +12,8 @@ public class User {
 	/**
 	 * Creates a new user object
 	 */
-	protected User(String name, String pass, UserType type, String email, String address) {
+	protected User(String name, String username, String pass, UserType type, String email, String address) {
+		_username = username;
 		_name = name;
 		_pass = pass;
 		_type = type;
