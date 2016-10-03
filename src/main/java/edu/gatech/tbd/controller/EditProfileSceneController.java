@@ -1,7 +1,9 @@
 package edu.gatech.tbd.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import edu.gatech.tbd.model.UserManager;
 
 public class EditProfileSceneController extends SceneController{
 	
@@ -25,12 +27,12 @@ public class EditProfileSceneController extends SceneController{
     
     @FXML
     public void initialize() {
-        nameField.setText("Joe");
-        emailField.setText("joe@gmail.com");
-        usernameField.setText("joe123");
-        passwordField.setText("joe<3'scats");
-        addressField.setText("123 Sesame St");
-        typeField.setText("User");
+        nameField.setText(UserManager.getLoggedInUser().getName());
+        emailField.setText(UserManager.getLoggedInUser().getEmail());
+        usernameField.setText(UserManager.getLoggedInUser().getUsername());
+        passwordField.setText(UserManager.getLoggedInUser().getPassword());
+        addressField.setText(UserManager.getLoggedInUser().getAddress());
+        typeField.setText(UserManager.getLoggedInUser().getType().toString());
 	}
 	
     @FXML

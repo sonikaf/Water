@@ -1,6 +1,7 @@
 package edu.gatech.tbd.controller;
 
 import javafx.fxml.FXML;
+import edu.gatech.tbd.model.UserManager;
 import edu.gatech.tbd.model.UserType;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
@@ -12,21 +13,25 @@ import javafx.collections.FXCollections;
 public class EditTypeSceneController extends SceneController {
     
     @FXML
-    private ComboBox<String> typeField;
+    private ComboBox<UserType> typeField;
     
     @FXML
     public void initialize() {
-        List<String> list = new ArrayList<String>();
-        list.add(UserType.User.toString());
-        list.add(UserType.Worker.toString());
-        list.add(UserType.Manager.toString());
-        list.add(UserType.Administrator.toString());
-        ObservableList<String> obList = FXCollections.observableList(list);
+        List<UserType> list = new ArrayList<UserType>();
+        list.add(UserType.User);
+        list.add(UserType.Worker);
+        list.add(UserType.Manager);
+        list.add(UserType.Administrator);
+        ObservableList<UserType> obList = FXCollections.observableList(list);
         typeField.setItems(obList);
+        typeField.setValue(UserManager.getLoggedInUser().getType());
     }
     
     @FXML
     protected void onSubmitButtonPressed() {
+    	UserManager.updateUserInformation(UserManager.getLoggedInUser(), UserManager.getLoggedInUser().getName(), UserManager.getLoggedInUser().getUsername(), 
+    			UserManager.getLoggedInUser().getPassword(), typeField.getSelectionModel().getSelectedItem(), 
+    			UserManager.getLoggedInUser().getEmail(), UserManager.getLoggedInUser().getAddress());
         mainApp.changeScene("EditProfileScene");
     }
     

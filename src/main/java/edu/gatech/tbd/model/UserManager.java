@@ -44,7 +44,7 @@ public class UserManager {
 	 * @param email
 	 * @param address
 	 */
-	public static void registerUser(String username, String password, UserType type, String email, String address)
+	public static void registerUser(String name, String username, String password, UserType type, String email, String address)
 			throws UserException {
 		// *NOTE* M5 doesn't really say anything about what is needed to store per
 		// user so add any other data fields that seem necessary
@@ -55,20 +55,21 @@ public class UserManager {
 			throw new UserException("Another user with that username already exists.");
 		}
 
-		currentUser = new User(username, password, type, email, address);
+		currentUser = new User(name, username, password, type, email, address);
 		userList.put(username, currentUser);
 	}
 
-	public void updateUserInformation(User u, String username, String password, UserType type, String email,
+	public static void updateUserInformation(User u, String name, String username, String password, UserType type, String email,
 			String address) {
-		u._name = username;
+		u._name = name;
+		u._username = username;
 		u._pass = password;
 		u._type = type;
 		u._email = email;
 		u._address = address;
 	}
 
-	public User getLoggedInUser() {
+	public static User getLoggedInUser() {
 		return currentUser;
 	}
 

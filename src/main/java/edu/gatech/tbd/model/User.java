@@ -7,12 +7,14 @@ public class User {
 	protected String _email;
 	protected String _address;
 	protected UserType _type;
+	protected String _username;
 
 	/**
 	 * Creates a new user object
 	 */
-	protected User(String name, String pass, UserType type, String email, String address) {
+	protected User(String name, String uname, String pass, UserType type, String email, String address) {
 		_name = name;
+		_username = uname;
 		_pass = pass;
 		_type = type;
 		_email = email;
@@ -24,6 +26,13 @@ public class User {
 	 * @return
 	 */
 	public String getUsername() {
+		return _username;
+	}
+	/**
+	 * Gets the user's name
+	 * @return
+	 */
+	public String getName() {
 		return _name;
 	}
 
@@ -42,6 +51,21 @@ public class User {
 	public String getAddress() {
 		return _address;
 	}
+	/**
+	 * Gets the user's password
+	 * @return
+	 */
+	public String getPassword() {
+		return _pass;
+	}
+	/**
+	 * Gets the user's type
+	 * @return
+	 */
+	public UserType getType() {
+		return _type;
+	}
+	
 
 	/**
 	 * Checks if this user object can perform an action required by the provided
