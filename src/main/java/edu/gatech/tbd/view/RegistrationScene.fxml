@@ -42,7 +42,14 @@
                         <Font name="Avenir Next Regular" size="18.0" />
                     </font>
                 </Label>
-
+                
+                <!-- ERROR -->
+                <Label fx:id="errorLabel" textFill="RED" GridPane.columnSpan = "3" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="CENTER" >
+                    <font>
+                        <Font name="Avenir Next Regular" size="18.0" />
+                    </font>
+                </Label>
+                
 
                 <!-- NAME -->
                 <Label text="Name" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.columnIndex="0">

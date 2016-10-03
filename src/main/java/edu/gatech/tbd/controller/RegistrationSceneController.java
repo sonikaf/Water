@@ -52,13 +52,13 @@ public class RegistrationSceneController extends SceneController{
 	protected void onRegisterButtonPressed() throws UserException {
 		if (nameField.getText().equals("")) {
 			errorLabel.setText("You must enter a valid name");
-		} else if (passwordField.getText().equals("")) {
-			errorLabel.setText("You must enter a valid password");
-		} else if (usernameField.getText().equals("")) {
-			errorLabel.setText("You must enter a valid username");
 		} else if (emailField.getText().equals("")) {
 			errorLabel.setText("You must enter a valid email");
-		} else if (addressField.getText().equals("")) {
+		} else if (usernameField.getText().equals("")) {
+			errorLabel.setText("You must enter a valid username");
+		} else if (passwordField.getText().equals("")) {
+			errorLabel.setText("You must enter a valid password");
+		}else if (addressField.getText().equals("")) {
 			errorLabel.setText("You must enter a valid address");
 		} else {
 			UserManager.registerUser(nameField.getText(), usernameField.getText(), passwordField.getText(), (UserType) typeField.getSelectionModel().getSelectedItem(), emailField.getText(), addressField.getText());

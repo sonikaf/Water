@@ -23,6 +23,7 @@
 
             <rowConstraints>
                 <RowConstraints maxHeight="141.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="20.0" minHeight="5.0" prefHeight="10.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="141.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="141.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="141.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
@@ -30,6 +31,7 @@
                 <RowConstraints maxHeight="141.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="141.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="141.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                
             </rowConstraints>
 
             <children>
@@ -41,82 +43,88 @@
                         <Font name="Avenir Next Regular" size="18.0" />
                     </font>
                 </Label>
-
+                
+                <!-- ERROR -->
+                <Label fx:id="errorLabel" textFill="RED" GridPane.columnSpan = "3" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="CENTER" >
+                    <font>
+                        <Font name="Avenir Next Regular" size="18.0" />
+                    </font>
+                </Label>
 
                 <!-- Name -->
-                <Label text="Name:" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" >
+                <Label text="Name:" GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" >
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
 
-                <Text fx:id="nameField" GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                <Text fx:id="nameField" GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 
-                <Button fx:id="editNameButton" onAction = "#onEditNameButtonPressed" mnemonicParsing="false" text="Edit Name" GridPane.rowIndex="1" GridPane.columnIndex="2"  GridPane.halignment="LEFT" GridPane.valignment="CENTER"  />
+                <Button fx:id="editNameButton" onAction = "#onEditNameButtonPressed" mnemonicParsing="false" text="Edit Name" GridPane.rowIndex="2" GridPane.columnIndex="2"  GridPane.halignment="LEFT" GridPane.valignment="CENTER"  />
 
 
                 <!-- Email -->
-                <Label text="Email:" GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" >
+                <Label text="Email:" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" >
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
 
-                <Text fx:id="emailField" GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                <Text fx:id="emailField" GridPane.rowIndex="3" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 
-                <Button fx:id="editEmailButton" onAction = "#onEditEmailButtonPressed" mnemonicParsing="false" text="Edit Email" GridPane.rowIndex="2" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+                <Button fx:id="editEmailButton" onAction = "#onEditEmailButtonPressed" mnemonicParsing="false" text="Edit Email" GridPane.rowIndex="3" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
 
 
                 <!-- Username -->
-                <Label text="Username:" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" >
+                <Label text="Username:" GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" >
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
 
-                <Text fx:id="usernameField" GridPane.rowIndex="3" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                <Text fx:id="usernameField" GridPane.rowIndex="4" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 
-                <Button fx:id="editUsernameButton" onAction = "#onEditUsernameButtonPressed" mnemonicParsing="false" text="Edit Username" GridPane.rowIndex="3" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+                <Button fx:id="editUsernameButton" onAction = "#onEditUsernameButtonPressed" mnemonicParsing="false" text="Edit Username" GridPane.rowIndex="4" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
 
 
                 <!-- Password -->
-                <Label text="Password:" GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" >
+                <Label text="Password:" GridPane.rowIndex="5" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" >
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
 
-                <Text fx:id="passwordField" GridPane.rowIndex="4"  GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                <Text fx:id="passwordField" GridPane.rowIndex="5"  GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 
-                <Button fx:id="editPasswordButton" onAction = "#onEditPasswordButtonPressed" mnemonicParsing="false" text="Edit Password" GridPane.rowIndex="4" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+                <Button fx:id="editPasswordButton" onAction = "#onEditPasswordButtonPressed" mnemonicParsing="false" text="Edit Password" GridPane.rowIndex="5" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
 
 
                 <!-- Address -->
-                <Label text="Address:" GridPane.rowIndex="5" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" >
+                <Label text="Address:" GridPane.rowIndex="6" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" >
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
 
-                <Text fx:id="addressField" GridPane.rowIndex="5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                <Text fx:id="addressField" GridPane.rowIndex="6" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 
-                <Button fx:id="editAddressButton" onAction = "#onEditAddressButtonPressed" mnemonicParsing="false" text="Edit Address" GridPane.rowIndex="5" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+                <Button fx:id="editAddressButton" onAction = "#onEditAddressButtonPressed" mnemonicParsing="false" text="Edit Address" GridPane.rowIndex="6" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
 
 
                 <!-- Type -->
-                <Label text="Type:" GridPane.rowIndex="6" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" >
+                <Label text="Type:" GridPane.rowIndex="7" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" >
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
 
-                <Text fx:id="typeField" GridPane.rowIndex="6" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                <Text fx:id="typeField" GridPane.rowIndex="7" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
 
-                <Button fx:id="editTypeButton" onAction = "#onEditTypeButtonPressed" mnemonicParsing="false" text="Edit Type" GridPane.rowIndex="6" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+                <Button fx:id="editTypeButton" onAction = "#onEditTypeButtonPressed" mnemonicParsing="false" text="Edit Type" GridPane.rowIndex="7" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
 
 
                 <!-- Back -->
-                <Button fx:id="goBackButton" onAction = "#onGoBackButtonPressed" mnemonicParsing="false" text="Go Back" GridPane.rowIndex="7" GridPane.columnIndex="1" GridPane.halignment="CENTER"/>
+                <Button fx:id="goBackButton" onAction = "#onGoBackButtonPressed" mnemonicParsing="false" text="Go Back" GridPane.rowIndex="8" GridPane.columnIndex="1" GridPane.halignment="CENTER"/>
 
             </children>
 
