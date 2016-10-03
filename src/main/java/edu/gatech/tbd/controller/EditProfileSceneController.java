@@ -1,9 +1,9 @@
 package edu.gatech.tbd.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import edu.gatech.tbd.model.UserManager;
+import edu.gatech.tbd.model.UserProperty;
 
 public class EditProfileSceneController extends SceneController{
 	
@@ -42,32 +42,44 @@ public class EditProfileSceneController extends SceneController{
     
     @FXML
     protected void onEditNameButtonPressed() {
-    	mainApp.changeScene("EditNameScene");
+    	mainApp.changeScene("EditProfileTextScene");
+    	EditProfileTextSceneController c = (EditProfileTextSceneController)mainApp.getCurrentController();
+    	c.setInfo(UserManager.getLoggedInUser(), UserProperty.Name);
     }	
     
     @FXML
     protected void onEditEmailButtonPressed() {
-    	mainApp.changeScene("EditEmailScene");
+    	mainApp.changeScene("EditProfileTextScene");
+    	EditProfileTextSceneController c = (EditProfileTextSceneController)mainApp.getCurrentController();
+    	c.setInfo(UserManager.getLoggedInUser(), UserProperty.Email);
     }	
 
     @FXML
     protected void onEditUsernameButtonPressed() {
-    	mainApp.changeScene("EditUsernameScene");
+    	mainApp.changeScene("EditProfileTextScene");
+    	EditProfileTextSceneController c = (EditProfileTextSceneController)mainApp.getCurrentController();
+    	c.setInfo(UserManager.getLoggedInUser(), UserProperty.Username);
     }	
 
     @FXML
     protected void onEditPasswordButtonPressed() {
-    	mainApp.changeScene("EditPasswordScene");
+    	mainApp.changeScene("EditProfileTextScene");
+    	EditProfileTextSceneController c = (EditProfileTextSceneController)mainApp.getCurrentController();
+    	c.setInfo(UserManager.getLoggedInUser(), UserProperty.Password);
     }
     
     @FXML
     protected void onEditAddressButtonPressed() {
-    	mainApp.changeScene("EditAddressScene");
+    	mainApp.changeScene("EditProfileTextScene");
+    	EditProfileTextSceneController c = (EditProfileTextSceneController)mainApp.getCurrentController();
+    	c.setInfo(UserManager.getLoggedInUser(), UserProperty.Address);
     }	
 
     @FXML
     protected void onEditTypeButtonPressed() {
-    	mainApp.changeScene("EditTypeScene");
+    	mainApp.changeScene("EditProfileDropdownScene");
+    	EditProfileDropdownSceneController c = (EditProfileDropdownSceneController)mainApp.getCurrentController();
+    	c.setInfo(UserManager.getLoggedInUser(), UserProperty.Type);
     }	
 
 }

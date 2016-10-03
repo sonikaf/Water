@@ -1,15 +1,14 @@
 package edu.gatech.tbd.controller;
 
-import edu.gatech.tbd.Main;
+import edu.gatech.tbd.model.UserException;
+import edu.gatech.tbd.model.UserManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import edu.gatech.tbd.Main;
 
-public class LoginStageController extends SceneController{
+public class LoginSceneController extends SceneController{
 	   
 	@FXML
 	Label errorLabel;
@@ -33,15 +32,12 @@ public class LoginStageController extends SceneController{
 	    String password = passwordField.getText(); 
 	    
 	    // if username/password combo matches stored data
-	    if (username.equals("user") && password.equals("pass")) {
+	    try {
+	    	UserManager.loginUser(username, password);
+	    
 	        mainApp.changeScene("ApplicationScene");
-	    }
-	    // if username/password combo does not match stored data
-	    else {
-	        errorLabel.setText(
-	                "Login Failed: Invalid Username or Password");
-	        usernameField.setText("");
-	        passwordField.setText("");
+	    } catch (UserException ex) {
+	    	errorLabel.setText(ex.getMessage());
 	    }
 	}
 	

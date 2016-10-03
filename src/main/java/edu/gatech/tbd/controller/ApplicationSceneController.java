@@ -1,6 +1,6 @@
 package edu.gatech.tbd.controller;
 
-import edu.gatech.tbd.Main;
+import edu.gatech.tbd.model.UserManager;
 import javafx.fxml.FXML;
 
 public class ApplicationSceneController extends SceneController {
@@ -13,6 +13,7 @@ public class ApplicationSceneController extends SceneController {
     
     @FXML
     protected void onLogoutButtonPressed() {
+    	UserManager.logoutUser();
         mainApp.changeScene("WelcomeScene");
     }
     

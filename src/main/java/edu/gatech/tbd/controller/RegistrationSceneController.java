@@ -3,7 +3,6 @@ package edu.gatech.tbd.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.gatech.tbd.model.User;
 import edu.gatech.tbd.model.UserException;
 import edu.gatech.tbd.model.UserManager;
 import edu.gatech.tbd.model.UserType;

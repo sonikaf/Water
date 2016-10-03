@@ -1,7 +1,6 @@
 package edu.gatech.tbd;
 
 import java.io.IOException;
-import java.net.URL;
 
 import edu.gatech.tbd.controller.*;
 import javafx.application.Application;
@@ -16,6 +15,7 @@ public class Main extends Application {
      * main stage for application
      */
 	private static Stage stage;
+	private static SceneController currentController;
 
 
 	@Override
@@ -45,8 +45,9 @@ public class Main extends Application {
             Scene scene = new Scene(root);
             
             // adding Main reference to LoginStageController
-            SceneController controller = loader.getController();
-            controller.setMainApp(this);
+            currentController = loader.getController();
+            currentController.setMainApp(this);
+            
             
             stage.setScene(scene);
             stage.show();
@@ -55,6 +56,10 @@ public class Main extends Application {
             System.err.println("Error loading stage!");
             e.printStackTrace();
         }
+	}
+	
+	public SceneController getCurrentController() {
+		return currentController;
 	}
 
 	public static void main(String[] args) {
