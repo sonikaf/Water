@@ -31,6 +31,10 @@ public class LoginSceneController extends SceneController{
 	    String username = usernameField.getText();
 	    String password = passwordField.getText(); 
 	    
+	    // Clear username and password textfields
+	    usernameField.setText("");
+	    passwordField.setText("");
+	    
 	    // if username/password combo matches stored data
 	    try {
 	    	UserManager.loginUser(username, password);
