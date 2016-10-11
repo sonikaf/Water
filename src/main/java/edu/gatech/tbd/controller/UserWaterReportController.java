@@ -46,9 +46,6 @@ public class UserWaterReportController extends SceneController {
     @FXML
     public void initialize() {
 
-    	reportCounter++;
-    	reportNumber = reportCounter;
-
     	reporter = UserManager.getLoggedInUser().getName();
 
     	date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
@@ -86,6 +83,8 @@ public class UserWaterReportController extends SceneController {
     	if (locationField.getText().equals("")) {
 			errorLabel.setText("You must enter a valid location");
 		} else {
+			reportCounter++;
+	    	reportNumber = reportCounter;
 			WaterReportManager.registerReport(reportNumber, reporter, locationField.getText(), typeField.getSelectionModel().getSelectedItem(), conditionField.getSelectionModel().getSelectedItem(), date);
 			errorLabel.setText("You have submitted a water availability report.");
 			mainApp.changeScene("ApplicationScene");
