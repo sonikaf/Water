@@ -4,7 +4,8 @@ public class WaterReport {
 
 	protected int _reportNumber;
 	protected String _reporter;
-	protected String _location;
+	protected double _locationLat;
+	protected double _locationLong;
 	protected WaterType _type;
 	protected WaterCondition _condition;
 	protected String _dateTime;
@@ -12,10 +13,12 @@ public class WaterReport {
 	/**
 	 * Creates a new Water Report
 	 */
-	protected WaterReport(int rNumber, String reporter, String location, WaterType type, WaterCondition condition, String date) {
+	protected WaterReport(int rNumber, String reporter, double locLat, double locLong, WaterType type,
+			WaterCondition condition, String date) {
 		_reportNumber = rNumber;
 		_reporter = reporter;
-		_location = location;
+		_locationLat = locLat;
+		_locationLong = locLong;
 		_type = type;
 		_condition = condition;
 		_dateTime = date;
@@ -45,7 +48,15 @@ public class WaterReport {
 	 * @return
 	 */
 	public String getLocation() {
-		return _location;
+		return "(" + _locationLat + ", " + _locationLong + ")";
+	}
+	
+	public double getLocationLat() {
+		return _locationLat;
+	}
+	
+	public double getLocationLong() {
+		return _locationLong;
 	}
 
 	/**
@@ -81,8 +92,14 @@ public class WaterReport {
 			return false;
 		} else {
 			WaterReport other = (WaterReport) o;
-			return other._reportNumber == (_reportNumber) && other._reporter.equals(_reporter) && other._location.equals(_location)
-					&& other._type.equals(_type) && other._condition.equals(_condition) && other._dateTime.equals(_dateTime);
+			return other._reportNumber == (_reportNumber) && other._reporter.equals(_reporter)
+					&& other._locationLat == _locationLat && other._locationLong == _locationLong
+					&& other._type.equals(_type) && other._condition.equals(_condition)
+					&& other._dateTime.equals(_dateTime);
 		}
+	}
+	
+	public String toString() {
+		return String.format("Report %02d (%f, %f) by %s", _reportNumber, _locationLat, _locationLong, _reporter);
 	}
 }

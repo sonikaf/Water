@@ -17,25 +17,16 @@ import edu.gatech.tbd.model.WaterCondition;
 import edu.gatech.tbd.model.WaterReportManager;
 import edu.gatech.tbd.model.WaterType;
 
-public class UserWaterReportController extends SceneController {
-
-	@FXML
-	private static int reportCounter = 0;
-
-	@FXML
-	private int reportNumber;
-
-	@FXML
-	private String reporter;
-
-	@FXML
-	private String date;
+public class WaterReportController extends SceneController {
+	
+    @FXML
+    private TextField locationLatField;
+    
+    @FXML
+    private TextField locationLongField;
 
     @FXML
-    private TextField locationField;
-
-    @FXML
-    private ComboBox<WaterType> typeField;;
+    private ComboBox<WaterType> typeField;
 
     @FXML
     private ComboBox<WaterCondition> conditionField;
@@ -45,14 +36,6 @@ public class UserWaterReportController extends SceneController {
 
     @FXML
     public void initialize() {
-
-    	reportCounter++;
-    	reportNumber = reportCounter;
-
-    	reporter = UserManager.getLoggedInUser().getName();
-
-    	date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
-
 
     	List<WaterType> list = new ArrayList<WaterType>();
         list.add(WaterType.Bottled);
@@ -77,24 +60,26 @@ public class UserWaterReportController extends SceneController {
     }
 
     @FXML
-    protected void onHomeButtonPressed() {
-    	mainApp.changeScene("ApplicationScene");
+    protected void onCancelButtonPressed() {
+    	mainApp.closePopup();
     }
 
     @FXML
     protected void onSubmitButtonPressed() {
-    	if (locationField.getText().equals("")) {
+    	if (locationLongField.getText().equals("") || locationLatField.getText().equals("")) {
 			errorLabel.setText("You must enter a valid location");
 		} else {
-			WaterReportManager.registerReport(reportNumber, reporter, locationField.getText(), typeField.getSelectionModel().getSelectedItem(), conditionField.getSelectionModel().getSelectedItem(), date);
-			errorLabel.setText("You have submitted a water availability report.");
-			mainApp.changeScene("ApplicationScene");
+			try {
+				double locLat = Double.parseDouble(locationLatField.getText());
+				double locLong = Double.parseDouble(locationLongField.getText());
+				WaterReportManager.registerReport(locLat, locLong, typeField.getSelectionModel().getSelectedItem(), conditionField.getSelectionModel().getSelectedItem());
+				errorLabel.setText("You have submitted a water availability report.");
+				((ApplicationSceneController)mainApp.getCurrentController()).updateReportList();
+				mainApp.closePopup();
+			} catch (Exception e) {
+				errorLabel.setText("You must enter a valid location");
+				e.printStackTrace();
+			}
 		}
-    }
-
-    @FXML
-    protected void onCancelButtonPressed() {
-    	errorLabel.setText("No report submitted.");
-    	mainApp.changeScene("ApplicationScene");
     }
 }
