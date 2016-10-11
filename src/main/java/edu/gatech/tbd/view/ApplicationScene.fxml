@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import com.lynden.gmapsfx.*?>
 
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gatech.tbd.controller.ApplicationSceneController">
@@ -24,6 +25,7 @@
             <children>
                 <Button fx:id="logoutButton" onAction="#onLogoutButtonPressed" mnemonicParsing="false" text="Logout" GridPane.halignment="CENTER" GridPane.columnIndex="2" />
                 <Button fx:id="editProfileButton" onAction="#onEditProfileButtonPressed" mnemonicParsing="false" text="Edit Profile" GridPane.halignment="CENTER" GridPane.columnIndex="1" />
+                <GoogleMapView fx:id="mapView" GridPane.halignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="3" GridPane.rowSpan="2"/>
             </children>
 
         </GridPane>

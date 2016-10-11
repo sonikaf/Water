@@ -3,6 +3,9 @@ package edu.gatech.tbd;
 import java.io.IOException;
 
 import edu.gatech.tbd.controller.*;
+import edu.gatech.tbd.model.UserException;
+import edu.gatech.tbd.model.UserManager;
+import edu.gatech.tbd.model.UserType;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,6 +28,12 @@ public class Main extends Application {
 		
 	    // load the welcome scene and show the window	    
         stage.setTitle("Team 19");
+        try {
+			UserManager.registerUser("admin", "admin", "none", UserType.Administrator, "none", "none");
+			UserManager.logoutUser();
+		} catch (UserException e) {
+			e.printStackTrace();
+		}
         changeScene("WelcomeScene");
         stage.show();
 	       
