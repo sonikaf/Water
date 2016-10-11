@@ -22,7 +22,7 @@ public class WaterReport {
 	}
 
 	/**
-	 * Gets the user's username
+	 * Gets the report number
 	 *
 	 * @return
 	 */
@@ -40,7 +40,7 @@ public class WaterReport {
 	}
 
 	/**
-	 * Gets the user's email
+	 * Gets the water location
 	 *
 	 * @return
 	 */
@@ -49,7 +49,7 @@ public class WaterReport {
 	}
 
 	/**
-	 * Gets the user's address
+	 * Gets the water type
 	 *
 	 * @return
 	 */
@@ -58,7 +58,7 @@ public class WaterReport {
 	}
 
 	/**
-	 * Gets the user's password
+	 * Gets the water condition
 	 *
 	 * @return
 	 */
@@ -67,7 +67,7 @@ public class WaterReport {
 	}
 
 	/**
-	 * Gets the user's type
+	 * Gets the date the report was created
 	 *
 	 * @return
 	 */
