@@ -36,6 +36,8 @@ public class WaterReportManager {
 	public static WaterReport getReportNumber(int n) {
         if (n - 1 > reportList.size()) {
         	return LatestReport;
+        } else if (n <= 0) {
+        	return reportList.get(0);
         } else {
         	return reportList.get(n - 1);
         }
