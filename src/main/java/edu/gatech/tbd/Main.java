@@ -26,6 +26,7 @@ public class Main extends Application {
 	private static Stage stage;
 	private static SceneController currentController;
 	private static Stage popup;
+	private static SceneController popupController;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -98,7 +99,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 
 			// adding Main reference to LoginStageController
-			SceneController popupController = loader.getController();
+			popupController = loader.getController();
 			if(popupController != null)
 				popupController.setMainApp(this);
 			popup = new Stage();
@@ -128,6 +129,10 @@ public class Main extends Application {
 
 	public SceneController getCurrentController() {
 		return currentController;
+	}
+	
+	public SceneController getPopupController() {
+		return popupController;
 	}
 
 	public static void main(String[] args) {

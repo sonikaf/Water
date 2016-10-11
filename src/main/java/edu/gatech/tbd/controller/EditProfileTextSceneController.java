@@ -92,7 +92,8 @@ public class EditProfileTextSceneController extends SceneController {
 			}
 			UserManager.updateUserInformation(UserManager.getLoggedInUser(), name, username, password, u.getType(),
 					email, address);
-			mainApp.changeScene("EditProfileScene");
+			mainApp.closePopup();
+			mainApp.doPopupWindow("EditProfileScene");
 		} catch (UserException e) {
 			errorLabel.setText(e.getMessage());
 		}
@@ -100,6 +101,7 @@ public class EditProfileTextSceneController extends SceneController {
 
 	@FXML
 	protected void onGoBackButtonPressed() {
-		mainApp.changeScene("EditProfileScene");
+		mainApp.closePopup();
+		mainApp.doPopupWindow("EditProfileScene");
 	}
 }

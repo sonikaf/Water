@@ -70,7 +70,8 @@ public class EditProfileDropdownSceneController extends SceneController {
 			}
 			UserManager.updateUserInformation(UserManager.getLoggedInUser(), u.getName(), u.getUsername(),
 					u.getPassword(), type, u.getEmail(), u.getAddress());
-			mainApp.changeScene("EditProfileScene");
+			mainApp.closePopup();
+			mainApp.doPopupWindow("EditProfileScene");
 		} catch (UserException e) {
 			errorLabel.setText(e.getMessage());
 		}
@@ -78,6 +79,7 @@ public class EditProfileDropdownSceneController extends SceneController {
 
 	@FXML
 	protected void onGoBackButtonPressed() {
-		mainApp.changeScene("EditProfileScene");
+		mainApp.closePopup();
+		mainApp.doPopupWindow("EditProfileScene");
 	}
 }

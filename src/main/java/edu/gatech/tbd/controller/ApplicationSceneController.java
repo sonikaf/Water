@@ -57,7 +57,7 @@ public class ApplicationSceneController extends SceneController
 
 	@FXML
 	protected void onEditProfileButtonPressed() {
-		mainApp.changeScene("EditProfileScene");
+		mainApp.doPopupWindow("EditProfileScene");
 	}
 
 	@FXML

@@ -37,48 +37,54 @@ public class EditProfileSceneController extends SceneController{
 	
     @FXML
     protected void onGoBackButtonPressed() {
-    	mainApp.changeScene("ApplicationScene");
+    	mainApp.closePopup();
     }
     
     @FXML
     protected void onEditNameButtonPressed() {
-    	mainApp.changeScene("EditProfileTextScene");
-    	EditProfileTextSceneController c = (EditProfileTextSceneController)mainApp.getCurrentController();
+    	mainApp.closePopup();
+    	mainApp.doPopupWindow("EditProfileTextScene");
+    	EditProfileTextSceneController c = (EditProfileTextSceneController)mainApp.getPopupController();
     	c.setInfo(UserManager.getLoggedInUser(), UserProperty.Name);
     }	
     
     @FXML
     protected void onEditEmailButtonPressed() {
-    	mainApp.changeScene("EditProfileTextScene");
-    	EditProfileTextSceneController c = (EditProfileTextSceneController)mainApp.getCurrentController();
+    	mainApp.closePopup();
+    	mainApp.doPopupWindow("EditProfileTextScene");
+    	EditProfileTextSceneController c = (EditProfileTextSceneController)mainApp.getPopupController();
     	c.setInfo(UserManager.getLoggedInUser(), UserProperty.Email);
     }	
 
     @FXML
     protected void onEditUsernameButtonPressed() {
-    	mainApp.changeScene("EditProfileTextScene");
-    	EditProfileTextSceneController c = (EditProfileTextSceneController)mainApp.getCurrentController();
+    	mainApp.closePopup();
+    	mainApp.doPopupWindow("EditProfileTextScene");
+    	EditProfileTextSceneController c = (EditProfileTextSceneController)mainApp.getPopupController();
     	c.setInfo(UserManager.getLoggedInUser(), UserProperty.Username);
     }	
 
     @FXML
     protected void onEditPasswordButtonPressed() {
-    	mainApp.changeScene("EditProfileTextScene");
-    	EditProfileTextSceneController c = (EditProfileTextSceneController)mainApp.getCurrentController();
+    	mainApp.closePopup();
+    	mainApp.doPopupWindow("EditProfileTextScene");
+    	EditProfileTextSceneController c = (EditProfileTextSceneController)mainApp.getPopupController();
     	c.setInfo(UserManager.getLoggedInUser(), UserProperty.Password);
     }
     
     @FXML
     protected void onEditAddressButtonPressed() {
-    	mainApp.changeScene("EditProfileTextScene");
-    	EditProfileTextSceneController c = (EditProfileTextSceneController)mainApp.getCurrentController();
+    	mainApp.closePopup();
+    	mainApp.doPopupWindow("EditProfileTextScene");
+    	EditProfileTextSceneController c = (EditProfileTextSceneController)mainApp.getPopupController();
     	c.setInfo(UserManager.getLoggedInUser(), UserProperty.Address);
     }	
 
     @FXML
     protected void onEditTypeButtonPressed() {
-    	mainApp.changeScene("EditProfileDropdownScene");
-    	EditProfileDropdownSceneController c = (EditProfileDropdownSceneController)mainApp.getCurrentController();
+    	mainApp.closePopup();
+    	mainApp.doPopupWindow("EditProfileDropdownScene");
+    	EditProfileDropdownSceneController c = (EditProfileDropdownSceneController)mainApp.getPopupController();
     	c.setInfo(UserManager.getLoggedInUser(), UserProperty.Type);
     }	
 
