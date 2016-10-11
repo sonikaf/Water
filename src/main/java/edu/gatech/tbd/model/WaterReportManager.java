@@ -33,6 +33,10 @@ public class WaterReportManager {
 		r._dateTime = dateTime;
 	}
 
+	public static WaterReport getReportNumber(int n) {
+		return reportList.get(n - 1);
+	}
+
 	public static WaterReport getLatestReport() {
 		return LatestReport;
 	}
