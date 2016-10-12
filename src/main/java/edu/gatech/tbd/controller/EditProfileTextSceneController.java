@@ -8,6 +8,9 @@ import edu.gatech.tbd.model.UserException;
 import edu.gatech.tbd.model.UserManager;
 import edu.gatech.tbd.model.UserProperty;
 
+/**
+ * Controller for the Edit Profile Text Scene.
+ */
 public class EditProfileTextSceneController extends SceneController {
 
 	@FXML
@@ -28,7 +31,13 @@ public class EditProfileTextSceneController extends SceneController {
 	public void initialize() {
 
 	}
-
+	
+	/**
+	 * Sets the user's information from the given property.
+	 * 
+	 * @param u
+	 * @param p
+	 */
 	public void setInfo(User u, UserProperty p) {
 		this.p = p;
 		switch (p) {
@@ -61,7 +70,10 @@ public class EditProfileTextSceneController extends SceneController {
 			break;
 		}
 	}
-
+	
+	/**
+	 * Handler for the Submit button.
+	 */
 	@FXML
 	protected void onSubmitButtonPressed() {
 		try {
@@ -99,6 +111,9 @@ public class EditProfileTextSceneController extends SceneController {
 		}
 	}
 
+	/**
+	 * Handler for the Go Back button.
+	 */
 	@FXML
 	protected void onGoBackButtonPressed() {
 		mainApp.closePopup();

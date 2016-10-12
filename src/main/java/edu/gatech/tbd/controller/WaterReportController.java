@@ -7,16 +7,16 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import edu.gatech.tbd.model.UserManager;
 import edu.gatech.tbd.model.WaterCondition;
 import edu.gatech.tbd.model.WaterReportManager;
 import edu.gatech.tbd.model.WaterType;
 
+/**
+ * Controller for the Water Report Scene.
+ */
 public class WaterReportController extends SceneController {
 	
     @FXML
@@ -59,11 +59,17 @@ public class WaterReportController extends SceneController {
 
     }
 
+    /**
+     * Handler for the Cancel button.
+     */
     @FXML
     protected void onCancelButtonPressed() {
     	mainApp.closePopup();
     }
-
+    
+    /**
+     * Handler for the Submit button.
+     */
     @FXML
     protected void onSubmitButtonPressed() {
     	if (locationLongField.getText().equals("") || locationLatField.getText().equals("")) {

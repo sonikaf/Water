@@ -2,6 +2,9 @@ package edu.gatech.tbd.controller;
 
 import edu.gatech.tbd.Main;
 
+/**
+ * Controller for a scene.
+ */
 public class SceneController {
 	
 	/**

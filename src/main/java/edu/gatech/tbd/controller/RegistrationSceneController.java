@@ -13,23 +13,35 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+/**
+ * Controller for the Registration Scene.
+ */
 public class RegistrationSceneController extends SceneController{
 
     @FXML
     private ComboBox<UserType> typeField;
+    
     @FXML
     private TextField usernameField;
+    
     @FXML
     private TextField emailField;
+    
     @FXML
     private TextField passwordField;
+    
     @FXML
     private TextField addressField;
+    
     @FXML
     private TextField nameField;
+    
     @FXML
     private Label errorLabel;
     
+    /**
+     * Initializes the user type combobox with available options.
+     */
 	@FXML
 	public void initialize() {
         List<UserType> list = new ArrayList<UserType>();
@@ -42,11 +54,17 @@ public class RegistrationSceneController extends SceneController{
         typeField.setValue(UserType.User);
 	} 
 	
+	/**
+	 * Handler for the Go Back button.
+	 */
 	@FXML
 	protected void onGoBackButtonPressed() {
 		 mainApp.changeScene("WelcomeScene");
 	}
 	
+	/**
+     * Handler for the Register button.
+     */
 	@FXML
 	protected void onRegisterButtonPressed() throws UserException {
 		if (nameField.getText().equals("")) {

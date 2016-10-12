@@ -8,6 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+/**
+ * Controller for the Login Scene.
+ */
 public class LoginSceneController extends SceneController{
 	   
 	@FXML
@@ -24,6 +27,10 @@ public class LoginSceneController extends SceneController{
 		
 	} 
 	
+	/**
+	 * Handler for the Login button.
+	 * @param e
+	 */
 	@FXML
 	protected void onLoginButtonPressed(ActionEvent e) {
         
@@ -45,6 +52,10 @@ public class LoginSceneController extends SceneController{
 	    }
 	}
 	
+	/**
+	 * Handler for the Go Back button.
+	 * @param e
+	 */
 	@FXML
 	protected void onGoBackButtonPressed(ActionEvent e) {
 		mainApp.changeScene("WelcomeScene");

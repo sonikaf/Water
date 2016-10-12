@@ -14,8 +14,14 @@ import javafx.scene.control.Label;
 import java.util.List;
 import javafx.collections.FXCollections;
 
+/**
+ * Controller for the Edit Profile Dropdown Scene.
+ */
 public class EditProfileDropdownSceneController extends SceneController {
-
+    
+    /**
+     * Combobox for selecting the user type.
+     */
 	@FXML
 	private ComboBox<UserType> typeField;
 
@@ -24,17 +30,26 @@ public class EditProfileDropdownSceneController extends SceneController {
 
 	@FXML
 	private Label promptLabel;
-
+	
+	/**
+	 * Displays error message if user does not enter data correctly.
+	 */
 	@FXML
 	private Label errorLabel;
-
+	
 	private UserProperty p;
 
 	@FXML
 	public void initialize() {
 
 	}
-
+	
+	/**
+	 * Sets the user's information with the given property data.
+	 * 
+	 * @param u
+	 * @param p
+	 */
 	public void setInfo(User u, UserProperty p) {
 		this.p = p;
 		switch (p) {
@@ -55,7 +70,10 @@ public class EditProfileDropdownSceneController extends SceneController {
 			break;
 		}
 	}
-
+	
+	/**
+	 * Handler for the Submit button.
+	 */
 	@FXML
 	protected void onSubmitButtonPressed() {
 		try {
@@ -76,7 +94,10 @@ public class EditProfileDropdownSceneController extends SceneController {
 			errorLabel.setText(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * Handler for the Go Back button.
+	 */
 	@FXML
 	protected void onGoBackButtonPressed() {
 		mainApp.closePopup();
