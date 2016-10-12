@@ -1,5 +1,8 @@
 package edu.gatech.tbd.model;
 
+/**
+ * Available water types.
+ */
 public enum WaterType {
 	Bottled(0, "Bottled"), Well(1, "Well"), Stream(2, "Stream"), Lake(3, "Lake"), Spring(4, "Spring"), Other(5, "Other");
 

@@ -10,7 +10,7 @@ public class User {
 	protected String _username;
 
 	/**
-	 * Creates a new user object
+	 * Creates a new user object.
 	 */
 	protected User(String name, String uname, String pass, UserType type, String email, String address) {
 		_name = name;
@@ -22,7 +22,7 @@ public class User {
 	}
 
 	/**
-	 * Gets the user's username
+	 * Gets the user's username.
 	 * 
 	 * @return
 	 */
@@ -31,7 +31,7 @@ public class User {
 	}
 
 	/**
-	 * Gets the user's name
+	 * Gets the user's name.
 	 * 
 	 * @return
 	 */
@@ -40,7 +40,7 @@ public class User {
 	}
 
 	/**
-	 * Gets the user's email
+	 * Gets the user's email.
 	 * 
 	 * @return
 	 */
@@ -49,7 +49,7 @@ public class User {
 	}
 
 	/**
-	 * Gets the user's address
+	 * Gets the user's address.
 	 * 
 	 * @return
 	 */
@@ -58,7 +58,7 @@ public class User {
 	}
 
 	/**
-	 * Gets the user's password
+	 * Gets the user's password.
 	 * 
 	 * @return
 	 */
@@ -67,7 +67,7 @@ public class User {
 	}
 
 	/**
-	 * Gets the user's type
+	 * Gets the user's type.
 	 * 
 	 * @return
 	 */
@@ -77,11 +77,11 @@ public class User {
 
 	/**
 	 * Checks if this user object can perform an action required by the provided
-	 * UserLevel
+	 * UserLevel.
 	 * 
 	 * @param minUserLevel
 	 *            the minimum user level required to perform the action
-	 * @return if the user can perform the action
+	 * @return true if the user can perform the action, false otherwise
 	 */
 	public boolean canPerformAction(UserType minUserLevel) {
 		return _type.getLevel() >= minUserLevel.getLevel();

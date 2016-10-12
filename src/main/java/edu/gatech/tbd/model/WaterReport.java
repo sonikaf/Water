@@ -1,5 +1,8 @@
 package edu.gatech.tbd.model;
 
+/**
+ * Holds all of the data in a water availability report.
+ */
 public class WaterReport {
 
 	protected int _reportNumber;
@@ -11,7 +14,7 @@ public class WaterReport {
 	protected String _dateTime;
 
 	/**
-	 * Creates a new Water Report
+	 * Creates a new Water Report.
 	 */
 	protected WaterReport(int rNumber, String reporter, double locLat, double locLong, WaterType type,
 			WaterCondition condition, String date) {
@@ -25,7 +28,7 @@ public class WaterReport {
 	}
 
 	/**
-	 * Gets the report number
+	 * Gets the report number.
 	 *
 	 * @return
 	 */
@@ -34,7 +37,7 @@ public class WaterReport {
 	}
 
 	/**
-	 * Gets the user's name
+	 * Gets the user's name.
 	 *
 	 * @return
 	 */
@@ -43,7 +46,7 @@ public class WaterReport {
 	}
 
 	/**
-	 * Gets the water location
+	 * Gets the water location.
 	 *
 	 * @return
 	 */
@@ -51,16 +54,24 @@ public class WaterReport {
 		return "(" + _locationLat + ", " + _locationLong + ")";
 	}
 	
+	/**
+	 * Gets the location's lattitude.
+	 * @return
+	 */
 	public double getLocationLat() {
 		return _locationLat;
 	}
 	
+	/**
+	 * Gets the location's longitude.
+	 * @return
+	 */
 	public double getLocationLong() {
 		return _locationLong;
 	}
 
 	/**
-	 * Gets the water type
+	 * Gets the water type.
 	 *
 	 * @return
 	 */
@@ -69,7 +80,7 @@ public class WaterReport {
 	}
 
 	/**
-	 * Gets the water condition
+	 * Gets the water condition.
 	 *
 	 * @return
 	 */
@@ -78,7 +89,7 @@ public class WaterReport {
 	}
 
 	/**
-	 * Gets the date the report was created
+	 * Gets the date the report was created.
 	 *
 	 * @return
 	 */
@@ -99,6 +110,7 @@ public class WaterReport {
 		}
 	}
 	
+	@Override
 	public String toString() {
 		return String.format("Report %02d (%f, %f) by %s", _reportNumber, _locationLat, _locationLong, _reporter);
 	}

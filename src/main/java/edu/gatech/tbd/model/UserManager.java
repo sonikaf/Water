@@ -3,15 +3,22 @@ package edu.gatech.tbd.model;
 import java.util.HashMap;
 
 public class UserManager {
-
+    
+    /**
+     * Contains all registered users.
+     */
 	private static HashMap<String, User> userList = new HashMap<String, User>();
+	
+	/**
+	 * The currently logged-in user.
+	 */
 	private static User currentUser;
 
 	/**
-	 * Logs in a User to the system.
+	 * Logs a User into the system.
 	 * 
-	 * @param username
-	 * @param password
+	 * @param username The user's username.
+	 * @param password The user's password.
 	 */
 	public static void loginUser(String username, String password) throws UserException {
 		if (currentUser != null) {
@@ -29,14 +36,14 @@ public class UserManager {
 	}
 
 	/**
-	 * Log out the current user
+	 * Log out the current user.
 	 */
 	public static void logoutUser() {
 		currentUser = null;
 	}
 
 	/**
-	 * Create a new user object, and logs it in
+	 * Create a new user object, and logs it in.
 	 * 
 	 * @param username
 	 * @param password
@@ -58,10 +65,22 @@ public class UserManager {
 		currentUser = new User(name, username, password, type, email, address);
 		userList.put(username, currentUser);
 	}
-
+	
+	/**
+	 * Updates a user's information.
+	 * 
+	 * @param u
+	 * @param name
+	 * @param username
+	 * @param password
+	 * @param type
+	 * @param email
+	 * @param address
+	 * @throws UserException
+	 */
 	public static void updateUserInformation(User u, String name, String username, String password, UserType type, String email,
 			String address) throws UserException {
-		// here if there is a user with the specified username and it isnt the same object as our User then we can't change
+		// here if there is a user with the specified username and it isn't the same object as our User then we can't change
 		if (userList.containsKey(username) && !userList.containsValue(u)) {
 			throw new UserException("A User with that username already exists.");
 		}
@@ -72,7 +91,12 @@ public class UserManager {
 		u._email = email;
 		u._address = address;
 	}
-
+	
+	/**
+	 * Returns the current user.
+	 * 
+	 * @return
+	 */
 	public static User getLoggedInUser() {
 		return currentUser;
 	}

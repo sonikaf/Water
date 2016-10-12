@@ -1,5 +1,8 @@
 package edu.gatech.tbd.model;
 
+/**
+ * Available user types.
+ */
 public enum UserType {
 	User(0, "User"), Worker(1, "Worker"), Manager(2, "Manager"), Administrator(3, "Administrator");
 
