@@ -18,35 +18,58 @@ import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+/**
+ * This class launches the application, changes scenes, and contains a reference
+ * to the current controller.
+ */
 public class Main extends Application {
 
 	/**
-	 * main stage for application
+	 * Main stage for application.
 	 */
 	private static Stage stage;
+	
+	/**
+	 * Current controller being used.
+	 */
 	private static SceneController currentController;
+	
+	/**
+	 * Stage for popup windows.
+	 */
 	private static Stage popup;
+	
+	/**
+	 * Controller for the current popup window.
+	 */
 	private static SceneController popupController;
 
 	@Override
 	public void start(Stage primaryStage) {
-		// save our stage for later use
+		// Save our stage for later use.
 		stage = primaryStage;
-
-		// load the welcome scene and show the window
-		stage.setTitle("Team 19");
+		
+		// Temporary Test.
 		try {
-			UserManager.registerUser("admin", "admin", "none", UserType.Administrator, "none", "none");
-			WaterReportManager.registerReport(33.774804,-84.3976288, WaterType.Bottled, WaterCondition.Potable);
-			UserManager.logoutUser();
-		} catch (UserException e) {
-			e.printStackTrace();
-		}
+            UserManager.registerUser("admin", "admin", "none", UserType.Administrator, "none", "none");
+            WaterReportManager.registerReport(33.774804,-84.3976288, WaterType.Bottled, WaterCondition.Potable);
+            UserManager.logoutUser();
+        } catch (UserException e) {
+            e.printStackTrace();
+        }
+		
+		// Load the welcome scene and show the window.
+		stage.setTitle("Team 19");
 		changeScene("WelcomeScene");
 		stage.show();
 
 	}
-
+	
+	/**
+	 * Changes the scene.
+	 * 
+	 * @param path The path name for the scene to change to.
+	 */
 	public void changeScene(String path) {
 		if (stage == null)
 			return;
@@ -80,7 +103,12 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Opens up a popup window.
+	 * 
+	 * @param path The path name for the scene on the popup stage.
+	 */
 	public void doPopupWindow(String path) {
 		if(popup != null) {
 			System.err.println("There is already an open popup window!");
@@ -118,6 +146,9 @@ public class Main extends Application {
 		}
 	}
 	
+	/**
+	 * Closes the current popup window.
+	 */
 	public void closePopup() {
 		if(popup == null) {
 			System.err.println("No popup window is open, can't close.");
@@ -126,15 +157,30 @@ public class Main extends Application {
 		popup.close();
 		popup = null;
 	}
-
+	
+	/**
+	 * Returns the current scene controller.
+	 * 
+	 * @return currentController The current scene controller.
+	 */
 	public SceneController getCurrentController() {
 		return currentController;
 	}
 	
+	/**
+     * Returns the current popup scene controller.
+     * 
+     * @return popupController The current popup controller.
+     */
 	public SceneController getPopupController() {
 		return popupController;
 	}
-
+	
+	/**
+	 * The main method for the application.
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
