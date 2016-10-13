@@ -67,19 +67,31 @@ public class RegistrationSceneController extends SceneController{
      */
 	@FXML
 	protected void onRegisterButtonPressed() throws UserException {
-		if (nameField.getText().equals("")) {
-			errorLabel.setText("You must enter a valid name");
+		
+	    // Validating that user has entered all required data 
+	    if (nameField.getText().equals("")) {
+			errorLabel.setText("You must enter a valid name.");
 		} else if (emailField.getText().equals("")) {
-			errorLabel.setText("You must enter a valid email");
+			errorLabel.setText("You must enter a valid email.");
 		} else if (usernameField.getText().equals("")) {
-			errorLabel.setText("You must enter a valid username");
+			errorLabel.setText("You must enter a valid username.");
 		} else if (passwordField.getText().equals("")) {
-			errorLabel.setText("You must enter a valid password");
+			errorLabel.setText("You must enter a valid password.");
 		}else if (addressField.getText().equals("")) {
-			errorLabel.setText("You must enter a valid address");
-		} else {
-			UserManager.registerUser(nameField.getText(), usernameField.getText(), passwordField.getText(), (UserType) typeField.getSelectionModel().getSelectedItem(), emailField.getText(), addressField.getText());
-			mainApp.changeScene("ApplicationScene");
+			errorLabel.setText("You must enter a valid address.");
+		}
+	    
+		// Register User
+		try {	
+		    UserManager.registerUser(nameField.getText(),
+		            usernameField.getText(), passwordField.getText(),
+		            (UserType) typeField.getSelectionModel().getSelectedItem(),
+		            emailField.getText(), addressField.getText());
+		    mainApp.changeScene("ApplicationScene");
+		
+		// If exception is thrown, notify user that username is not available
+		} catch (UserException e) {
+		    errorLabel.setText("Selected username is not avaialable.");
 		}
 	}
 
