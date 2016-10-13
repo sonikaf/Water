@@ -78,6 +78,7 @@ public class WaterReportController extends SceneController {
 			try {
 				double locLat = Double.parseDouble(locationLatField.getText());
 				double locLong = Double.parseDouble(locationLongField.getText());
+				validateLocation(locLat, locLong);
 				AvailabilityReportManager.registerAvailabilityReport(locLat, locLong, typeField.getSelectionModel().getSelectedItem(), conditionField.getSelectionModel().getSelectedItem());
 				errorLabel.setText("You have submitted a water availability report.");
 				((ApplicationSceneController)mainApp.getCurrentController()).updateReportList();
@@ -87,5 +88,17 @@ public class WaterReportController extends SceneController {
 				e.printStackTrace();
 			}
 		}
+    }
+    
+    /**
+     * Checks that the entered lattitude and logitude are real values.
+     * 
+     * @param lat
+     * @param lon
+     */
+    private void validateLocation(double lat, double lon) {
+        if (lat > 85 || lat < -85 || lon > 180 || lon < 0) {
+            throw new RuntimeException();
+        }
     }
 }

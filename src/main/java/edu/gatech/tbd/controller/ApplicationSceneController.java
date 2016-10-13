@@ -111,6 +111,20 @@ public class ApplicationSceneController extends SceneController
 
 		createComboBoxes();
 		updateReportList();
+		
+		// temporarily not allowing non-admins to edit reports
+		if (!UserManager.getLoggedInUser().isAdmin()) {
+		    reportView_num.setEditable(false);
+		    reportView_reporter.setEditable(false);
+		    reportView_lat.setEditable(false);
+		    reportView_long.setEditable(false);
+		    reportView_date.setEditable(false);
+		    
+		    // this greys out the comboboxes... maybe switch these to textfields
+		    // for non-admins
+		    reportView_type.setDisable(true);
+		    reportView_cond.setDisable(true);
+		}
 	}
 
 	/**
