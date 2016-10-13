@@ -10,8 +10,8 @@ import javafx.scene.control.TextField;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.gatech.tbd.model.AvailabilityReportManager;
 import edu.gatech.tbd.model.WaterCondition;
-import edu.gatech.tbd.model.WaterReportManager;
 import edu.gatech.tbd.model.WaterType;
 
 /**
@@ -78,7 +78,7 @@ public class WaterReportController extends SceneController {
 			try {
 				double locLat = Double.parseDouble(locationLatField.getText());
 				double locLong = Double.parseDouble(locationLongField.getText());
-				WaterReportManager.registerReport(locLat, locLong, typeField.getSelectionModel().getSelectedItem(), conditionField.getSelectionModel().getSelectedItem());
+				AvailabilityReportManager.registerAvailabilityReport(locLat, locLong, typeField.getSelectionModel().getSelectedItem(), conditionField.getSelectionModel().getSelectedItem());
 				errorLabel.setText("You have submitted a water availability report.");
 				((ApplicationSceneController)mainApp.getCurrentController()).updateReportList();
 				mainApp.closePopup();

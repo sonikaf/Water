@@ -3,11 +3,11 @@ package edu.gatech.tbd;
 import java.io.IOException;
 
 import edu.gatech.tbd.controller.*;
+import edu.gatech.tbd.model.AvailabilityReportManager;
 import edu.gatech.tbd.model.UserException;
 import edu.gatech.tbd.model.UserManager;
 import edu.gatech.tbd.model.UserType;
 import edu.gatech.tbd.model.WaterCondition;
-import edu.gatech.tbd.model.WaterReportManager;
 import edu.gatech.tbd.model.WaterType;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -52,7 +52,7 @@ public class Main extends Application {
 		// Temporary Test.
 		try {
             UserManager.registerUser("admin", "admin", "none", UserType.Administrator, "none", "none");
-            WaterReportManager.registerReport(33.774804,-84.3976288, WaterType.Bottled, WaterCondition.Potable);
+            AvailabilityReportManager.registerAvailabilityReport(33.774804,-84.3976288, WaterType.Bottled, WaterCondition.Potable);
             UserManager.logoutUser();
         } catch (UserException e) {
             e.printStackTrace();

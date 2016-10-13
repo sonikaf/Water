@@ -139,7 +139,7 @@ public class ApplicationSceneController extends SceneController
 	}
 
 	public void updateReportList() {
-		List<AvailabilityReport> reports = WaterReportManager.getReportList();
+		List<AvailabilityReport> reports = AvailabilityReportManager.getAvailabilityReportList();
 
 		reportList.setItems(FXCollections.observableList(reports));
 	}
