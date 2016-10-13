@@ -22,60 +22,60 @@ import com.lynden.gmapsfx.javascript.object.*;
  */
 public class ApplicationSceneController extends SceneController
 		implements Initializable, MapComponentInitializedListener {
-    
+
 	@FXML
 	private GoogleMapView mapView;
 
 	private GoogleMap map;
-	
+
 	/**
      * The list of water reports available for selection.
      */
 	@FXML
 	ListView<WaterReport> reportList;
-	
+
 	/**
      * Textfield displaying the report number of the currently viewed report.
      */
 	@FXML
 	TextField reportView_num;
-	
+
 	/**
      * Textfield displaying the user who submitted the currently viewed report.
      */
 	@FXML
 	TextField reportView_reporter;
-	
+
 	/**
-     * Textfield displaying the lattitude of the currently viewed report.
+     * Textfield displaying the latitude of the currently viewed report.
      */
 	@FXML
 	TextField reportView_lat;
-	
+
 	/**
      * Textfield displaying the longitude of the currently viewed report.
      */
 	@FXML
 	TextField reportView_long;
-	
+
 	/**
      * Textfield displaying the submitted date of the currently viewed report.
      */
 	@FXML
 	TextField reportView_date;
-	
+
 	/**
      * Combobox displaying the water type of the currently viewed report.
      */
 	@FXML
 	ComboBox<WaterType> reportView_type;
-	
+
 	/**
 	 * Combobox displaying the water condition of the currently viewed report.
 	 */
 	@FXML
 	ComboBox<WaterCondition> reportView_cond;
-	
+
 	/**
 	 * Handler for the Logout button.
 	 */
@@ -84,7 +84,7 @@ public class ApplicationSceneController extends SceneController
 		UserManager.logoutUser();
 		mainApp.changeScene("WelcomeScene");
 	}
-	
+
 	/**
      * Handler for the Edit Profile button.
      */
@@ -92,7 +92,7 @@ public class ApplicationSceneController extends SceneController
 	protected void onEditProfileButtonPressed() {
 		mainApp.doPopupWindow("EditProfileScene");
 	}
-	
+
 	/**
 	 * Handler for the Submit Report button.
 	 */
@@ -108,13 +108,13 @@ public class ApplicationSceneController extends SceneController
 		reportList.setOnMouseClicked((e) -> {
 			setCurrentReport(reportList.getSelectionModel().getSelectedItem());
 		});
-		
+
 		createComboBoxes();
 		updateReportList();
 	}
-	
+
 	/**
-	 * Private helper method to populate combo boxes. 
+	 * Private helper method to populate combo boxes.
 	 */
 	private void createComboBoxes() {
 		List<WaterType> list = new ArrayList<WaterType>();
@@ -143,12 +143,12 @@ public class ApplicationSceneController extends SceneController
 
 		reportList.setItems(FXCollections.observableList(reports));
 	}
-	
+
 	/**
 	 * Marker for the currently selected water report.
 	 */
 	private static Marker curMarker;
-	
+
 	/**
 	 * Sets the current report.
 	 * @param r
@@ -163,16 +163,16 @@ public class ApplicationSceneController extends SceneController
 		reportView_lat.setText("" + r.getLocationLat());
 		reportView_long.setText("" + r.getLocationLong());
 		reportView_date.setText(r.getDateTime());
-		
+
 		reportView_type.setValue(r.getType());
 		reportView_cond.setValue(r.getCondition());
-		
+
 		LatLong waterLoc = new LatLong(r.getLocationLat(), r.getLocationLong());
-		MarkerOptions markerOptions = new MarkerOptions(); 
+		MarkerOptions markerOptions = new MarkerOptions();
 		markerOptions.position(waterLoc);
-		
+
 		curMarker = new Marker(markerOptions);
-		
+
 		map.addMarker(curMarker);
 		map.setCenter(waterLoc);
 		map.setZoom(16);

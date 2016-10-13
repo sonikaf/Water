@@ -53,15 +53,15 @@ public class WaterReport {
 	public String getLocation() {
 		return "(" + _locationLat + ", " + _locationLong + ")";
 	}
-	
+
 	/**
-	 * Gets the location's lattitude.
+	 * Gets the location's latitude.
 	 * @return
 	 */
 	public double getLocationLat() {
 		return _locationLat;
 	}
-	
+
 	/**
 	 * Gets the location's longitude.
 	 * @return
@@ -109,7 +109,7 @@ public class WaterReport {
 					&& other._dateTime.equals(_dateTime);
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		return String.format("Report %02d (%f, %f) by %s", _reportNumber, _locationLat, _locationLong, _reporter);
