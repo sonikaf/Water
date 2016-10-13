@@ -32,7 +32,7 @@ public class ApplicationSceneController extends SceneController
      * The list of water reports available for selection.
      */
 	@FXML
-	ListView<WaterReport> reportList;
+	ListView<AvailabilityReport> reportList;
 
 	/**
      * Textfield displaying the report number of the currently viewed report.
@@ -139,7 +139,7 @@ public class ApplicationSceneController extends SceneController
 	}
 
 	public void updateReportList() {
-		List<WaterReport> reports = WaterReportManager.getReportList();
+		List<AvailabilityReport> reports = WaterReportManager.getReportList();
 
 		reportList.setItems(FXCollections.observableList(reports));
 	}
@@ -153,7 +153,7 @@ public class ApplicationSceneController extends SceneController
 	 * Sets the current report.
 	 * @param r
 	 */
-	public void setCurrentReport(WaterReport r) {
+	public void setCurrentReport(AvailabilityReport r) {
 		if(curMarker != null) {
 			map.removeMarker(curMarker);
 			curMarker = null;

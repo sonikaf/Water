@@ -13,12 +13,12 @@ public class WaterReportManager {
     /**
      * List of the water reports.
      */
-	private static ArrayList<WaterReport> reportList = new ArrayList<WaterReport>();
+	private static ArrayList<AvailabilityReport> reportList = new ArrayList<AvailabilityReport>();
 	
 	/**
 	 * The most recent water report.
 	 */
-	private static WaterReport LatestReport;
+	private static AvailabilityReport LatestReport;
 	
 	/**
 	 * The number of reports submitted.
@@ -36,7 +36,7 @@ public class WaterReportManager {
 	 * @param dateTime
 	 */
 	public static void registerReport(double locLat, double locLong, WaterType type, WaterCondition condition) {
-		LatestReport = new WaterReport(reportCount++, UserManager.getLoggedInUser().getName(), locLat, locLong, type, condition, new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
+		LatestReport = new AvailabilityReport(reportCount++, UserManager.getLoggedInUser().getName(), locLat, locLong, type, condition, new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
 		reportList.add(LatestReport);
 	}
 	
@@ -52,7 +52,7 @@ public class WaterReportManager {
 	 * @param condition
 	 * @param dateTime
 	 */
-	public static void updateReportInformation(WaterReport r, int rNumber, String reporter, double locLat, double locLong, WaterType type, WaterCondition condition, String dateTime) {
+	public static void updateReportInformation(AvailabilityReport r, int rNumber, String reporter, double locLat, double locLong, WaterType type, WaterCondition condition, String dateTime) {
 
 		r._reportNumber = rNumber;
 		r._reporter = reporter;
@@ -68,7 +68,7 @@ public class WaterReportManager {
 	 * 
 	 * @return
 	 */
-	public static WaterReport getLatestReport() {
+	public static AvailabilityReport getLatestReport() {
 		return LatestReport;
 	}
 	
@@ -77,8 +77,8 @@ public class WaterReportManager {
 	 * 
 	 * @return
 	 */
-	public static List<WaterReport> getReportList() {
-		return new ArrayList<WaterReport>(reportList);
+	public static List<AvailabilityReport> getReportList() {
+		return new ArrayList<AvailabilityReport>(reportList);
 	}
 
 }
