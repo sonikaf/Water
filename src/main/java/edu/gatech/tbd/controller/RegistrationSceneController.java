@@ -3,6 +3,7 @@ package edu.gatech.tbd.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.gatech.tbd.model.User;
 import edu.gatech.tbd.model.UserException;
 import edu.gatech.tbd.model.UserManager;
 import edu.gatech.tbd.model.UserType;
@@ -83,11 +84,14 @@ public class RegistrationSceneController extends SceneController{
 	    
 		// Register User
 		try {	
-		    UserManager.registerUser(nameField.getText(),
+		    User user = UserManager.registerUser(nameField.getText(),
 		            usernameField.getText(), passwordField.getText(),
 		            (UserType) typeField.getSelectionModel().getSelectedItem(),
 		            emailField.getText(), addressField.getText());
-		    mainApp.changeScene("ApplicationScene");
+		    
+		    // route administrator to admin screen
+            // and route user, worker, manager to main app
+		    routeUserOnLogin(user);
 		
 		// If exception is thrown, notify user that username is not available
 		} catch (UserException e) {

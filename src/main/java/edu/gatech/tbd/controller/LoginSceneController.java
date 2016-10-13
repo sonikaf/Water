@@ -1,5 +1,6 @@
 package edu.gatech.tbd.controller;
 
+import edu.gatech.tbd.model.User;
 import edu.gatech.tbd.model.UserException;
 import edu.gatech.tbd.model.UserManager;
 import javafx.event.ActionEvent;
@@ -44,9 +45,12 @@ public class LoginSceneController extends SceneController{
 	    
 	    // if username/password combo matches stored data
 	    try {
-	    	UserManager.loginUser(username, password);
-	    
-	        mainApp.changeScene("ApplicationScene");
+	    	User user = UserManager.loginUser(username, password);
+	    	
+	    	// route administrator to admin screen
+	    	// and route user, worker, manager to main app
+	    	routeUserOnLogin(user);
+	    	
 	    } catch (UserException ex) {
 	    	errorLabel.setText(ex.getMessage());
 	    }

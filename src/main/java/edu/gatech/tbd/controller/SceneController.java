@@ -1,6 +1,7 @@
 package edu.gatech.tbd.controller;
 
 import edu.gatech.tbd.Main;
+import edu.gatech.tbd.model.User;
 
 /**
  * Controller for a scene.
@@ -17,6 +18,21 @@ public class SceneController {
      */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
+    }
+    
+    /**
+     * Routes user, worker, manager to main app and
+     * routes admin to admin scene.
+     * 
+     * @param user
+     */
+    public void routeUserOnLogin(User user) {
+        if (user.isAdmin()) {
+            // TODO go to admin scene
+            mainApp.changeScene("ApplicationScene");
+        } else {
+            mainApp.changeScene("ApplicationScene");
+        }
     }
     
 }

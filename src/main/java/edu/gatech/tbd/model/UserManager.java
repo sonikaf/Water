@@ -19,8 +19,9 @@ public class UserManager {
 	 * 
 	 * @param username The user's username.
 	 * @param password The user's password.
+	 * @return the logged-in user.
 	 */
-	public static void loginUser(String username, String password) throws UserException {
+	public static User loginUser(String username, String password) throws UserException {
 		if (currentUser != null) {
 			throw new UserException("Another user is alreday logged in.");
 		}
@@ -33,6 +34,9 @@ public class UserManager {
 
 		// store our currently logged in user
 		currentUser = u;
+		
+		// return user
+		return u;
 	}
 
 	/**
@@ -50,8 +54,10 @@ public class UserManager {
 	 * @param type
 	 * @param email
 	 * @param address
+	 * 
+	 * @return user
 	 */
-	public static void registerUser(String name, String username, String password, UserType type, String email, String address)
+	public static User registerUser(String name, String username, String password, UserType type, String email, String address)
 			throws UserException {
 		// *NOTE* M5 doesn't really say anything about what is needed to store per
 		// user so add any other data fields that seem necessary
@@ -64,6 +70,8 @@ public class UserManager {
 
 		currentUser = new User(name, username, password, type, email, address);
 		userList.put(username, currentUser);
+		
+		return currentUser;
 	}
 	
 	/**
@@ -100,5 +108,5 @@ public class UserManager {
 	public static User getLoggedInUser() {
 		return currentUser;
 	}
-
+	
 }

@@ -74,7 +74,15 @@ public class User {
 	public UserType getType() {
 		return _type;
 	}
+	
+	/**
+     * Returns true if the user is an Administrator, false otherwise.
+     */
+     public boolean isAdmin() {
+         return _type == UserType.Administrator;
+     }
 
+     
 	/**
 	 * Checks if this user object can perform an action required by the provided
 	 * UserLevel.

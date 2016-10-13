@@ -49,6 +49,7 @@ public class Main extends Application {
 		// Save our stage for later use.
 		stage = primaryStage;
 		
+		/*
 		// Temporary Test.
 		try {
             UserManager.registerUser("admin", "admin", "none", UserType.Administrator, "none", "none");
@@ -57,6 +58,7 @@ public class Main extends Application {
         } catch (UserException e) {
             e.printStackTrace();
         }
+		*/
 		
 		// Load the welcome scene and show the window.
 		stage.setTitle("Team 19");
