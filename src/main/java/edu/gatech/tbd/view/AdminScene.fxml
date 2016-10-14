@@ -36,44 +36,7 @@
                 <Tab text="User Management">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <Button fx:id="submitReportButton" layoutX="261.0" layoutY="477.0" mnemonicParsing="false" onAction="#onSubmitReportButtonPressed" text="New Report" />
-                              <ListView fx:id="reportList" layoutX="362.0" layoutY="54.0" prefHeight="220.0" prefWidth="425.0" />
-                              <Button layoutX="21.0" layoutY="477.0" mnemonicParsing="false" text="Save Report" />
-                              <GridPane layoutX="21.0" layoutY="54.0" prefHeight="400.0" prefWidth="331.0">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <Label maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Report Number:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" />
-                                    <Label layoutX="76.0" layoutY="17.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Reporter:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                                    <Label layoutX="10.0" layoutY="47.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Latitude:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                                    <Label layoutX="10.0" layoutY="77.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Longitude:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-                                    <Label layoutX="10.0" layoutY="107.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Water Type:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-                                    <Label layoutX="76.0" layoutY="137.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Water Condition:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-                                    <Label layoutX="10.0" layoutY="167.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Date:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
-                                    <TextField fx:id="reportView_num" GridPane.columnIndex="1" />
-                                    <TextField fx:id="reportView_reporter" layoutX="176.0" layoutY="12.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField fx:id="reportView_lat" layoutX="176.0" layoutY="42.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField fx:id="reportView_long" layoutX="176.0" layoutY="72.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField fx:id="reportView_date" layoutX="176.0" layoutY="162.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                    <ComboBox fx:id="reportView_type" prefHeight="27.0" prefWidth="164.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <ComboBox fx:id="reportView_cond" prefHeight="27.0" prefWidth="166.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                 </children>
-                              </GridPane>
-                              <GoogleMapView fx:id="mapView" layoutX="362.0" layoutY="284.0" prefHeight="220.0" prefWidth="425.0" />
-                           </children>
-                        </AnchorPane>
+                    </AnchorPane>
                   </content>
                 </Tab>
                   <Tab text="Security Log">
