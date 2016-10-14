@@ -47,16 +47,6 @@ public class WaterReportManager {
      */
     protected static int reportCount = 0;
 
-
-    /**
-     * Registers a new report and adds it to the list.
-     */
-    /*
-    public static void registerReport(double locLat, double locLong) {
-        latestReport = new Report(reportCount++, UserManager.getLoggedInUser().getName(), locLat, locLong, new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
-        reportList.add(latestReport);
-    }
-    */
     
     /**
      * Registers a new availability report and adds it to the list.
