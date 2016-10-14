@@ -140,7 +140,6 @@ public class ApplicationSceneController extends SceneController
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		mapView.addMapInializedListener(this);
-		System.out.print("started init for map...");
 		reportList.setOnMouseClicked((e) -> {
 			setCurrentReport(reportList.getSelectionModel().getSelectedItem());
 		});
@@ -228,8 +227,6 @@ public class ApplicationSceneController extends SceneController
 
 	@Override
 	public void mapInitialized() {
-		System.out.print("map done loading, configuring...");
-
 		LatLong gatechLocation = new LatLong(33.774804, -84.3976288);
 
 		MapOptions mapOptions = new MapOptions();
@@ -238,7 +235,5 @@ public class ApplicationSceneController extends SceneController
 				.rotateControl(false).scaleControl(false).streetViewControl(false).zoomControl(true).zoom(16);
 
 		map = mapView.createMap(mapOptions);
-
-		System.out.println("done!");
 	}
 }

@@ -33,9 +33,11 @@
                 <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#onEditProfileButtonPressed" text="Edit Profile" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
             <TabPane fx:id="tabPane" prefHeight="162.0" prefWidth="454.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="2">
               <tabs>
-                <Tab text="Water Availability Map" fx:id="availabilityMap">
+                <Tab text="Water Availability Map" fx:id="availabilityMapTab">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <Button fx:id="submitReportButton" layoutX="261.0" layoutY="477.0" mnemonicParsing="false" onAction="#onSubmitReportButtonPressed" text="New Report" />
+                        </AnchorPane>
                      </content>
                 </Tab>
                 <Tab text="Report List" fx:id="reportListTab">
@@ -44,7 +46,7 @@
                            <children>
                               <Button fx:id="submitReportButton" layoutX="261.0" layoutY="477.0" mnemonicParsing="false" onAction="#onSubmitReportButtonPressed" text="New Report" />
                               <ListView fx:id="reportList" layoutX="362.0" layoutY="54.0" prefHeight="220.0" prefWidth="425.0" />
-                              <Button layoutX="21.0" layoutY="477.0" mnemonicParsing="false" text="Save Report" />
+                              <Button fx:id="deleteReportButton" layoutX="21.0" layoutY="477.0" mnemonicParsing="false" text="Delete Report" />
                               <GridPane layoutX="21.0" layoutY="54.0" prefHeight="400.0" prefWidth="331.0">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
