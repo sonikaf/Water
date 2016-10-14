@@ -1,6 +1,6 @@
 package edu.gatech.tbd.model;
 
-public class Report {
+public abstract class Report {
     
     /**
      * TODO Javadocs

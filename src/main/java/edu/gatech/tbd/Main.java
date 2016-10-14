@@ -3,7 +3,7 @@ package edu.gatech.tbd;
 import java.io.IOException;
 
 import edu.gatech.tbd.controller.*;
-import edu.gatech.tbd.model.AvailabilityReportManager;
+import edu.gatech.tbd.model.WaterReportManager;
 import edu.gatech.tbd.model.UserException;
 import edu.gatech.tbd.model.UserManager;
 import edu.gatech.tbd.model.UserType;
