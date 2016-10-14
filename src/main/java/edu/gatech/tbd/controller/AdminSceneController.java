@@ -7,8 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -22,7 +20,7 @@ import com.lynden.gmapsfx.javascript.object.*;
 /**
  * Controller for the main application scene.
  */
-public class ApplicationSceneController extends SceneController
+public class AdminSceneController extends SceneController
 		implements Initializable, MapComponentInitializedListener {
 
 	@FXML
@@ -77,41 +75,7 @@ public class ApplicationSceneController extends SceneController
 	 */
 	@FXML
 	ComboBox<WaterCondition> reportView_cond;
-	
-	
-	
-	/**
-	 * 
-	 */
-	@FXML
-	TabPane tabPane;
-	
-    /**
-     * 
-     */
-    @FXML
-    Tab availabilityMapTab;
 
-	/**
-     * 
-     */
-    @FXML
-    Tab reportListTab;
-    
-	/**
-     * 
-     */
-    @FXML
-    Tab purityReportTab;
-    
-    /**
-     * 
-     */
-    @FXML
-    Tab historicalReportTab;
-    
-
-    
 	/**
 	 * Handler for the Logout button.
 	 */
@@ -148,17 +112,19 @@ public class ApplicationSceneController extends SceneController
 		createComboBoxes();
 		updateReportList();
 		
-		// if user has UserType user
-		if (UserManager.getLoggedInUser().getType() == UserType.User) {
-		    tabPane.getTabs().remove(purityReportTab);
-		    tabPane.getTabs().remove(historicalReportTab);
-		    tabPane.getTabs().remove(reportListTab);
-
-		// if user has UserType worker
-		} else if (UserManager.getLoggedInUser().getType() == UserType.Worker) {
-	          tabPane.getTabs().remove(historicalReportTab);
-	          tabPane.getTabs().remove(reportListTab);
-		} 
+		// temporarily not allowing non-admins to edit reports
+		if (!UserManager.getLoggedInUser().isAdmin()) {
+		    reportView_num.setEditable(false);
+		    reportView_reporter.setEditable(false);
+		    reportView_lat.setEditable(false);
+		    reportView_long.setEditable(false);
+		    reportView_date.setEditable(false);
+		    
+		    // this greys out the comboboxes... maybe switch these to textfields
+		    // for non-admins
+		    reportView_type.setDisable(true);
+		    reportView_cond.setDisable(true);
+		}
 	}
 
 	/**

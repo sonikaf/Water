@@ -28,8 +28,7 @@ public class SceneController {
      */
     public void routeUserOnLogin(User user) {
         if (user.isAdmin()) {
-            // TODO go to admin scene
-            mainApp.changeScene("ApplicationScene");
+            mainApp.changeScene("AdminScene");
         } else {
             mainApp.changeScene("ApplicationScene");
         }
