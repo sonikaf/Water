@@ -58,7 +58,7 @@ public class AvailabilityReport extends Report {
 
 	public String toString2() {
 		String returnString = new String();
-		returnString = ("Report " + _reportNumber + "\nReporter: " + _reporter + "\n" + getLocation() + "\nCreated: " + _dateTime + "\nWater Type: " + _type.toString() + "\nCondition: " + _condition.toString());
+		returnString = ("Reporter: " + _reporter + "\n" + getLocation() + "\nCreated: " + _dateTime + "\nWater Type: " + _type.toString() + "\nCondition: " + _condition.toString());
 		return returnString;
 	}
 }
