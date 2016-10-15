@@ -10,6 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
+import netscape.javascript.JSObject;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.lynden.gmapsfx.*;
+import com.lynden.gmapsfx.javascript.event.UIEventType;
 import com.lynden.gmapsfx.javascript.object.*;
 
 /**
@@ -29,6 +31,17 @@ public class ApplicationSceneController extends SceneController
 	private GoogleMapView mapView;
 
 	private GoogleMap map;
+
+
+	/**
+	 * named the little map on Report List screen specificMap, and commented out
+	 * the code until we can figure out how to get two maps working at same time
+	 * then we can add specific map back to the scene the same way alex had it
+	 *
+	private GoogleMapView specificMapView;
+
+	private GoogleMap specificMap;
+	*/
 
 	/**
      * The list of water reports available for selection.
@@ -77,41 +90,41 @@ public class ApplicationSceneController extends SceneController
 	 */
 	@FXML
 	ComboBox<WaterCondition> reportView_cond;
-	
-	
-	
+
+
+
 	/**
-	 * 
+	 *
 	 */
 	@FXML
 	TabPane tabPane;
-	
+
     /**
-     * 
+     *
      */
     @FXML
     Tab availabilityMapTab;
 
 	/**
-     * 
+     *
      */
     @FXML
     Tab reportListTab;
-    
+
 	/**
-     * 
+     *
      */
     @FXML
     Tab purityReportTab;
-    
+
     /**
-     * 
+     *
      */
     @FXML
     Tab historicalReportTab;
-    
 
-    
+
+
 	/**
 	 * Handler for the Logout button.
 	 */
@@ -140,13 +153,14 @@ public class ApplicationSceneController extends SceneController
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		mapView.addMapInializedListener(this);
+
 		reportList.setOnMouseClicked((e) -> {
 			setCurrentReport(reportList.getSelectionModel().getSelectedItem());
 		});
 
 		createComboBoxes();
 		updateReportList();
-		
+
 		// if user has UserType user
 		if (UserManager.getLoggedInUser().getType() == UserType.User) {
 		    tabPane.getTabs().remove(purityReportTab);
@@ -157,7 +171,7 @@ public class ApplicationSceneController extends SceneController
 		} else if (UserManager.getLoggedInUser().getType() == UserType.Worker) {
 	          tabPane.getTabs().remove(historicalReportTab);
 	          tabPane.getTabs().remove(reportListTab);
-		} 
+		}
 	}
 
 	/**
@@ -191,20 +205,26 @@ public class ApplicationSceneController extends SceneController
 		reportList.setItems(FXCollections.observableList(reports));
 	}
 
+
+
 	/**
 	 * Marker for the currently selected water report.
-	 */
+	 *
 	private static Marker curMarker;
+	 */
 
 	/**
 	 * Sets the current report.
 	 * @param r
 	 */
 	public void setCurrentReport(AvailabilityReport r) {
+
+		/**
 		if(curMarker != null) {
-			map.removeMarker(curMarker);
+			specificMap.removeMarker(curMarker);
 			curMarker = null;
 		}
+		*/
 		reportView_num.setText("" + r.getReportNumber());
 		reportView_reporter.setText(r.getReporter());
 		reportView_lat.setText("" + r.getLocationLat());
@@ -214,26 +234,66 @@ public class ApplicationSceneController extends SceneController
 		reportView_type.setValue(r.getType());
 		reportView_cond.setValue(r.getCondition());
 
+
+		/**
 		LatLong waterLoc = new LatLong(r.getLocationLat(), r.getLocationLong());
 		MarkerOptions markerOptions = new MarkerOptions();
 		markerOptions.position(waterLoc);
 
 		curMarker = new Marker(markerOptions);
 
-		map.addMarker(curMarker);
-		map.setCenter(waterLoc);
-		map.setZoom(16);
+		specificMap.addMarker(curMarker);
+		specificMap.setCenter(waterLoc);
+		specificMap.setZoom(16);
+		*/
 	}
 
 	@Override
 	public void mapInitialized() {
-		LatLong gatechLocation = new LatLong(33.774804, -84.3976288);
+		LatLong center = new LatLong(0, 0);
+		LatLong gaTechLoc = new LatLong(33.774804, -84.3976288);
 
 		MapOptions mapOptions = new MapOptions();
 
-		mapOptions.center(gatechLocation).mapType(MapTypeIdEnum.HYBRID).overviewMapControl(false).panControl(true)
-				.rotateControl(false).scaleControl(false).streetViewControl(false).zoomControl(true).zoom(16);
+		mapOptions.center(center).mapType(MapTypeIdEnum.HYBRID).overviewMapControl(false).panControl(true)
+				.rotateControl(false).scaleControl(false).streetViewControl(false).zoomControl(true).zoom(2);
 
 		map = mapView.createMap(mapOptions);
+
+		populateAvailabilityMap();
+	}
+
+	public void populateAvailabilityMap() {
+		List<AvailabilityReport> reports = WaterReportManager.getAvailabilityReportList();
+
+		for (AvailabilityReport r: reports) {
+			MarkerOptions markerOptions = new MarkerOptions();
+			LatLong loc = new LatLong(r.getLocationLat(), r.getLocationLong());
+
+			markerOptions.position(loc).visible(Boolean.TRUE).title("Report Number " + r.getReportNumber());
+			Marker marker = new Marker(markerOptions);
+
+			map.addUIEventHandler(marker,
+					UIEventType.click,
+					(JSObject obj) -> {
+						InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
+						infoWindowOptions.content(r.toString2());
+
+						InfoWindow window = new InfoWindow(infoWindowOptions);
+						window.open(map, marker);});
+			map.addMarker(marker);
+
+		}
+
+
+
+		/**
+		MapOptions specificMapOptions = new MapOptions();
+
+		specificMapOptions.center(gaTechLoc).mapType(MapTypeIdEnum.HYBRID).overviewMapControl(false).panControl(true)
+		        .rotateControl(false).scaleControl(false).streetViewControl(false).zoomControl(true).zoom(16);
+
+		specificMap = specificMapView.createMap(specificMapOptions);
+		*/
 	}
 }

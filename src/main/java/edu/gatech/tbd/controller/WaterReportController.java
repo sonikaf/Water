@@ -18,10 +18,10 @@ import edu.gatech.tbd.model.WaterType;
  * Controller for the Water Report Scene.
  */
 public class WaterReportController extends SceneController {
-	
+
     @FXML
     private TextField locationLatField;
-    
+
     @FXML
     private TextField locationLongField;
 
@@ -66,7 +66,7 @@ public class WaterReportController extends SceneController {
     protected void onCancelButtonPressed() {
     	mainApp.closePopup();
     }
-    
+
     /**
      * Handler for the Submit button.
      */
@@ -82,6 +82,7 @@ public class WaterReportController extends SceneController {
 				WaterReportManager.registerAvailabilityReport(locLat, locLong, typeField.getSelectionModel().getSelectedItem(), conditionField.getSelectionModel().getSelectedItem());
 				errorLabel.setText("You have submitted a water availability report.");
 				((ApplicationSceneController)mainApp.getCurrentController()).updateReportList();
+				((ApplicationSceneController)mainApp.getCurrentController()).populateAvailabilityMap();
 				mainApp.closePopup();
 			} catch (Exception e) {
 				errorLabel.setText("You must enter a valid location");
@@ -89,15 +90,15 @@ public class WaterReportController extends SceneController {
 			}
 		}
     }
-    
+
     /**
      * Checks that the entered lattitude and logitude are real values.
-     * 
+     *
      * @param lat
      * @param lon
      */
     private void validateLocation(double lat, double lon) {
-        if (lat > 85 || lat < -85 || lon > 180 || lon < 0) {
+        if (lat > 85 || lat < -85 || lon > 180 || lon < -180) {
             throw new RuntimeException();
         }
     }

@@ -9,12 +9,12 @@ import java.util.List;
  * This class manages the water reports.
  */
 public class WaterReportManager {
-    
+
     /**
      * List of all reports (Availability and Purity).
      */
     private static ArrayList<Report> reportList = new ArrayList<Report>();
-    
+
     /**
      * List of the water availability reports.
      */
@@ -25,12 +25,12 @@ public class WaterReportManager {
      */
     private static ArrayList<PurityReport> purityReportList = new ArrayList<PurityReport>();
 
-    
+
     /**
      * The most recent water report (availability or purity).
      */
     private static Report latestReport;
-    
+
     /**
      * The most recent water availability report.
      */
@@ -41,13 +41,13 @@ public class WaterReportManager {
      */
     private static PurityReport latestPurityReport;
 
-    
+
     /**
      * The number of reports submitted (availability and purity).
      */
     protected static int reportCount = 0;
 
-    
+
     /**
      * Registers a new availability report and adds it to the list.
      *
@@ -63,7 +63,7 @@ public class WaterReportManager {
         reportList.add(latestAvailiabilityReport);
         availabilityReportList.add(latestAvailiabilityReport);
     }
-    
+
     /**
      * Registers a new purity report and adds it to the list.
      *
@@ -84,7 +84,7 @@ public class WaterReportManager {
 
     /**
      * Updates an availability report.
-     * 
+     *
      * @param r
      * @param rNumber
      * @param reporter
@@ -94,7 +94,7 @@ public class WaterReportManager {
      * @param condition
      * @param dateTime
      */
-    public static void updateAvailabilityReportInformation(AvailabilityReport r, int rNumber, String reporter, double locLat, double locLong, WaterType type, WaterCondition condition, String dateTime) {        
+    public static void updateAvailabilityReportInformation(AvailabilityReport r, int rNumber, String reporter, double locLat, double locLong, WaterType type, WaterCondition condition, String dateTime) {
         updateReportInformation(r, rNumber, reporter, locLat, locLong, dateTime);
         r._type = type;
         r._condition = condition;
@@ -102,7 +102,7 @@ public class WaterReportManager {
 
     /**
      * Updates a purity report.
-     * 
+     *
      * @param r
      * @param rNumber
      * @param reporter
@@ -117,7 +117,7 @@ public class WaterReportManager {
             int rNumber, String reporter, double locLat, double locLong,
             OverallCondition overallCondition, int virusPPM, int contaminantPPM,
             String dateTime) {
-        
+
         updateReportInformation(r, rNumber, reporter,
                 locLat, locLong, dateTime);
         r._overallCondition = overallCondition;
@@ -127,7 +127,7 @@ public class WaterReportManager {
 
 	/**
 	 * Private helper to update a report.
-	 * 
+	 *
 	 * @param r
 	 * @param rNumber
 	 * @param reporter
@@ -143,20 +143,20 @@ public class WaterReportManager {
 		r._locationLong = locLong;
 		r._dateTime = dateTime;
 	}
-	
-	
+
+
 	/**
 	 * Returns the most recent water report.
-	 * 
+	 *
 	 * @return
 	 */
 	public static Report getLatestReport() {
 		return latestReport;
 	}
-	
+
     /**
      * Returns the most recent water availability report.
-     * 
+     *
      * @return
      */
     public static AvailabilityReport getLatestAvailabilityReport() {
@@ -165,26 +165,26 @@ public class WaterReportManager {
 
     /**
      * Returns the most recent water purity report.
-     * 
+     *
      * @return
      */
     public static PurityReport getLatestPurityReport() {
         return latestPurityReport;
     }
 
-	
+
 	/**
 	 * Returns the list of water reports.
-	 * 
+	 *
 	 * @return
 	 */
 	public static List<Report> getReportList() {
 		return new ArrayList<Report>(reportList);
 	}
-	
+
 	/**
      * Returns the list of water availability reports.
-     * 
+     *
      * @return
      */
     public static List<AvailabilityReport> getAvailabilityReportList() {
@@ -193,7 +193,7 @@ public class WaterReportManager {
 
 	/**
      * Returns the list of water purity reports.
-     * 
+     *
      * @return
      */
     public static List<PurityReport> getPurityReportList() {
