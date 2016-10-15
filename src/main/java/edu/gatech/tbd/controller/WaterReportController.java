@@ -82,13 +82,14 @@ public class WaterReportController extends SceneController {
 				WaterReportManager.registerAvailabilityReport(locLat, locLong, typeField.getSelectionModel().getSelectedItem(), conditionField.getSelectionModel().getSelectedItem());
 				errorLabel.setText("You have submitted a water availability report.");
 				((ApplicationSceneController)mainApp.getCurrentController()).updateReportList();
-				((ApplicationSceneController)mainApp.getCurrentController()).populateAvailabilityMap();
 				mainApp.closePopup();
 			} catch (Exception e) {
 				errorLabel.setText("You must enter a valid location");
 				e.printStackTrace();
 			}
 		}
+
+    	((ApplicationSceneController)mainApp.getCurrentController()).populateAvailabilityMap();
     }
 
     /**
