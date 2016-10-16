@@ -56,20 +56,25 @@ public class AvailabilityReport extends Report {
 		return String.format("Report %02d (%f, %f) by %s", _reportNumber, _locationLat, _locationLong, _reporter);
 	}
 	
+	
 	/**
-	 * Method to format Availability Report for google map view.
-	 */
-	public String createMapPopupText() {
-	    String s = new String(
-	            "<p>Water Type: " + _type.toString() + "<br>" +
-	            "Condition:  " + _condition.toString() + "</p>" +
-	            "<p>Lattitude:  " + _locationLat + "<br>" +
-	            "Longitude:  " + _locationLong + "</p>" +
-	            "<p>Reporter:   " + _reporter + "<br>" +
-	            "Date:       " + _dateTime + "</p>");
-	    
-	    return s;
-	}
+     * Method to format Availability Report for google map view.
+     */
+    public String createMapPopupText() {
+        String s = new String(
+                "<table>" +
+                "<tr><td><b>Water Type: </b></td>" + "<td>" + _type.toString() + "</td>" +
+                "<tr><td><b>Condition:  </b></td>" + "<td>" +_condition.toString() + "</td></tr>" +
+                "<tr><td>&nbsp;</td></tr>" +
+                "<tr><td><b>Lattitude:  </b></td>" + "<td>" + _locationLat + "</td><tr>" +
+                "<tr><td><b>Longitude:  </b></td>" + "<td>" +_locationLong + "</td></tr>" +
+                "<tr><td>&nbsp;</td></tr>" +
+                "<tr><td><b>Reporter:   </b></td>" + "<td>" + _reporter + "</td></tr>" +
+                "<tr><td><b>Date:       </b></td>" + "<td>" + _dateTime + "</td></tr>" +
+                "</table>");
+        
+        return s;
+    }
 	
 	public String toString2() {
 		String returnString = new String();
@@ -77,8 +82,4 @@ public class AvailabilityReport extends Report {
 		return returnString;
 	}
 	
-	public static void main(String[] args) {
-	    AvailabilityReport r = new AvailabilityReport(20,"scott",30,-10,WaterType.Bottled,WaterCondition.Potable,"10/30/2016");
-	    System.out.println(r.createMapPopupText());
-	}
 }
