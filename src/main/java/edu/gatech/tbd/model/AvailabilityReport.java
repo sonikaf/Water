@@ -55,10 +55,30 @@ public class AvailabilityReport extends Report {
 	public String toString() {
 		return String.format("Report %02d (%f, %f) by %s", _reportNumber, _locationLat, _locationLong, _reporter);
 	}
-
+	
+	/**
+	 * Method to format Availability Report for google map view.
+	 */
+	public String createMapPopupText() {
+	    String s = new String(
+	            "<p>Water Type: " + _type.toString() + "<br>" +
+	            "Condition:  " + _condition.toString() + "</p>" +
+	            "<p>Lattitude:  " + _locationLat + "<br>" +
+	            "Longitude:  " + _locationLong + "</p>" +
+	            "<p>Reporter:   " + _reporter + "<br>" +
+	            "Date:       " + _dateTime + "</p>");
+	    
+	    return s;
+	}
+	
 	public String toString2() {
 		String returnString = new String();
 		returnString = ("Reporter: " + _reporter + "\n" + getLocation() + "\nCreated: " + _dateTime + "\nWater Type: " + _type.toString() + "\nCondition: " + _condition.toString());
 		return returnString;
+	}
+	
+	public static void main(String[] args) {
+	    AvailabilityReport r = new AvailabilityReport(20,"scott",30,-10,WaterType.Bottled,WaterCondition.Potable,"10/30/2016");
+	    System.out.println(r.createMapPopupText());
 	}
 }

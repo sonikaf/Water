@@ -277,7 +277,7 @@ public class ApplicationSceneController extends SceneController
 					UIEventType.click,
 					(JSObject obj) -> {
 						InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
-						infoWindowOptions.content(r.toString2());
+						infoWindowOptions.content(r.createMapPopupText());
 
 						InfoWindow window = new InfoWindow(infoWindowOptions);
 						window.open(map, marker);});
