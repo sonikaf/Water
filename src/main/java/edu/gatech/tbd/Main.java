@@ -49,16 +49,23 @@ public class Main extends Application {
 		// Save our stage for later use.
 		stage = primaryStage;
 		
-		/*
+		
 		// Temporary Test.
 		try {
             UserManager.registerUser("admin", "admin", "none", UserType.Administrator, "none", "none");
-            AvailabilityReportManager.registerAvailabilityReport(33.774804,-84.3976288, WaterType.Bottled, WaterCondition.Potable);
             UserManager.logoutUser();
+            UserManager.registerUser("user", "user", "none", UserType.User, "none", "none");
+            WaterReportManager.registerAvailabilityReport(33.774804,-84.3976288, WaterType.Bottled, WaterCondition.Potable);
+            UserManager.logoutUser();
+            UserManager.registerUser("worker", "worker", "none", UserType.Worker, "none", "none");
+            UserManager.logoutUser();
+            UserManager.registerUser("manager", "manager", "none", UserType.Manager, "none", "none");
+            UserManager.logoutUser();
+            
         } catch (UserException e) {
             e.printStackTrace();
         }
-		*/
+		
 		
 		// Load the welcome scene and show the window.
 		stage.setTitle("Team 19");

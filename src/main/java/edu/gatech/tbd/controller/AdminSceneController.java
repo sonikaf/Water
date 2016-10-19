@@ -11,8 +11,7 @@ import edu.gatech.tbd.model.UserManager;
 /**
  * Controller for the main application scene.
  */
-public class AdminSceneController extends SceneController
-		implements Initializable {
+public class AdminSceneController extends SceneController {
 
     /**
      * Handler for the Edit Profile button.
@@ -30,13 +29,4 @@ public class AdminSceneController extends SceneController
         UserManager.logoutUser();
         mainApp.changeScene("WelcomeScene");
     }
-
-    
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        // TODO Auto-generated method stub
-        
-    }
-    
-    
 }

@@ -24,8 +24,7 @@ import com.lynden.gmapsfx.javascript.object.*;
 /**
  * Controller for the main application scene.
  */
-public class ApplicationSceneController extends SceneController
-		implements Initializable, MapComponentInitializedListener {
+public class ApplicationSceneController extends SceneController {
 
 	@FXML
 	private GoogleMapView mapView;
@@ -33,15 +32,14 @@ public class ApplicationSceneController extends SceneController
 	private GoogleMap map;
 
 
-	/**
+	/*
 	 * named the little map on Report List screen specificMap, and commented out
 	 * the code until we can figure out how to get two maps working at same time
 	 * then we can add specific map back to the scene the same way alex had it
 	 *
+	 */
 	private GoogleMapView specificMapView;
-
 	private GoogleMap specificMap;
-	*/
 
 	/**
      * The list of water reports available for selection.
@@ -91,35 +89,18 @@ public class ApplicationSceneController extends SceneController
 	@FXML
 	ComboBox<WaterCondition> reportView_cond;
 
-
-
-	/**
-	 *
-	 */
 	@FXML
 	TabPane tabPane;
 
-    /**
-     *
-     */
     @FXML
     Tab availabilityMapTab;
 
-	/**
-     *
-     */
     @FXML
     Tab reportListTab;
-
-	/**
-     *
-     */
+    
     @FXML
     Tab purityReportTab;
 
-    /**
-     *
-     */
     @FXML
     Tab historicalReportTab;
 
@@ -150,9 +131,14 @@ public class ApplicationSceneController extends SceneController
 		mainApp.doPopupWindow("WaterReportScene");
 	}
 
-	@Override
-	public void initialize(URL url, ResourceBundle rb) {
-		mapView.addMapInializedListener(this);
+	public void initialize() {
+		// these might be null depending on which tabs are open
+		if(mapView != null)
+			mapView.addMapInializedListener(() -> mapInitialized());
+		
+		//if(specificMapView != null)
+			//specificMapView.addMapInializedListener(() -> specificMapInitialized());
+		
 
 		reportList.setOnMouseClicked((e) -> {
 			setCurrentReport(reportList.getSelectionModel().getSelectedItem());
@@ -247,8 +233,22 @@ public class ApplicationSceneController extends SceneController
 		specificMap.setZoom(16);
 		*/
 	}
+	
+	public void specificMapInitialized() {
+		LatLong center = new LatLong(0, 0);
+		LatLong gaTechLoc = new LatLong(33.774804, -84.3976288);
 
-	@Override
+		MapOptions mapOptions = new MapOptions();
+
+		mapOptions.center(center).mapType(MapTypeIdEnum.HYBRID).overviewMapControl(false).panControl(true)
+				.rotateControl(false).scaleControl(false).streetViewControl(false).zoomControl(true).zoom(2);
+
+		
+		specificMap = specificMapView.createMap(mapOptions);
+
+		populateAvailabilityMap();
+	}
+
 	public void mapInitialized() {
 		LatLong center = new LatLong(0, 0);
 		LatLong gaTechLoc = new LatLong(33.774804, -84.3976288);
@@ -258,6 +258,7 @@ public class ApplicationSceneController extends SceneController
 		mapOptions.center(center).mapType(MapTypeIdEnum.HYBRID).overviewMapControl(false).panControl(true)
 				.rotateControl(false).scaleControl(false).streetViewControl(false).zoomControl(true).zoom(2);
 
+		
 		map = mapView.createMap(mapOptions);
 
 		populateAvailabilityMap();

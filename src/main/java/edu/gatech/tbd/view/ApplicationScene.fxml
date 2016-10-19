@@ -26,6 +26,7 @@
             <rowConstraints>
                 <RowConstraints maxHeight="32.0" minHeight="32.0" prefHeight="32.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" vgrow="SOMETIMES" />
+            <RowConstraints />
             </rowConstraints>
 
             <children>
@@ -34,14 +35,14 @@
                 <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#onEditProfileButtonPressed" text="Edit Profile" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
             <TabPane fx:id="tabPane" prefHeight="162.0" prefWidth="454.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="2">
               <tabs>
-                <Tab text="Water Availability Map" fx:id="availabilityMapTab">
+                <Tab fx:id="availabilityMapTab" text="Water Availability Map">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <GoogleMapView fx:id="mapView" layoutX="15.0" layoutY="15.0" prefHeight="910.0" prefWidth="1024.0" />
                         </AnchorPane>
                      </content>
                 </Tab>
-                <Tab text="Report List" fx:id="reportListTab">
+                <Tab fx:id="reportListTab" text="Report List">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -79,17 +80,16 @@
                                     <ComboBox fx:id="reportView_cond" prefHeight="27.0" prefWidth="166.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                  </children>
                               </GridPane>
-
                            </children>
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab text="Purity Report" fx:id="purityReportTab">
+                  <Tab fx:id="purityReportTab" text="Purity Report">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                      </content>
                   </Tab>
-                  <Tab text="Historical Reports" fx:id="historicalReportTab">
+                  <Tab fx:id="historicalReportTab" text="Historical Reports">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                      </content>
