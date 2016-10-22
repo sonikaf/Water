@@ -79,7 +79,7 @@ public abstract class Report {
         if (!(o instanceof Report)) {
             return false;
         } else {
-            AvailabilityReport other = (AvailabilityReport) o;
+            Report other = (Report) o;
             return other._reportNumber == (_reportNumber)
                     && other._reporter.equals(_reporter)
                     && other._locationLat == _locationLat
