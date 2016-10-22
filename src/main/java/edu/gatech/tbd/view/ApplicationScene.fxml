@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.lynden.gmapsfx.GoogleMapView?>
+
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
@@ -11,11 +12,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gatech.tbd.controller.ApplicationSceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gatech.tbd.controller.ApplicationSceneController">
     <children>
-        <GridPane layoutX="-1.0" prefHeight="1000.0" prefWidth="1050.0">
+        <GridPane layoutX="-1.0" prefHeight="700.0" prefWidth="1050.0">
 
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -30,15 +33,12 @@
             </rowConstraints>
 
             <children>
-                <Button fx:id="submitReportButton" layoutX="261.0" layoutY="477.0" mnemonicParsing="false" onAction="#onSubmitReportButtonPressed" text="New Availability Report" />
-                <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogoutButtonPressed" text="Logout" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-                <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#onEditProfileButtonPressed" text="Edit Profile" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
             <TabPane fx:id="tabPane" prefHeight="162.0" prefWidth="454.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="2">
               <tabs>
                 <Tab fx:id="availabilityMapTab" text="Water Availability Map">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <GoogleMapView fx:id="mapView" layoutX="15.0" layoutY="15.0" prefHeight="910.0" prefWidth="1024.0" />
+                           <GoogleMapView fx:id="mapView" layoutX="15.0" layoutY="15.0" prefHeight="610.0" prefWidth="1024.0" />
                         </AnchorPane>
                      </content>
                 </Tab>
@@ -46,49 +46,194 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="submitReportButton" layoutX="261.0" layoutY="477.0" mnemonicParsing="false" onAction="#onSubmitReportButtonPressed" text="New Report" />
-                              <ListView fx:id="reportList" layoutX="362.0" layoutY="54.0" prefHeight="220.0" prefWidth="425.0" />
-                              <Button fx:id="deleteReportButton" layoutX="21.0" layoutY="477.0" mnemonicParsing="false" text="Delete Report" />
-                              <GridPane layoutX="21.0" layoutY="54.0" prefHeight="400.0" prefWidth="331.0">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
+                              <GridPane layoutX="31.0" layoutY="54.0" prefHeight="639.0" prefWidth="1050.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="667.0" minWidth="10.0" prefWidth="289.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="720.0" minWidth="10.0" prefWidth="713.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="441.0" minHeight="10.0" prefHeight="308.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="385.0" minHeight="10.0" prefHeight="311.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
                                  <children>
-                                    <Label maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Report Number:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" />
-                                    <Label layoutX="76.0" layoutY="17.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Reporter:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                                    <Label layoutX="10.0" layoutY="47.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Latitude:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                                    <Label layoutX="10.0" layoutY="77.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Longitude:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-                                    <Label layoutX="10.0" layoutY="107.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Water Type:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-                                    <Label layoutX="76.0" layoutY="137.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Water Condition:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-                                    <Label layoutX="10.0" layoutY="167.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Date:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
-                                    <TextField fx:id="reportView_num" GridPane.columnIndex="1" />
-                                    <TextField fx:id="reportView_reporter" layoutX="176.0" layoutY="12.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField fx:id="reportView_lat" layoutX="176.0" layoutY="42.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField fx:id="reportView_long" layoutX="176.0" layoutY="72.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField fx:id="reportView_date" layoutX="176.0" layoutY="162.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                    <ComboBox fx:id="reportView_type" prefHeight="27.0" prefWidth="164.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <ComboBox fx:id="reportView_cond" prefHeight="27.0" prefWidth="166.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <GridPane alignment="CENTER" prefHeight="284.0" prefWidth="444.0" GridPane.valignment="CENTER">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.0" minWidth="10.0" prefWidth="109.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="10.0" prefWidth="181.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label alignment="CENTER_RIGHT" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Report Number:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT">
+                                             <GridPane.margin>
+                                                <Insets right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label alignment="CENTER_RIGHT" layoutX="76.0" layoutY="17.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Reporter:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="47.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Latitude:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                                             <GridPane.margin>
+                                                <Insets right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="77.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Longitude:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                                             <GridPane.margin>
+                                                <Insets right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="107.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Water Type:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                                             <GridPane.margin>
+                                                <Insets right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label alignment="CENTER_RIGHT" layoutX="76.0" layoutY="137.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Water Condition:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                                             <GridPane.margin>
+                                                <Insets right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="167.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Date:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+                                             <GridPane.margin>
+                                                <Insets right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <TextField fx:id="availReportView_num" GridPane.columnIndex="1" />
+                                          <TextField fx:id="availReportView_reporter" layoutX="176.0" layoutY="12.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <TextField fx:id="availReportView_lat" layoutX="176.0" layoutY="42.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <TextField fx:id="availReportView_long" layoutX="176.0" layoutY="72.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <TextField fx:id="availReportView_date" layoutX="176.0" layoutY="162.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                          <TextField fx:id="availReportView_type" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                          <TextField fx:id="availReportView_cond" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                          <Button fx:id="deleteAvailReportButton" alignment="TOP_RIGHT" mnemonicParsing="false" text="Delete Report" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                                             <GridPane.margin>
+                                                <Insets top="10.0" />
+                                             </GridPane.margin>
+                                          </Button>
+                                       </children>
+                                       <GridPane.margin>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </GridPane.margin>
+                                    </GridPane>
+                                    <VBox GridPane.columnIndex="1">
+                                       <GridPane.margin>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </GridPane.margin>
+                                       <children>
+                                          <Label text="Availability Reports" />
+                                          <ListView fx:id="availReportList" prefWidth="112.0">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </ListView>
+                                       </children>
+                                    </VBox>
+                                    <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </GridPane.margin>
+                                       <children>
+                                          <Label text="Purity Reports" />
+                                          <ListView fx:id="purityReportList" prefWidth="112.0" />
+                                       </children>
+                                    </VBox>
+                                    <GridPane alignment="CENTER" layoutX="30.0" layoutY="30.0" prefHeight="284.0" prefWidth="444.0" GridPane.rowIndex="1">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.0" minWidth="10.0" prefWidth="109.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="10.0" prefWidth="181.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label alignment="CENTER_RIGHT" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Report Number:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT">
+                                             <GridPane.margin>
+                                                <Insets right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label alignment="CENTER_RIGHT" layoutX="76.0" layoutY="17.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Reporter:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="47.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Latitude:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                                             <GridPane.margin>
+                                                <Insets right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="77.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Longitude:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                                             <GridPane.margin>
+                                                <Insets right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="107.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Overall Condition:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                                             <GridPane.margin>
+                                                <Insets right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label alignment="CENTER_RIGHT" layoutX="76.0" layoutY="137.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Virus PPM:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                                             <GridPane.margin>
+                                                <Insets right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="167.0" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Date:" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+                                             <GridPane.margin>
+                                                <Insets right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <TextField fx:id="purityReportView_num" GridPane.columnIndex="1">
+                                             <GridPane.margin>
+                                                <Insets />
+                                             </GridPane.margin>
+                                          </TextField>
+                                          <TextField fx:id="purityReportView_reporter" layoutX="176.0" layoutY="12.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <TextField fx:id="purityReportView_lat" layoutX="176.0" layoutY="42.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <TextField fx:id="purityReportView_long" layoutX="176.0" layoutY="72.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <TextField fx:id="purityReportView_date" layoutX="176.0" layoutY="162.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                          <TextField fx:id="purityReportView_ocond" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                          <TextField fx:id="purityReportView_virusppm" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                          <Button fx:id="deletePurityReportButton" alignment="TOP_RIGHT" mnemonicParsing="false" text="Delete Report" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                                             <GridPane.margin>
+                                                <Insets top="10.0" />
+                                             </GridPane.margin>
+                                          </Button>
+                                          <Label alignment="CENTER_RIGHT" text="Contaminant PPM:" GridPane.rowIndex="6">
+                                             <GridPane.margin>
+                                                <Insets right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <TextField fx:id="purityReportView_contppm" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                       </children>
+                                       <GridPane.margin>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </GridPane.margin>
+                                    </GridPane>
                                  </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
                               </GridPane>
                            </children>
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab fx:id="purityReportTab" text="Purity Report">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                     </content>
-                  </Tab>
                   <Tab fx:id="historicalReportTab" text="Historical Reports">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
@@ -96,6 +241,32 @@
                   </Tab>
               </tabs>
             </TabPane>
+            <GridPane>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <HBox fx:id="submitReportButtonHBox" spacing="5.0">
+                     <children>
+                            <Button fx:id="submitAvailabilityReportButton" mnemonicParsing="false" onAction="#onSubmitAvailabilityReportButtonPressed" text="New Availability Report" />
+                            <Button fx:id="submitPurityReportButton" mnemonicParsing="false" onAction="#onSubmitPurityReportButtonPressed" text="New Purity Report" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_RIGHT" spacing="5.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                     <children>
+                            <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#onEditProfileButtonPressed" text="Edit Profile" />
+                            <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogoutButtonPressed" text="Logout" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+               </padding>
+            </GridPane>
             </children>
 
         </GridPane>

@@ -6,7 +6,7 @@ import edu.gatech.tbd.model.User;
 /**
  * Controller for a scene.
  */
-public class SceneController {
+public abstract class SceneController {
 	
 	/**
     * reference to main application class

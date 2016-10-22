@@ -51,6 +51,7 @@ public class Main extends Application {
 		
 		
 		// Temporary Test.
+		/*
 		try {
             UserManager.registerUser("admin", "admin", "none", UserType.Administrator, "none", "none");
             UserManager.logoutUser();
@@ -65,6 +66,7 @@ public class Main extends Application {
         } catch (UserException e) {
             e.printStackTrace();
         }
+        */
 		
 		
 		// Load the welcome scene and show the window.

@@ -2,20 +2,16 @@ package edu.gatech.tbd.controller;
 
 import edu.gatech.tbd.model.*;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import netscape.javascript.JSObject;
 
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import com.lynden.gmapsfx.*;
 import com.lynden.gmapsfx.javascript.event.UIEventType;
@@ -41,54 +37,59 @@ public class ApplicationSceneController extends SceneController {
 	private GoogleMapView specificMapView;
 	private GoogleMap specificMap;
 
-	/**
-     * The list of water reports available for selection.
-     */
 	@FXML
-	ListView<AvailabilityReport> reportList;
-
-	/**
-     * Textfield displaying the report number of the currently viewed report.
-     */
+	ListView<AvailabilityReport> availReportList;
+	
 	@FXML
-	TextField reportView_num;
+	TextField availReportView_num;
 
-	/**
-     * Textfield displaying the user who submitted the currently viewed report.
-     */
 	@FXML
-	TextField reportView_reporter;
+	TextField availReportView_reporter;
 
-	/**
-     * Textfield displaying the latitude of the currently viewed report.
-     */
 	@FXML
-	TextField reportView_lat;
+	TextField availReportView_lat;
 
-	/**
-     * Textfield displaying the longitude of the currently viewed report.
-     */
 	@FXML
-	TextField reportView_long;
+	TextField availReportView_long;
 
-	/**
-     * Textfield displaying the submitted date of the currently viewed report.
-     */
 	@FXML
-	TextField reportView_date;
+	TextField availReportView_date;
 
-	/**
-     * Combobox displaying the water type of the currently viewed report.
-     */
 	@FXML
-	ComboBox<WaterType> reportView_type;
+	TextField availReportView_type;
 
-	/**
-	 * Combobox displaying the water condition of the currently viewed report.
-	 */
 	@FXML
-	ComboBox<WaterCondition> reportView_cond;
+	TextField availReportView_cond;
 
+	    
+    @FXML
+    ListView<PurityReport> purityReportList;
+
+    @FXML
+    TextField purityReportView_num;
+
+    @FXML
+    TextField purityReportView_reporter;
+
+    @FXML
+    TextField purityReportView_lat;
+
+    @FXML
+    TextField purityReportView_long;
+
+    @FXML
+    TextField purityReportView_date;
+
+    @FXML
+    TextField purityReportView_ocond;
+    
+    @FXML
+    TextField purityReportView_virusppm;
+    
+    @FXML
+    TextField purityReportView_contppm;
+
+	
 	@FXML
 	TabPane tabPane;
 
@@ -99,11 +100,13 @@ public class ApplicationSceneController extends SceneController {
     Tab reportListTab;
     
     @FXML
-    Tab purityReportTab;
+    Tab historicalReportTab;
+    
+    @FXML
+    HBox submitReportButtonHBox;
 
     @FXML
-    Tab historicalReportTab;
-
+    Button submitPurityReportButton;
 
 
 	/**
@@ -124,11 +127,19 @@ public class ApplicationSceneController extends SceneController {
 	}
 
 	/**
-	 * Handler for the Submit Report button.
+	 * Handler for the Submit Availability Report button.
 	 */
 	@FXML
-	protected void onSubmitReportButtonPressed() {
-		mainApp.doPopupWindow("WaterReportScene");
+	protected void onSubmitAvailabilityReportButtonPressed() {
+		mainApp.doPopupWindow("AvailabilityReportScene");
+	}
+	
+	/**
+     * Handler for the Submit Purity Report button.
+     */
+	@FXML
+	protected void onSubmitPurityReportButtonPressed() {
+	    mainApp.doPopupWindow("PurityReportScene");
 	}
 
 	public void initialize() {
@@ -140,31 +151,36 @@ public class ApplicationSceneController extends SceneController {
 			//specificMapView.addMapInializedListener(() -> specificMapInitialized());
 		
 
-		reportList.setOnMouseClicked((e) -> {
-			setCurrentReport(reportList.getSelectionModel().getSelectedItem());
+		availReportList.setOnMouseClicked((e) -> {
+			setCurrentAvailabilityReport(availReportList.getSelectionModel().getSelectedItem());
 		});
+		
+		purityReportList.setOnMouseClicked((e) -> {
+            setCurrentPurityReport(purityReportList.getSelectionModel().getSelectedItem());
+        });
 
-		createComboBoxes();
-		updateReportList();
+		//createComboBoxes();
+		updateAvailabilityReportList();
+		updatePurityReportList();
 
 		// if user has UserType user
-		if (UserManager.getLoggedInUser().getType() == UserType.User) {
-		    tabPane.getTabs().remove(purityReportTab);
+		if (UserManager.getLoggedInUser().getType() != UserType.Manager) {
 		    tabPane.getTabs().remove(historicalReportTab);
 		    tabPane.getTabs().remove(reportListTab);
-
-		// if user has UserType worker
-		} else if (UserManager.getLoggedInUser().getType() == UserType.Worker) {
-	          tabPane.getTabs().remove(historicalReportTab);
-	          tabPane.getTabs().remove(reportListTab);
+		    
+		    if (UserManager.getLoggedInUser().getType() == UserType.User) {
+		        submitReportButtonHBox.getChildren()
+		            .remove(submitPurityReportButton);
+		    }
 		}
 	}
 
 	/**
 	 * Private helper method to populate combo boxes.
 	 */
+	/*
 	private void createComboBoxes() {
-		List<WaterType> list = new ArrayList<WaterType>();
+	    List<WaterType> list = new ArrayList<WaterType>();
         list.add(WaterType.Bottled);
         list.add(WaterType.Well);
         list.add(WaterType.Stream);
@@ -172,7 +188,7 @@ public class ApplicationSceneController extends SceneController {
         list.add(WaterType.Spring);
         list.add(WaterType.Other);
         ObservableList<WaterType> obList = FXCollections.observableList(list);
-        reportView_type.setItems(obList);
+        availReportView_type.setItems(obList);
         reportView_type.setValue(WaterType.Bottled);
 
         List<WaterCondition> list2 = new ArrayList<WaterCondition>();
@@ -184,13 +200,22 @@ public class ApplicationSceneController extends SceneController {
         reportView_cond.setItems(obList2);;
         reportView_cond.setValue(WaterCondition.Waste);
 	}
-
-	public void updateReportList() {
-		List<AvailabilityReport> reports = WaterReportManager.getAvailabilityReportList();
-
-		reportList.setItems(FXCollections.observableList(reports));
+	*/
+	/**
+	 * TODO javadocs
+	 */
+	public void updateAvailabilityReportList() {
+		List<AvailabilityReport> availReports = WaterReportManager.getAvailabilityReportList();
+		availReportList.setItems(FXCollections.observableList(availReports));
 	}
 
+	/**
+     * TODO javadocs
+     */
+	public void updatePurityReportList() {
+        List<PurityReport> purityReports = WaterReportManager.getPurityReportList();
+        purityReportList.setItems(FXCollections.observableList(purityReports));
+    }
 
 
 	/**
@@ -200,10 +225,10 @@ public class ApplicationSceneController extends SceneController {
 	 */
 
 	/**
-	 * Sets the current report.
+	 * Sets the current availability report.
 	 * @param r
 	 */
-	public void setCurrentReport(AvailabilityReport r) {
+	public void setCurrentAvailabilityReport(AvailabilityReport r) {
 
 		/**
 		if(curMarker != null) {
@@ -211,14 +236,13 @@ public class ApplicationSceneController extends SceneController {
 			curMarker = null;
 		}
 		*/
-		reportView_num.setText("" + r.getReportNumber());
-		reportView_reporter.setText(r.getReporter());
-		reportView_lat.setText("" + r.getLocationLat());
-		reportView_long.setText("" + r.getLocationLong());
-		reportView_date.setText(r.getDateTime());
-
-		reportView_type.setValue(r.getType());
-		reportView_cond.setValue(r.getCondition());
+		availReportView_num.setText("" + r.getReportNumber());
+		availReportView_reporter.setText(r.getReporter());
+		availReportView_lat.setText("" + r.getLocationLat());
+		availReportView_long.setText("" + r.getLocationLong());
+		availReportView_date.setText(r.getDateTime());
+		availReportView_type.setText("" + r.getType());
+		availReportView_cond.setText("" + r.getCondition());
 
 
 		/**
@@ -233,6 +257,23 @@ public class ApplicationSceneController extends SceneController {
 		specificMap.setZoom(16);
 		*/
 	}
+	
+	/**
+     * Sets the current purity report.
+     * @param r
+     */
+    public void setCurrentPurityReport(PurityReport r) {
+
+        purityReportView_num.setText("" + r.getReportNumber());
+        purityReportView_reporter.setText(r.getReporter());
+        purityReportView_lat.setText("" + r.getLocationLat());
+        purityReportView_long.setText("" + r.getLocationLong());
+        purityReportView_date.setText(r.getDateTime());
+        purityReportView_ocond.setText("" + r.getOverallCondition());
+        purityReportView_virusppm.setText("" + r.getVirusPPM());
+        purityReportView_contppm.setText("" + r.getContaminantPPM());
+
+    }
 	
 	public void specificMapInitialized() {
 		LatLong center = new LatLong(0, 0);
