@@ -4,17 +4,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.*;
-
-import javax.swing.filechooser.FileFilter;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 
 public class PersistenceManager {
 
@@ -23,10 +17,21 @@ public class PersistenceManager {
 	/**
 	 * Add a persistant object to the data store
 	 * 
-	 * @param s
+	 * @param o the object to save
+	 * @param save save the object to disk when adding
 	 */
-	public static void addObject(Object s) {
-		objectList.add(s);
+	public static void addObject(Object o, boolean save) {
+		objectList.add(o);
+		if(save) saveObject(o);
+	}
+	
+	/**
+	 * Add a persistant object to the data store
+	 * 
+	 * @param o the object to save
+	 */
+	public static void addObject(Object o) {
+		addObject(o, true);
 	}
 
 	/**
@@ -34,15 +39,25 @@ public class PersistenceManager {
 	 * 
 	 * @param s
 	 */
-	public static void removeObject(Object s) {
-		objectList.remove(s);
+	public static void removeObject(Object o) {
+		objectList.remove(o);
+		
+		String fn = String.format("data/%s_%x.txt", o.getClass().getTypeName(), o.hashCode());
+		File file = new File(fn);
+			
+		if (file.exists()) {
+			file.delete();
+		}
 	}
 
 	public static void updateObject(Object o, int oldHash) {
-		File file = new File("data/" + o.getClass().getTypeName() + "_" + oldHash + ".txt");
-
+		String fn = String.format("data/%s_%x.txt", o.getClass().getTypeName(), oldHash);
+		File file = new File(fn);
+			
 		if (file.exists()) {
 			file.delete();
+		} else {
+			System.err.println("Missing old object file: " + file.getName());
 		}
 
 		saveObject(o);
@@ -62,23 +77,22 @@ public class PersistenceManager {
 	/**
 	 * writes the objects out to the disk
 	 */
+	/*
 	public static void saveObjects() {
 		File dataFolder = new File("data/");
 		dataFolder.mkdir();
 		for (Object o : objectList) {
 			saveObject(o);
 		}
-
 	}
+	*/
 
 	private static void saveObject(Object o) {
 
 		Gson g = new Gson();
 		String s = g.toJson(o);
 		
-		System.out.printf("%x\n", o.hashCode());
 		String fn = String.format("data/%s_%x.txt", o.getClass().getTypeName(), o.hashCode());
-		System.out.println(fn);
 		File file = new File(fn);
 		
 		// if file doesn't exists, then create it
@@ -118,7 +132,7 @@ public class PersistenceManager {
 
 		for (int i = 0; i < listOfFiles.length; i++) {
 			if (listOfFiles[i].isFile()) {
-				addObject(openObject(listOfFiles[i]));
+				addObject(openObject(listOfFiles[i]), false);
 			}
 		}
 		
@@ -143,7 +157,7 @@ public class PersistenceManager {
 				// this extracts the class name from the filename and uses it to find the appropriate class object
 				// if there's any kind of error then it will just throw an exception which we catch below
 			
-			String oldhash = split[1];
+			String oldhash = split[1].substring(0, split[1].length() - 4);
 			System.out.printf("Loading object " + ret + " (%x/%s)\n", ret.hashCode(), oldhash);
 			return ret;
 			

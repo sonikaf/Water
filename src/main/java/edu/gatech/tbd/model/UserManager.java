@@ -6,7 +6,6 @@ import java.util.List;
 import edu.gatech.tbd.persistence.PasswordStorage;
 import edu.gatech.tbd.persistence.PersistenceManager;
 import edu.gatech.tbd.persistence.PasswordStorage.CannotPerformOperationException;
-import edu.gatech.tbd.persistence.PasswordStorage.InvalidHashException;
 
 public class UserManager {
     

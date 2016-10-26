@@ -55,8 +55,6 @@ public class Main extends Application {
 		changeScene("WelcomeScene");
 		stage.show();
 		
-		stage.setOnCloseRequest((e) -> PersistenceManager.saveObjects());
-		
 		// load our saved data and setup anything else we need to work properly
 		PersistenceManager.setup();
 		UserManager.setup();

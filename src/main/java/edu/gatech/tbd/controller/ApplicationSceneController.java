@@ -34,8 +34,8 @@ public class ApplicationSceneController extends SceneController {
 	 * then we can add specific map back to the scene the same way alex had it
 	 *
 	 */
-	private GoogleMapView specificMapView;
-	private GoogleMap specificMap;
+	//private GoogleMapView specificMapView;
+	//private GoogleMap specificMap;
 
 	@FXML
 	ListView<AvailabilityReport> availReportList;
@@ -277,7 +277,7 @@ public class ApplicationSceneController extends SceneController {
 	
 	public void specificMapInitialized() {
 		LatLong center = new LatLong(0, 0);
-		LatLong gaTechLoc = new LatLong(33.774804, -84.3976288);
+		//LatLong gaTechLoc = new LatLong(33.774804, -84.3976288);
 
 		MapOptions mapOptions = new MapOptions();
 
@@ -285,14 +285,14 @@ public class ApplicationSceneController extends SceneController {
 				.rotateControl(false).scaleControl(false).streetViewControl(false).zoomControl(true).zoom(2);
 
 		
-		specificMap = specificMapView.createMap(mapOptions);
+		//specificMap = specificMapView.createMap(mapOptions);
 
 		populateAvailabilityMap();
 	}
 
 	public void mapInitialized() {
 		LatLong center = new LatLong(0, 0);
-		LatLong gaTechLoc = new LatLong(33.774804, -84.3976288);
+		//LatLong gaTechLoc = new LatLong(33.774804, -84.3976288);
 
 		MapOptions mapOptions = new MapOptions();
 
