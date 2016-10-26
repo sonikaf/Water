@@ -1,5 +1,7 @@
 package edu.gatech.tbd.model;
 
+import edu.gatech.tbd.persistence.PersistenceManager;
+
 public abstract class Report {
     
     /**
@@ -92,4 +94,8 @@ public abstract class Report {
     public String toString() {
         return String.format("Report %02d (%f, %f) by %s", _reportNumber, _locationLat, _locationLong, _reporter);
     }
+    
+    public int hashCode() {
+		return PersistenceManager.generateObjectHash(this);
+	}
 }

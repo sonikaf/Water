@@ -1,5 +1,7 @@
 package edu.gatech.tbd.model;
 
+import edu.gatech.tbd.persistence.PersistenceManager;
+
 public class User {
 
 	protected String _name;
@@ -58,7 +60,7 @@ public class User {
 	}
 
 	/**
-	 * Gets the user's password.
+	 * Gets the user's password hash string.
 	 * 
 	 * @return
 	 */
@@ -104,5 +106,13 @@ public class User {
 			return other._name.equals(_name) && other._username.equals(_username) && other._email.equals(_email)
 					&& other._address.equals(_address) && other._pass.equals(_pass) && other._type.equals(_type);
 		}
+	}
+	
+	public String toString() {
+		return "{User -> Name: " + this._name + ", Username: " + this._username + "}";
+	}
+	
+	public int hashCode() {
+		return PersistenceManager.generateObjectHash(this);
 	}
 }

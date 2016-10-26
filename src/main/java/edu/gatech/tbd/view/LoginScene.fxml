@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gatech.tbd.controller.LoginSceneController">
+<AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gatech.tbd.controller.LoginSceneController">
    <children>
       <GridPane prefHeight="215.0" prefWidth="400.0">
         <columnConstraints>
@@ -39,7 +39,7 @@
             <Button fx:id="loginButton" mnemonicParsing="false" onAction="#onLoginButtonPressed" text="Login" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP" />
             <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
             <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label fx:id="errorLabel" prefWidth="300.0" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="errorLabel" prefHeight="17.0" prefWidth="408.0" textAlignment="CENTER" textFill="RED" GridPane.columnSpan="3" GridPane.rowIndex="1" />
             <Label prefHeight="27.0" prefWidth="363.0" text="Please Enter Your Username and Password." GridPane.columnSpan="3" GridPane.halignment="CENTER">
                <font>
                   <Font name="Avenir Next Regular" size="18.0" />

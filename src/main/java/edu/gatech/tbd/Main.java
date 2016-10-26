@@ -9,6 +9,7 @@ import edu.gatech.tbd.model.UserManager;
 import edu.gatech.tbd.model.UserType;
 import edu.gatech.tbd.model.WaterCondition;
 import edu.gatech.tbd.model.WaterType;
+import edu.gatech.tbd.persistence.PersistenceManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -47,31 +48,36 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		// Save our stage for later use.
-		stage = primaryStage;
-		
-		
-		// Temporary Test.
-		try {
-            UserManager.registerUser("admin", "admin", "none", UserType.Administrator, "none", "none");
-            UserManager.logoutUser();
-            UserManager.registerUser("user", "user", "none", UserType.User, "none", "none");
-            WaterReportManager.registerAvailabilityReport(33.774804,-84.3976288, WaterType.Bottled, WaterCondition.Potable);
-            UserManager.logoutUser();
-            UserManager.registerUser("worker", "worker", "none", UserType.Worker, "none", "none");
-            UserManager.logoutUser();
-            UserManager.registerUser("manager", "manager", "none", UserType.Manager, "none", "none");
-            UserManager.logoutUser();
-            
-        } catch (UserException e) {
-            e.printStackTrace();
-        }
-		
+		stage = primaryStage;		
 		
 		// Load the welcome scene and show the window.
 		stage.setTitle("Team 19");
 		changeScene("WelcomeScene");
 		stage.show();
-
+		
+		stage.setOnCloseRequest((e) -> PersistenceManager.saveObjects());
+		
+		// load our saved data and setup anything else we need to work properly
+		PersistenceManager.setup();
+		UserManager.setup();
+		WaterReportManager.setup();
+		
+		// if there isn't anything loaded then create dummy users for testing
+		if (UserManager.numUsers() == 0) {
+			try {
+	            UserManager.registerUser("admin", "admin", "none", UserType.Administrator, "none", "none");
+	            UserManager.logoutUser();
+	            UserManager.registerUser("user", "user", "none", UserType.User, "none", "none");
+	            WaterReportManager.registerAvailabilityReport(33.774804,-84.3976288, WaterType.Bottled, WaterCondition.Potable);
+	            UserManager.logoutUser();
+	            UserManager.registerUser("worker", "worker", "none", UserType.Worker, "none", "none");
+	            UserManager.logoutUser();
+	            UserManager.registerUser("manager", "manager", "none", UserType.Manager, "none", "none");
+	            UserManager.logoutUser();	            
+	        } catch (UserException e) {
+	            e.printStackTrace();
+	        }
+		}
 	}
 	
 	/**

@@ -1,6 +1,12 @@
 package edu.gatech.tbd.model;
 
 import java.util.HashMap;
+import java.util.List;
+
+import edu.gatech.tbd.persistence.PasswordStorage;
+import edu.gatech.tbd.persistence.PersistenceManager;
+import edu.gatech.tbd.persistence.PasswordStorage.CannotPerformOperationException;
+import edu.gatech.tbd.persistence.PasswordStorage.InvalidHashException;
 
 public class UserManager {
     
@@ -26,10 +32,14 @@ public class UserManager {
 			throw new UserException("Another user is alreday logged in.");
 		}
 		User u = userList.get(username);
-
+		
 		// if user does not exist or password is incorrect then throw
-		if (u == null || !u._pass.equals(password)) {
-			throw new UserException("Invalid Username or Password.");
+		try {
+			if (u == null || !PasswordStorage.verifyPassword(password, u._pass)) {
+				throw new UserException("Invalid Username or Password.");
+			}
+		} catch (Exception e) {
+			throw new UserException("Error validating credentials: " + e.getMessage());
 		}
 
 		// store our currently logged in user
@@ -67,9 +77,18 @@ public class UserManager {
 		if (userList.get(username) != null) {
 			throw new UserException("Another user with that username already exists.");
 		}
+		
+		String hashedPassword = "";
+		try {
+			 hashedPassword = PasswordStorage.createHash(password);
+		} catch (CannotPerformOperationException e) {
+			e.printStackTrace();
+		}
 
-		currentUser = new User(name, username, password, type, email, address);
+		currentUser = new User(name, username, hashedPassword, type, email, address);
 		userList.put(username, currentUser);
+		
+		PersistenceManager.addObject(currentUser);
 		
 		return currentUser;
 	}
@@ -92,21 +111,50 @@ public class UserManager {
 		if (userList.containsKey(username) && !userList.containsValue(u)) {
 			throw new UserException("A User with that username already exists.");
 		}
+		
+		String hashedPassword = "";
+		try {
+			 hashedPassword = PasswordStorage.createHash(password);
+		} catch (CannotPerformOperationException e) {
+			e.printStackTrace();
+		}
+		
+		int oldHash = u.hashCode();
+		
 		u._name = name;
 		u._username = username;
-		u._pass = password;
+		u._pass = hashedPassword;
 		u._type = type;
 		u._email = email;
 		u._address = address;
+		
+		PersistenceManager.updateObject(u, oldHash);
 	}
 	
 	/**
 	 * Returns the current user.
-	 * 
 	 * @return
 	 */
 	public static User getLoggedInUser() {
 		return currentUser;
+	}
+	
+	/**
+	 * gets the number of registered users
+	 * @return
+	 */
+	public static int numUsers() {
+		return userList.size();
+	}
+	
+	/**
+	 * loads all of the user information from the disk
+	 */
+	public static void setup() {
+		List<User> users = PersistenceManager.getObjects(User.class);
+		for(User u : users) {
+			userList.put(u.getUsername(), u);
+		}
 	}
 	
 }
