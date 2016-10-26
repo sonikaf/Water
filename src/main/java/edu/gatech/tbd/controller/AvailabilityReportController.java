@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.gatech.tbd.model.LocationException;
 import edu.gatech.tbd.model.WaterCondition;
 import edu.gatech.tbd.model.WaterReportManager;
 import edu.gatech.tbd.model.WaterType;
@@ -17,22 +18,13 @@ import edu.gatech.tbd.model.WaterType;
 /**
  * Controller for the Water Report Scene.
  */
-public class WaterReportController extends SceneController {
-
-    @FXML
-    private TextField locationLatField;
-
-    @FXML
-    private TextField locationLongField;
+public class AvailabilityReportController extends ReportController {
 
     @FXML
     private ComboBox<WaterType> typeField;
 
     @FXML
     private ComboBox<WaterCondition> conditionField;
-
-    @FXML
-    private Label errorLabel;
 
     @FXML
     public void initialize() {
@@ -59,48 +51,30 @@ public class WaterReportController extends SceneController {
 
     }
 
-    /**
-     * Handler for the Cancel button.
-     */
-    @FXML
-    protected void onCancelButtonPressed() {
-    	mainApp.closePopup();
-    }
-
-    /**
-     * Handler for the Submit button.
-     */
+    @Override
     @FXML
     protected void onSubmitButtonPressed() {
-    	if (locationLongField.getText().equals("") || locationLatField.getText().equals("")) {
+		try {
+			validateLocation();
+			double locLat = Double.parseDouble(locationLatField.getText());
+			double locLong = Double.parseDouble(locationLongField.getText());
+				
+			WaterReportManager.registerAvailabilityReport(locLat, locLong,
+			        typeField.getSelectionModel().getSelectedItem(),
+			        conditionField.getSelectionModel().getSelectedItem());
+			
+			errorLabel.setText("You have submitted a water availability report.");
+			
+			((ApplicationSceneController)mainApp.getCurrentController())
+			    .updateAvailabilityReportList();
+			
+			mainApp.closePopup();
+		} catch (LocationException e) {
 			errorLabel.setText("You must enter a valid location");
-		} else {
-			try {
-				double locLat = Double.parseDouble(locationLatField.getText());
-				double locLong = Double.parseDouble(locationLongField.getText());
-				validateLocation(locLat, locLong);
-				WaterReportManager.registerAvailabilityReport(locLat, locLong, typeField.getSelectionModel().getSelectedItem(), conditionField.getSelectionModel().getSelectedItem());
-				errorLabel.setText("You have submitted a water availability report.");
-				((ApplicationSceneController)mainApp.getCurrentController()).updateReportList();
-				mainApp.closePopup();
-			} catch (Exception e) {
-				errorLabel.setText("You must enter a valid location");
-				e.printStackTrace();
-			}
+			//e.printStackTrace();
 		}
-
-    	((ApplicationSceneController)mainApp.getCurrentController()).populateAvailabilityMap();
+    	((ApplicationSceneController)mainApp.getCurrentController())
+    	    .populateAvailabilityMap();
     }
 
-    /**
-     * Checks that the entered lattitude and logitude are real values.
-     *
-     * @param lat
-     * @param lon
-     */
-    private void validateLocation(double lat, double lon) {
-        if (lat > 85 || lat < -85 || lon > 180 || lon < -180) {
-            throw new RuntimeException();
-        }
-    }
 }
