@@ -190,6 +190,14 @@ public class PersistenceManager {
 				f.setAccessible(true);
 				Object value = f.get(o);
 				
+				// strings and primitives are the only ones that produce 
+				// consistent hashcodes across runs
+				if(!(value.getClass().equals(String.class) ||
+					 value.getClass().equals(Integer.class) ||
+					 value.getClass().equals(Float.class) ||
+					 value.getClass().equals(Double.class)
+					)) continue;
+				
 				ret = 37 * ret + value.hashCode();
 			} catch (Exception e) {
 				e.printStackTrace();
