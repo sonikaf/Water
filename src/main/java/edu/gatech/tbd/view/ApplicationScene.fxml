@@ -305,6 +305,7 @@
                                                 <TextField fx:id="histReportView_lat" layoutX="176.0" layoutY="42.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <TextField fx:id="histReportView_long" layoutX="176.0" layoutY="72.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                 <Button mnemonicParsing="false" onAction="#onGraphHistReportButtonPressed" text="Graph Report" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER" alignment="TOP_RIGHT">
+                                                <Label fx:id="errorLabel" prefHeight="17.0" prefWidth="332.0" textFill="RED" GridPane.columnSpan="2" GridPane.rowIndex="7" />
                                                    <GridPane.margin>
                                                       <Insets right="10.0" top="10.0" />
                                                    </GridPane.margin>
