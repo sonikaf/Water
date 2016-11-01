@@ -14,7 +14,7 @@ import edu.gatech.tbd.model.OverallCondition;
 import edu.gatech.tbd.model.WaterReportManager;
 
 /**
- * Controller for the Water Report Scene.
+ * Controller for the Water Purity Report Scene.
  */
 public class PurityReportController extends ReportController {
 
@@ -46,7 +46,7 @@ public class PurityReportController extends ReportController {
 	        validateLocation();
 			double locLat = Double.parseDouble(locationLatField.getText());
 			double locLong = Double.parseDouble(locationLongField.getText());
-			
+
 			validatePPM();
 	        int virusPPM = Integer.parseInt(virusppmField.getText());
 	        int contPPM = Integer.parseInt(contaminantppmField.getText());
@@ -54,11 +54,11 @@ public class PurityReportController extends ReportController {
 			WaterReportManager.registerPurityReport(locLat, locLong,
 			        oConditionBox.getSelectionModel().getSelectedItem(),
 			        virusPPM, contPPM);
-			
+
 			errorLabel.setText("You have submitted a water purity report.");
 			((ApplicationSceneController)mainApp.getCurrentController())
 			    .updatePurityReportList();
-			
+
 			mainApp.closePopup();
 		} catch (LocationException e) {
 			errorLabel.setText("You must enter a valid location");

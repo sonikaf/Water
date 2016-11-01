@@ -4,6 +4,7 @@ import edu.gatech.tbd.model.*;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -11,11 +12,20 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import netscape.javascript.JSObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.lynden.gmapsfx.*;
 import com.lynden.gmapsfx.javascript.event.UIEventType;
 import com.lynden.gmapsfx.javascript.object.*;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.stage.Stage;
 
 /**
  * Controller for the main application scene.
@@ -37,9 +47,23 @@ public class ApplicationSceneController extends SceneController {
 	//private GoogleMapView specificMapView;
 	//private GoogleMap specificMap;
 
+	private LineChart<String,Number> historicalReportGraph;
+
+	@FXML
+	protected TextField histReportView_lat;
+
+	@FXML
+	protected TextField histReportView_long;
+
+	@FXML
+	protected TextField histReportView_year;
+
+	 @FXML
+	 protected Label errorLabel;
+
 	@FXML
 	ListView<AvailabilityReport> availReportList;
-	
+
 	@FXML
 	TextField availReportView_num;
 
@@ -61,7 +85,7 @@ public class ApplicationSceneController extends SceneController {
 	@FXML
 	TextField availReportView_cond;
 
-	    
+
     @FXML
     ListView<PurityReport> purityReportList;
 
@@ -82,14 +106,13 @@ public class ApplicationSceneController extends SceneController {
 
     @FXML
     TextField purityReportView_ocond;
-    
+
     @FXML
     TextField purityReportView_virusppm;
-    
+
     @FXML
     TextField purityReportView_contppm;
 
-	
 	@FXML
 	TabPane tabPane;
 
@@ -98,15 +121,18 @@ public class ApplicationSceneController extends SceneController {
 
     @FXML
     Tab reportListTab;
-    
+
     @FXML
     Tab historicalReportTab;
-    
+
     @FXML
     HBox submitReportButtonHBox;
 
     @FXML
     Button submitPurityReportButton;
+
+    @FXML
+    Button graphHistReportButton;
 
 
 	/**
@@ -133,7 +159,22 @@ public class ApplicationSceneController extends SceneController {
 	protected void onSubmitAvailabilityReportButtonPressed() {
 		mainApp.doPopupWindow("AvailabilityReportScene");
 	}
-	
+
+	@FXML
+	protected void onGraphHistReportButtonPressed() {
+
+		try {
+			validateLocation();
+			updateLineChart();
+
+
+		} catch (LocationException e) {
+			errorLabel.setText("You must enter a valid location");
+			//e.printStackTrace();
+		}
+
+	}
+
 	/**
      * Handler for the Submit Purity Report button.
      */
@@ -146,15 +187,15 @@ public class ApplicationSceneController extends SceneController {
 		// these might be null depending on which tabs are open
 		if(mapView != null)
 			mapView.addMapInializedListener(() -> mapInitialized());
-		
+
 		//if(specificMapView != null)
 			//specificMapView.addMapInializedListener(() -> specificMapInitialized());
-		
+
 
 		availReportList.setOnMouseClicked((e) -> {
 			setCurrentAvailabilityReport(availReportList.getSelectionModel().getSelectedItem());
 		});
-		
+
 		purityReportList.setOnMouseClicked((e) -> {
             setCurrentPurityReport(purityReportList.getSelectionModel().getSelectedItem());
         });
@@ -167,7 +208,7 @@ public class ApplicationSceneController extends SceneController {
 		if (UserManager.getLoggedInUser().getType() != UserType.Manager) {
 		    tabPane.getTabs().remove(historicalReportTab);
 		    tabPane.getTabs().remove(reportListTab);
-		    
+
 		    if (UserManager.getLoggedInUser().getType() == UserType.User) {
 		        submitReportButtonHBox.getChildren()
 		            .remove(submitPurityReportButton);
@@ -257,7 +298,7 @@ public class ApplicationSceneController extends SceneController {
 		specificMap.setZoom(16);
 		*/
 	}
-	
+
 	/**
      * Sets the current purity report.
      * @param r
@@ -274,7 +315,7 @@ public class ApplicationSceneController extends SceneController {
         purityReportView_contppm.setText("" + r.getContaminantPPM());
 
     }
-	
+
 	public void specificMapInitialized() {
 		LatLong center = new LatLong(0, 0);
 		//LatLong gaTechLoc = new LatLong(33.774804, -84.3976288);
@@ -284,7 +325,7 @@ public class ApplicationSceneController extends SceneController {
 		mapOptions.center(center).mapType(MapTypeIdEnum.HYBRID).overviewMapControl(false).panControl(true)
 				.rotateControl(false).scaleControl(false).streetViewControl(false).zoomControl(true).zoom(2);
 
-		
+
 		//specificMap = specificMapView.createMap(mapOptions);
 
 		populateAvailabilityMap();
@@ -299,7 +340,7 @@ public class ApplicationSceneController extends SceneController {
 		mapOptions.center(center).mapType(MapTypeIdEnum.HYBRID).overviewMapControl(false).panControl(true)
 				.rotateControl(false).scaleControl(false).streetViewControl(false).zoomControl(true).zoom(2);
 
-		
+
 		map = mapView.createMap(mapOptions);
 
 		populateAvailabilityMap();
@@ -338,4 +379,368 @@ public class ApplicationSceneController extends SceneController {
 		specificMap = specificMapView.createMap(specificMapOptions);
 		*/
 	}
+
+	public void updateLineChart() {
+
+		List<PurityReport> purityReports = WaterReportManager.getPurityReportList();
+
+		double locLat = Double.parseDouble(histReportView_lat.getText());
+		double locLong = Double.parseDouble(histReportView_long.getText());
+	    String year = histReportView_year.getText();
+
+		List<PurityReport> yearlyPurityReportList = new ArrayList<PurityReport>();
+
+		for (int i = 0; i < purityReports.size(); i++) {
+			if (purityReports.get(i).getDateTime().charAt(0) == year.charAt(0) && purityReports.get(i).getDateTime().charAt(1) == year.charAt(1)
+					&& purityReports.get(i).getDateTime().charAt(2) == year.charAt(2) && purityReports.get(i).getDateTime().charAt(3) == year.charAt(3)) {
+				yearlyPurityReportList.add(purityReports.get(i));
+			}
+		}
+
+		List<PurityReport> janPurityReports = new ArrayList<PurityReport>();
+		List<PurityReport> febPurityReports = new ArrayList<PurityReport>();
+		List<PurityReport> marchPurityReports = new ArrayList<PurityReport>();
+		List<PurityReport> aprilPurityReports = new ArrayList<PurityReport>();
+		List<PurityReport> mayPurityReports = new ArrayList<PurityReport>();
+		List<PurityReport> junePurityReports = new ArrayList<PurityReport>();
+		List<PurityReport> julyPurityReports = new ArrayList<PurityReport>();
+		List<PurityReport> augPurityReports = new ArrayList<PurityReport>();
+		List<PurityReport> sepPurityReports = new ArrayList<PurityReport>();
+		List<PurityReport> octPurityReports = new ArrayList<PurityReport>();
+		List<PurityReport> novPurityReports = new ArrayList<PurityReport>();
+		List<PurityReport> decPurityReports = new ArrayList<PurityReport>();
+
+		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
+			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '0' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '1') {
+				janPurityReports.add(yearlyPurityReportList.get(i));
+			}
+		}
+
+		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
+			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '0' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '2') {
+				febPurityReports.add(yearlyPurityReportList.get(i));
+			}
+		}
+
+		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
+			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '0' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '3') {
+				marchPurityReports.add(yearlyPurityReportList.get(i));
+			}
+		}
+
+		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
+			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '0' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '4') {
+				aprilPurityReports.add(yearlyPurityReportList.get(i));
+			}
+		}
+
+		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
+			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '0' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '5') {
+				mayPurityReports.add(yearlyPurityReportList.get(i));
+			}
+		}
+
+		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
+			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '0' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '6') {
+				junePurityReports.add(yearlyPurityReportList.get(i));
+			}
+		}
+
+		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
+			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '0' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '7') {
+				julyPurityReports.add(yearlyPurityReportList.get(i));
+			}
+		}
+
+		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
+			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '0' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '8') {
+				augPurityReports.add(yearlyPurityReportList.get(i));
+			}
+		}
+
+		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
+			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '0' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '9') {
+				sepPurityReports.add(yearlyPurityReportList.get(i));
+			}
+		}
+
+		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
+			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '1' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '0') {
+				octPurityReports.add(yearlyPurityReportList.get(i));
+			}
+		}
+
+		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
+			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '1' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '1') {
+				novPurityReports.add(yearlyPurityReportList.get(i));
+			}
+		}
+
+		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
+			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '1' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '2') {
+				decPurityReports.add(yearlyPurityReportList.get(i));
+			}
+		}
+
+        int avgJanVirusPPM;
+        int avgJanContaminantPPM;
+        int janVirusSum = 0;
+        int janContamSum = 0;
+
+        for (int i = 0; i < janPurityReports.size(); i++) {
+        	janVirusSum = janVirusSum + janPurityReports.get(i).getVirusPPM();
+        }
+
+        avgJanVirusPPM = janVirusSum / janPurityReports.size();
+
+        for (int i = 0; i < janPurityReports.size(); i++) {
+        	janContamSum = janContamSum + janPurityReports.get(i).getContaminantPPM();
+        }
+
+        avgJanContaminantPPM = janContamSum / janPurityReports.size();
+
+        int avgFebVirusPPM;
+        int avgFebContaminantPPM;
+        int febVirusSum = 0;
+        int febContamSum = 0;
+
+        for (int i = 0; i < febPurityReports.size(); i++) {
+        	febVirusSum = febVirusSum + febPurityReports.get(i).getVirusPPM();
+        }
+
+        avgFebVirusPPM = febVirusSum / febPurityReports.size();
+
+        for (int i = 0; i < febPurityReports.size(); i++) {
+        	febContamSum = febContamSum + febPurityReports.get(i).getContaminantPPM();
+        }
+
+        avgFebContaminantPPM = febContamSum / febPurityReports.size();
+
+        int avgMarchVirusPPM;
+        int avgMarchContaminantPPM;
+        int marchVirusSum = 0;
+        int marchContamSum = 0;
+
+        for (int i = 0; i < marchPurityReports.size(); i++) {
+        	marchVirusSum = marchVirusSum + marchPurityReports.get(i).getVirusPPM();
+        }
+
+        avgMarchVirusPPM = marchVirusSum / marchPurityReports.size();
+
+        for (int i = 0; i < marchPurityReports.size(); i++) {
+        	marchContamSum = marchContamSum + marchPurityReports.get(i).getContaminantPPM();
+        }
+
+        avgMarchContaminantPPM = marchContamSum / marchPurityReports.size();
+
+        int avgAprilVirusPPM;
+        int avgAprilContaminantPPM;
+        int aprilVirusSum = 0;
+        int aprilContamSum = 0;
+
+        for (int i = 0; i < aprilPurityReports.size(); i++) {
+        	aprilVirusSum = aprilVirusSum + aprilPurityReports.get(i).getVirusPPM();
+        }
+
+        avgAprilVirusPPM = aprilVirusSum / aprilPurityReports.size();
+
+        for (int i = 0; i < aprilPurityReports.size(); i++) {
+        	aprilContamSum = aprilContamSum + aprilPurityReports.get(i).getContaminantPPM();
+        }
+
+        avgAprilContaminantPPM = aprilContamSum / aprilPurityReports.size();
+
+        int avgMayVirusPPM;
+        int avgMayContaminantPPM;
+        int mayVirusSum = 0;
+        int mayContamSum = 0;
+
+        for (int i = 0; i < mayPurityReports.size(); i++) {
+        	mayVirusSum = mayVirusSum + mayPurityReports.get(i).getVirusPPM();
+        }
+
+        avgMayVirusPPM = mayVirusSum / mayPurityReports.size();
+
+        for (int i = 0; i < mayPurityReports.size(); i++) {
+        	mayContamSum = mayContamSum + mayPurityReports.get(i).getContaminantPPM();
+        }
+
+        avgMayContaminantPPM = mayContamSum / mayPurityReports.size();
+
+        int avgJuneVirusPPM;
+        int avgJuneContaminantPPM;
+        int juneVirusSum = 0;
+        int juneContamSum = 0;
+
+        for (int i = 0; i < junePurityReports.size(); i++) {
+        	juneVirusSum = juneVirusSum + junePurityReports.get(i).getVirusPPM();
+        }
+
+        avgJuneVirusPPM = juneVirusSum / junePurityReports.size();
+
+        for (int i = 0; i < junePurityReports.size(); i++) {
+        	juneContamSum = juneContamSum + junePurityReports.get(i).getContaminantPPM();
+        }
+
+        avgJuneContaminantPPM = juneContamSum / junePurityReports.size();
+
+        int avgJulyVirusPPM;
+        int avgJulyContaminantPPM;
+        int julyVirusSum = 0;
+        int julyContamSum = 0;
+
+        for (int i = 0; i < julyPurityReports.size(); i++) {
+        	julyVirusSum = julyVirusSum + julyPurityReports.get(i).getVirusPPM();
+        }
+
+        avgJulyVirusPPM = julyVirusSum / julyPurityReports.size();
+
+        for (int i = 0; i < julyPurityReports.size(); i++) {
+        	julyContamSum = julyContamSum + julyPurityReports.get(i).getContaminantPPM();
+        }
+
+        avgJulyContaminantPPM = julyContamSum / julyPurityReports.size();
+
+        int avgAugustVirusPPM;
+        int avgAugustContaminantPPM;
+        int augVirusSum = 0;
+        int augContamSum = 0;
+
+        for (int i = 0; i < augPurityReports.size(); i++) {
+        	augVirusSum = augVirusSum + augPurityReports.get(i).getVirusPPM();
+        }
+
+        avgAugustVirusPPM = augVirusSum / augPurityReports.size();
+
+        for (int i = 0; i < augPurityReports.size(); i++) {
+        	augContamSum = augContamSum + augPurityReports.get(i).getContaminantPPM();
+        }
+
+        avgAugustContaminantPPM = augContamSum / augPurityReports.size();
+
+        int avgSeptemberVirusPPM;
+        int avgSeptemberContaminantPPM;
+        int sepVirusSum = 0;
+        int sepContamSum = 0;
+
+        for (int i = 0; i < sepPurityReports.size(); i++) {
+        	sepVirusSum = sepVirusSum + sepPurityReports.get(i).getVirusPPM();
+        }
+
+        avgSeptemberVirusPPM = sepVirusSum / sepPurityReports.size();
+
+        for (int i = 0; i < sepPurityReports.size(); i++) {
+        	sepContamSum = sepContamSum + sepPurityReports.get(i).getContaminantPPM();
+        }
+
+        avgSeptemberContaminantPPM = sepContamSum / sepPurityReports.size();
+
+        int avgOctoberVirusPPM;
+        int avgOctoberContaminantPPM;
+        int octVirusSum = 0;
+        int octContamSum = 0;
+
+        for (int i = 0; i < octPurityReports.size(); i++) {
+        	octVirusSum = octVirusSum + octPurityReports.get(i).getVirusPPM();
+        }
+
+        avgOctoberVirusPPM = octVirusSum / octPurityReports.size();
+
+        for (int i = 0; i < octPurityReports.size(); i++) {
+        	octContamSum = octContamSum + octPurityReports.get(i).getContaminantPPM();
+        }
+
+        avgOctoberContaminantPPM = octContamSum / octPurityReports.size();
+
+        int avgNovemberVirusPPM;
+        int avgNovemberContaminantPPM;
+        int novVirusSum = 0;
+        int novContamSum =0;
+
+        for (int i = 0; i < novPurityReports.size(); i++) {
+        	novVirusSum = novVirusSum + novPurityReports.get(i).getVirusPPM();
+        }
+
+        avgNovemberVirusPPM = marchVirusSum / novPurityReports.size();
+
+        for (int i = 0; i < novPurityReports.size(); i++) {
+        	novContamSum = novContamSum + novPurityReports.get(i).getContaminantPPM();
+        }
+
+        avgNovemberContaminantPPM = novContamSum / novPurityReports.size();
+
+        int avgDecemberVirusPPM;
+        int avgDecemberContaminantPPM;
+        int decVirusSum = 0;
+        int decContamSum = 0;
+
+        for (int i = 0; i < decPurityReports.size(); i++) {
+        	decVirusSum = decVirusSum + decPurityReports.get(i).getVirusPPM();
+        }
+
+        avgDecemberVirusPPM = decVirusSum / decPurityReports.size();
+
+        for (int i = 0; i < decPurityReports.size(); i++) {
+        	decContamSum = decContamSum + decPurityReports.get(i).getContaminantPPM();
+        }
+
+        avgDecemberContaminantPPM = decContamSum / decPurityReports.size();
+
+
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        xAxis.setLabel("Month");
+        yAxis.setLabel("PPM");
+
+        historicalReportGraph = new LineChart<String,Number>(xAxis,yAxis);
+
+        historicalReportGraph.setTitle("Water Purity History");
+
+        XYChart.Series series = new XYChart.Series<>();
+        series.setName("Virus PPM");
+
+        series.getData().add(new XYChart.Data("Jan", avgJanVirusPPM));
+        series.getData().add(new XYChart.Data("Feb", avgFebVirusPPM));
+        series.getData().add(new XYChart.Data("Mar", avgMarchVirusPPM));
+        series.getData().add(new XYChart.Data("Apr", avgAprilVirusPPM));
+        series.getData().add(new XYChart.Data("May", avgMayVirusPPM));
+        series.getData().add(new XYChart.Data("Jun", avgJuneVirusPPM));
+        series.getData().add(new XYChart.Data("Jul", avgJulyVirusPPM));
+        series.getData().add(new XYChart.Data("Aug", avgAugustVirusPPM));
+        series.getData().add(new XYChart.Data("Sep", avgSeptemberVirusPPM));
+        series.getData().add(new XYChart.Data("Oct", avgOctoberVirusPPM));
+        series.getData().add(new XYChart.Data("Nov", avgNovemberVirusPPM));
+        series.getData().add(new XYChart.Data("Dec", avgDecemberVirusPPM));
+
+        XYChart.Series series1 = new XYChart.Series<>();
+        series1.setName("Contaminent PPM");
+
+        series1.getData().add(new XYChart.Data("Jan", avgJanContaminantPPM));
+        series1.getData().add(new XYChart.Data("Feb", avgFebContaminantPPM));
+        series1.getData().add(new XYChart.Data("Mar", avgMarchContaminantPPM));
+        series1.getData().add(new XYChart.Data("Apr", avgAprilContaminantPPM));
+        series1.getData().add(new XYChart.Data("May", avgMayContaminantPPM));
+        series1.getData().add(new XYChart.Data("Jun", avgJuneContaminantPPM));
+        series1.getData().add(new XYChart.Data("Jul", avgJulyContaminantPPM));
+        series1.getData().add(new XYChart.Data("Aug", avgAugustContaminantPPM));
+        series1.getData().add(new XYChart.Data("Sep", avgSeptemberContaminantPPM));
+        series1.getData().add(new XYChart.Data("Oct", avgOctoberContaminantPPM));
+        series1.getData().add(new XYChart.Data("Nov", avgNovemberContaminantPPM));
+        series1.getData().add(new XYChart.Data("Dec", avgDecemberContaminantPPM));
+
+        historicalReportGraph.getData().addAll(series, series1);
+
+
+	}
+
+	protected void validateLocation() {
+        if (histReportView_long.getText().equals("") || histReportView_lat.getText().equals("")) {
+            throw new LocationException("textfields empty");
+        }
+        double lat = Double.parseDouble(histReportView_lat.getText());
+        double lon = Double.parseDouble(histReportView_long.getText());
+        if (lat > 85 || lat < -85 || lon > 180 || lon < -180) {
+            throw new LocationException("location out of bounds");
+        }
+    }
 }
