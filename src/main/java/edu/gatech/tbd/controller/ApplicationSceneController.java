@@ -810,7 +810,7 @@ public class ApplicationSceneController extends SceneController {
 		if (histReportView_year.getText().equals("")) {
 			throw new NumberFormatException("year textfield empty");
 		}
-		if (!histReportView_year.getText().matches("[0-9]+") || histReportView_year.getText().length() < 4) {
+		if (histReportView_year.getText().matches("[a-zA-Z]+") || histReportView_year.getText().length() < 4) {
 			throw new NumberFormatException("Must enter valid year");
 		}
 		int year = Integer.parseInt(histReportView_year.getText());
