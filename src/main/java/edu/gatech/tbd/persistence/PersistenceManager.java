@@ -88,6 +88,9 @@ public class PersistenceManager {
 	*/
 
 	private static void saveObject(Object o) {
+		
+		File dataFolder = new File("data/");
+		dataFolder.mkdir();
 
 		Gson g = new Gson();
 		String s = g.toJson(o);
@@ -113,11 +116,12 @@ public class PersistenceManager {
 			fop.write(contentInBytes);
 			fop.flush();
 			fop.close();
+			System.out.printf("Saved object " + o + " (%x)\n", o.hashCode());
 		} catch (IOException e) {
 			System.err.println("There was an error writing object: " + o + " to the disk!");
 			e.printStackTrace();
 		}
-		System.out.printf("Saved object " + o + " (%x)\n", o.hashCode());
+		
 	}
 
 	/**
