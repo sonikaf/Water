@@ -684,6 +684,7 @@ public class ApplicationSceneController extends SceneController {
         historicalReportGraph = new LineChart<String,Number>(xAxis,yAxis);
 
         historicalReportGraph.getXAxis().setAutoRanging(true);
+        historicalReportGraph.getYAxis().setAutoRanging(true);
 
         historicalReportGraph.setTitle("Water Purity History");
 
