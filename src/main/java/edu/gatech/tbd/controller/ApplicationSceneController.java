@@ -417,69 +417,39 @@ public class ApplicationSceneController extends SceneController {
 			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '0' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '1') {
 				janPurityReports.add(yearlyPurityReportList.get(i));
 			}
-		}
-
-		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
 			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '0' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '2') {
 				febPurityReports.add(yearlyPurityReportList.get(i));
 			}
-		}
-
-		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
 			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '0' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '3') {
 				marchPurityReports.add(yearlyPurityReportList.get(i));
 			}
-		}
-
-		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
 			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '0' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '4') {
 				aprilPurityReports.add(yearlyPurityReportList.get(i));
 			}
-		}
-
-		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
+			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '0' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '4') {
+				aprilPurityReports.add(yearlyPurityReportList.get(i));
+			}
 			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '0' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '5') {
 				mayPurityReports.add(yearlyPurityReportList.get(i));
 			}
-		}
-
-		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
 			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '0' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '6') {
 				junePurityReports.add(yearlyPurityReportList.get(i));
 			}
-		}
-
-		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
 			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '0' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '7') {
 				julyPurityReports.add(yearlyPurityReportList.get(i));
 			}
-		}
-
-		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
 			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '0' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '8') {
 				augPurityReports.add(yearlyPurityReportList.get(i));
 			}
-		}
-
-		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
 			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '0' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '9') {
 				sepPurityReports.add(yearlyPurityReportList.get(i));
 			}
-		}
-
-		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
 			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '1' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '0') {
 				octPurityReports.add(yearlyPurityReportList.get(i));
 			}
-		}
-
-		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
 			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '1' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '1') {
 				novPurityReports.add(yearlyPurityReportList.get(i));
 			}
-		}
-
-		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
 			if (yearlyPurityReportList.get(i).getDateTime().charAt(5) == '1' && yearlyPurityReportList.get(i).getDateTime().charAt(6) == '2') {
 				decPurityReports.add(yearlyPurityReportList.get(i));
 			}
@@ -496,14 +466,10 @@ public class ApplicationSceneController extends SceneController {
         } else {
         	for (int i = 0; i < janPurityReports.size(); i++) {
         		janVirusSum = janVirusSum + janPurityReports.get(i).getVirusPPM();
-        	}
-
-        	avgJanVirusPPM = janVirusSum / janPurityReports.size();
-
-        	for (int i = 0; i < janPurityReports.size(); i++) {
         		janContamSum = janContamSum + janPurityReports.get(i).getContaminantPPM();
         	}
 
+        	avgJanVirusPPM = janVirusSum / janPurityReports.size();
         	avgJanContaminantPPM = janContamSum / janPurityReports.size();
         }
 
@@ -518,14 +484,10 @@ public class ApplicationSceneController extends SceneController {
         } else {
         	for (int i = 0; i < febPurityReports.size(); i++) {
         		febVirusSum = febVirusSum + febPurityReports.get(i).getVirusPPM();
-        	}
-
-        	avgFebVirusPPM = febVirusSum / febPurityReports.size();
-
-        	for (int i = 0; i < febPurityReports.size(); i++) {
         		febContamSum = febContamSum + febPurityReports.get(i).getContaminantPPM();
         	}
 
+        	avgFebVirusPPM = febVirusSum / febPurityReports.size();
         	avgFebContaminantPPM = febContamSum / febPurityReports.size();
         }
 
@@ -540,14 +502,10 @@ public class ApplicationSceneController extends SceneController {
         } else {
         	for (int i = 0; i < marchPurityReports.size(); i++) {
         		marchVirusSum = marchVirusSum + marchPurityReports.get(i).getVirusPPM();
-        	}
-
-        	avgMarchVirusPPM = marchVirusSum / marchPurityReports.size();
-
-        	for (int i = 0; i < marchPurityReports.size(); i++) {
         		marchContamSum = marchContamSum + marchPurityReports.get(i).getContaminantPPM();
         	}
 
+        	avgMarchVirusPPM = marchVirusSum / marchPurityReports.size();
         	avgMarchContaminantPPM = marchContamSum / marchPurityReports.size();
         }
 
@@ -562,14 +520,10 @@ public class ApplicationSceneController extends SceneController {
         } else {
         	for (int i = 0; i < aprilPurityReports.size(); i++) {
         		aprilVirusSum = aprilVirusSum + aprilPurityReports.get(i).getVirusPPM();
-        	}
-
-        	avgAprilVirusPPM = aprilVirusSum / aprilPurityReports.size();
-
-        	for (int i = 0; i < aprilPurityReports.size(); i++) {
         		aprilContamSum = aprilContamSum + aprilPurityReports.get(i).getContaminantPPM();
         	}
 
+        	avgAprilVirusPPM = aprilVirusSum / aprilPurityReports.size();
         	avgAprilContaminantPPM = aprilContamSum / aprilPurityReports.size();
         }
 
@@ -584,14 +538,10 @@ public class ApplicationSceneController extends SceneController {
         } else {
         	for (int i = 0; i < mayPurityReports.size(); i++) {
         		mayVirusSum = mayVirusSum + mayPurityReports.get(i).getVirusPPM();
-        	}
-
-        	avgMayVirusPPM = mayVirusSum / mayPurityReports.size();
-
-        	for (int i = 0; i < mayPurityReports.size(); i++) {
         		mayContamSum = mayContamSum + mayPurityReports.get(i).getContaminantPPM();
         	}
 
+        	avgMayVirusPPM = mayVirusSum / mayPurityReports.size();
         	avgMayContaminantPPM = mayContamSum / mayPurityReports.size();
         }
 
@@ -606,14 +556,10 @@ public class ApplicationSceneController extends SceneController {
         } else {
         	for (int i = 0; i < junePurityReports.size(); i++) {
         		juneVirusSum = juneVirusSum + junePurityReports.get(i).getVirusPPM();
-        	}
-
-        	avgJuneVirusPPM = juneVirusSum / junePurityReports.size();
-
-        	for (int i = 0; i < junePurityReports.size(); i++) {
         		juneContamSum = juneContamSum + junePurityReports.get(i).getContaminantPPM();
         	}
 
+        	avgJuneVirusPPM = juneVirusSum / junePurityReports.size();
         	avgJuneContaminantPPM = juneContamSum / junePurityReports.size();
         }
 
@@ -628,14 +574,10 @@ public class ApplicationSceneController extends SceneController {
         } else {
         	for (int i = 0; i < julyPurityReports.size(); i++) {
         		julyVirusSum = julyVirusSum + julyPurityReports.get(i).getVirusPPM();
-        	}
-
-        	avgJulyVirusPPM = julyVirusSum / julyPurityReports.size();
-
-        	for (int i = 0; i < julyPurityReports.size(); i++) {
         		julyContamSum = julyContamSum + julyPurityReports.get(i).getContaminantPPM();
         	}
 
+        	avgJulyVirusPPM = julyVirusSum / julyPurityReports.size();
         	avgJulyContaminantPPM = julyContamSum / julyPurityReports.size();
         }
 
@@ -650,14 +592,10 @@ public class ApplicationSceneController extends SceneController {
         } else {
         	for (int i = 0; i < augPurityReports.size(); i++) {
         		augVirusSum = augVirusSum + augPurityReports.get(i).getVirusPPM();
-        	}
-
-        	avgAugustVirusPPM = augVirusSum / augPurityReports.size();
-
-        	for (int i = 0; i < augPurityReports.size(); i++) {
         		augContamSum = augContamSum + augPurityReports.get(i).getContaminantPPM();
         	}
 
+        	avgAugustVirusPPM = augVirusSum / augPurityReports.size();
         	avgAugustContaminantPPM = augContamSum / augPurityReports.size();
         }
 
@@ -672,14 +610,10 @@ public class ApplicationSceneController extends SceneController {
         } else {
         	for (int i = 0; i < sepPurityReports.size(); i++) {
         		sepVirusSum = sepVirusSum + sepPurityReports.get(i).getVirusPPM();
-        	}
-
-        	avgSeptemberVirusPPM = sepVirusSum / sepPurityReports.size();
-
-        	for (int i = 0; i < sepPurityReports.size(); i++) {
         		sepContamSum = sepContamSum + sepPurityReports.get(i).getContaminantPPM();
         	}
 
+        	avgSeptemberVirusPPM = sepVirusSum / sepPurityReports.size();
         	avgSeptemberContaminantPPM = sepContamSum / sepPurityReports.size();
         }
 
@@ -694,14 +628,10 @@ public class ApplicationSceneController extends SceneController {
         } else {
         	for (int i = 0; i < octPurityReports.size(); i++) {
         		octVirusSum = octVirusSum + octPurityReports.get(i).getVirusPPM();
-        	}
-
-        	avgOctoberVirusPPM = octVirusSum / octPurityReports.size();
-
-        	for (int i = 0; i < octPurityReports.size(); i++) {
         		octContamSum = octContamSum + octPurityReports.get(i).getContaminantPPM();
         	}
 
+        	avgOctoberVirusPPM = octVirusSum / octPurityReports.size();
         	avgOctoberContaminantPPM = octContamSum / octPurityReports.size();
         }
 
@@ -716,14 +646,10 @@ public class ApplicationSceneController extends SceneController {
         } else {
         	for (int i = 0; i < novPurityReports.size(); i++) {
         		novVirusSum = novVirusSum + novPurityReports.get(i).getVirusPPM();
-        	}
-
-        	avgNovemberVirusPPM = marchVirusSum / novPurityReports.size();
-
-        	for (int i = 0; i < novPurityReports.size(); i++) {
         		novContamSum = novContamSum + novPurityReports.get(i).getContaminantPPM();
         	}
 
+        	avgNovemberVirusPPM = marchVirusSum / novPurityReports.size();
         	avgNovemberContaminantPPM = novContamSum / novPurityReports.size();
         }
 
@@ -738,14 +664,10 @@ public class ApplicationSceneController extends SceneController {
         } else {
         	for (int i = 0; i < decPurityReports.size(); i++) {
         		decVirusSum = decVirusSum + decPurityReports.get(i).getVirusPPM();
-        	}
-
-        	avgDecemberVirusPPM = decVirusSum / decPurityReports.size();
-
-        	for (int i = 0; i < decPurityReports.size(); i++) {
         		decContamSum = decContamSum + decPurityReports.get(i).getContaminantPPM();
         	}
 
+        	avgDecemberVirusPPM = decVirusSum / decPurityReports.size();
         	avgDecemberContaminantPPM = decContamSum / decPurityReports.size();
         }
 
