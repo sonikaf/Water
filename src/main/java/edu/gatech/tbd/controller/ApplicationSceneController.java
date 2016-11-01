@@ -48,6 +48,7 @@ public class ApplicationSceneController extends SceneController {
 	//private GoogleMapView specificMapView;
 	//private GoogleMap specificMap;
 
+	@FXML
 	private LineChart<String,Number> historicalReportGraph;
 
 	@FXML
