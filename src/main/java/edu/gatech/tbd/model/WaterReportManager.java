@@ -77,7 +77,7 @@ public class WaterReportManager {
      * @param contaminantPPM
      */
     public static void registerPurityReport(double locLat, double locLong, OverallCondition overallCondition, int virusPPM, int contaminantPPM) {
-        latestPurityReport = new PurityReport(reportCount,
+        latestPurityReport = new PurityReport(reportCount++,
                 UserManager.getLoggedInUser().getName(), locLat, locLong,
                 overallCondition, virusPPM, contaminantPPM,
                 new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
