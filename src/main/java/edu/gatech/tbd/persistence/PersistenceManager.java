@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -187,7 +188,13 @@ public class PersistenceManager {
 	}
 	
 	public static int generateObjectHash(Object o) {
-		Field[] fields = o.getClass().getDeclaredFields();
+		ArrayList<Field> fields = new ArrayList<Field>();
+		Class<?> cur = o.getClass();
+		// iterate through all the way up to the top
+		while(cur != Object.class) {
+			fields.addAll(Arrays.asList(cur.getDeclaredFields()));
+			cur = cur.getSuperclass();
+		}
 		int ret = 1;		
 		for(Field f : fields) {
 			try {
@@ -200,7 +207,9 @@ public class PersistenceManager {
 					 value.getClass().equals(Integer.class) ||
 					 value.getClass().equals(Float.class) ||
 					 value.getClass().equals(Double.class)
-					)) continue;
+					)) {
+					continue;
+				}
 				
 				ret = 37 * ret + value.hashCode();
 			} catch (Exception e) {

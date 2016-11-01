@@ -53,7 +53,7 @@ public class AvailabilityReport extends Report {
 
 	@Override
 	public String toString() {
-		return String.format("Report %02d (%f, %f) by %s", _reportNumber, _locationLat, _locationLong, _reporter);
+		return String.format("Availability Report %02d (%f, %f) by %s", _reportNumber, _locationLat, _locationLong, _reporter);
 	}
 	
 	
