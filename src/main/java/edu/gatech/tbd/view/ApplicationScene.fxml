@@ -304,7 +304,7 @@
                                                 </Label>
                                                 <TextField fx:id="histReportView_lat" layoutX="176.0" layoutY="42.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <TextField fx:id="histReportView_long" layoutX="176.0" layoutY="72.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Button fx:id="graphHistReportButton" alignment="TOP_RIGHT" mnemonicParsing="false" text="Graph Report" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                                                <Button mnemonicParsing="false" onAction="#onGraphHistReportButtonPressed" text="Graph Report" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER" alignment="TOP_RIGHT">
                                                    <GridPane.margin>
                                                       <Insets right="10.0" top="10.0" />
                                                    </GridPane.margin>

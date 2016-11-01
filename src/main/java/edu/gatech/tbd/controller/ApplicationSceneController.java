@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import netscape.javascript.JSObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import com.lynden.gmapsfx.*;
@@ -131,9 +132,6 @@ public class ApplicationSceneController extends SceneController {
     @FXML
     Button submitPurityReportButton;
 
-    @FXML
-    Button graphHistReportButton;
-
 
 	/**
 	 * Handler for the Logout button.
@@ -165,11 +163,15 @@ public class ApplicationSceneController extends SceneController {
 
 		try {
 			validateLocation();
+			validateYear();
 			updateLineChart();
 
 
 		} catch (LocationException e) {
 			errorLabel.setText("You must enter a valid location");
+			//e.printStackTrace();
+		} catch (NumberFormatException e) {
+			errorLabel.setText("You must enter a valid year");
 			//e.printStackTrace();
 		}
 
@@ -735,7 +737,7 @@ public class ApplicationSceneController extends SceneController {
 
 	protected void validateLocation() {
         if (histReportView_long.getText().equals("") || histReportView_lat.getText().equals("")) {
-            throw new LocationException("textfields empty");
+            throw new LocationException("location textfield empty");
         }
         double lat = Double.parseDouble(histReportView_lat.getText());
         double lon = Double.parseDouble(histReportView_long.getText());
@@ -743,4 +745,23 @@ public class ApplicationSceneController extends SceneController {
             throw new LocationException("location out of bounds");
         }
     }
+
+	protected void validateYear() {
+		if (histReportView_year.getText().equals("")) {
+			throw new NumberFormatException("year textfield empty");
+		}
+		if (!histReportView_year.getText().matches("[0-9]+") || histReportView_year.getText().length() < 4) {
+			throw new NumberFormatException("Must enter valid year");
+		}
+		int year = Integer.parseInt(histReportView_year.getText());
+		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+		List<Report> reports = WaterReportManager.getReportList();
+		char[] yearChars = new char[4];
+		reports.get(0).getDateTime().getChars(0, 3, yearChars, 0);
+		String yearString = new String(yearChars);
+		Integer firstYear = Integer.parseInt(yearString);
+		if (year < firstYear || year > currentYear) {
+			throw new NumberFormatException("Year out of bounds");
+		}
+	}
 }
