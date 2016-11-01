@@ -394,8 +394,12 @@ public class ApplicationSceneController extends SceneController {
 		List<PurityReport> yearlyPurityReportList = new ArrayList<PurityReport>();
 
 		for (int i = 0; i < purityReports.size(); i++) {
-			if (purityReports.get(i).getDateTime().charAt(0) == year.charAt(0) && purityReports.get(i).getDateTime().charAt(1) == year.charAt(1)
-					&& purityReports.get(i).getDateTime().charAt(2) == year.charAt(2) && purityReports.get(i).getDateTime().charAt(3) == year.charAt(3)) {
+			if (purityReports.get(i).getDateTime().charAt(0) == year.charAt(0)
+					&& purityReports.get(i).getDateTime().charAt(1) == year.charAt(1)
+					&& purityReports.get(i).getDateTime().charAt(2) == year.charAt(2)
+					&& purityReports.get(i).getDateTime().charAt(3) == year.charAt(3)
+					&& purityReports.get(i).getLocationLat() == locLat
+					&& purityReports.get(i).getLocationLong() == locLong) {
 				yearlyPurityReportList.add(purityReports.get(i));
 			}
 		}
