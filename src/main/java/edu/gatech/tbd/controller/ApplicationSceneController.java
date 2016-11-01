@@ -489,204 +489,264 @@ public class ApplicationSceneController extends SceneController {
         int janVirusSum = 0;
         int janContamSum = 0;
 
-        for (int i = 0; i < janPurityReports.size(); i++) {
-        	janVirusSum = janVirusSum + janPurityReports.get(i).getVirusPPM();
+        if (janPurityReports.size() == 0) {
+        	avgJanVirusPPM = 0;
+        	avgJanContaminantPPM = 0;
+        } else {
+        	for (int i = 0; i < janPurityReports.size(); i++) {
+        		janVirusSum = janVirusSum + janPurityReports.get(i).getVirusPPM();
+        	}
+
+        	avgJanVirusPPM = janVirusSum / janPurityReports.size();
+
+        	for (int i = 0; i < janPurityReports.size(); i++) {
+        		janContamSum = janContamSum + janPurityReports.get(i).getContaminantPPM();
+        	}
+
+        	avgJanContaminantPPM = janContamSum / janPurityReports.size();
         }
-
-        avgJanVirusPPM = janVirusSum / janPurityReports.size();
-
-        for (int i = 0; i < janPurityReports.size(); i++) {
-        	janContamSum = janContamSum + janPurityReports.get(i).getContaminantPPM();
-        }
-
-        avgJanContaminantPPM = janContamSum / janPurityReports.size();
 
         int avgFebVirusPPM;
         int avgFebContaminantPPM;
         int febVirusSum = 0;
         int febContamSum = 0;
 
-        for (int i = 0; i < febPurityReports.size(); i++) {
-        	febVirusSum = febVirusSum + febPurityReports.get(i).getVirusPPM();
+        if (febPurityReports.size() == 0) {
+        	avgFebVirusPPM = 0;
+        	avgFebContaminantPPM = 0;
+        } else {
+        	for (int i = 0; i < febPurityReports.size(); i++) {
+        		febVirusSum = febVirusSum + febPurityReports.get(i).getVirusPPM();
+        	}
+
+        	avgFebVirusPPM = febVirusSum / febPurityReports.size();
+
+        	for (int i = 0; i < febPurityReports.size(); i++) {
+        		febContamSum = febContamSum + febPurityReports.get(i).getContaminantPPM();
+        	}
+
+        	avgFebContaminantPPM = febContamSum / febPurityReports.size();
         }
-
-        avgFebVirusPPM = febVirusSum / febPurityReports.size();
-
-        for (int i = 0; i < febPurityReports.size(); i++) {
-        	febContamSum = febContamSum + febPurityReports.get(i).getContaminantPPM();
-        }
-
-        avgFebContaminantPPM = febContamSum / febPurityReports.size();
 
         int avgMarchVirusPPM;
         int avgMarchContaminantPPM;
         int marchVirusSum = 0;
         int marchContamSum = 0;
 
-        for (int i = 0; i < marchPurityReports.size(); i++) {
-        	marchVirusSum = marchVirusSum + marchPurityReports.get(i).getVirusPPM();
+        if (marchPurityReports.size() == 0) {
+        	avgMarchVirusPPM = 0;
+        	avgMarchContaminantPPM = 0;
+        } else {
+        	for (int i = 0; i < marchPurityReports.size(); i++) {
+        		marchVirusSum = marchVirusSum + marchPurityReports.get(i).getVirusPPM();
+        	}
+
+        	avgMarchVirusPPM = marchVirusSum / marchPurityReports.size();
+
+        	for (int i = 0; i < marchPurityReports.size(); i++) {
+        		marchContamSum = marchContamSum + marchPurityReports.get(i).getContaminantPPM();
+        	}
+
+        	avgMarchContaminantPPM = marchContamSum / marchPurityReports.size();
         }
-
-        avgMarchVirusPPM = marchVirusSum / marchPurityReports.size();
-
-        for (int i = 0; i < marchPurityReports.size(); i++) {
-        	marchContamSum = marchContamSum + marchPurityReports.get(i).getContaminantPPM();
-        }
-
-        avgMarchContaminantPPM = marchContamSum / marchPurityReports.size();
 
         int avgAprilVirusPPM;
         int avgAprilContaminantPPM;
         int aprilVirusSum = 0;
         int aprilContamSum = 0;
 
-        for (int i = 0; i < aprilPurityReports.size(); i++) {
-        	aprilVirusSum = aprilVirusSum + aprilPurityReports.get(i).getVirusPPM();
+        if (aprilPurityReports.size() == 0) {
+        	avgAprilVirusPPM = 0;
+        	avgAprilContaminantPPM = 0;
+        } else {
+        	for (int i = 0; i < aprilPurityReports.size(); i++) {
+        		aprilVirusSum = aprilVirusSum + aprilPurityReports.get(i).getVirusPPM();
+        	}
+
+        	avgAprilVirusPPM = aprilVirusSum / aprilPurityReports.size();
+
+        	for (int i = 0; i < aprilPurityReports.size(); i++) {
+        		aprilContamSum = aprilContamSum + aprilPurityReports.get(i).getContaminantPPM();
+        	}
+
+        	avgAprilContaminantPPM = aprilContamSum / aprilPurityReports.size();
         }
-
-        avgAprilVirusPPM = aprilVirusSum / aprilPurityReports.size();
-
-        for (int i = 0; i < aprilPurityReports.size(); i++) {
-        	aprilContamSum = aprilContamSum + aprilPurityReports.get(i).getContaminantPPM();
-        }
-
-        avgAprilContaminantPPM = aprilContamSum / aprilPurityReports.size();
 
         int avgMayVirusPPM;
         int avgMayContaminantPPM;
         int mayVirusSum = 0;
         int mayContamSum = 0;
 
-        for (int i = 0; i < mayPurityReports.size(); i++) {
-        	mayVirusSum = mayVirusSum + mayPurityReports.get(i).getVirusPPM();
+        if (mayPurityReports.size() == 0) {
+        	avgMayVirusPPM = 0;
+        	avgMayContaminantPPM = 0;
+        } else {
+        	for (int i = 0; i < mayPurityReports.size(); i++) {
+        		mayVirusSum = mayVirusSum + mayPurityReports.get(i).getVirusPPM();
+        	}
+
+        	avgMayVirusPPM = mayVirusSum / mayPurityReports.size();
+
+        	for (int i = 0; i < mayPurityReports.size(); i++) {
+        		mayContamSum = mayContamSum + mayPurityReports.get(i).getContaminantPPM();
+        	}
+
+        	avgMayContaminantPPM = mayContamSum / mayPurityReports.size();
         }
-
-        avgMayVirusPPM = mayVirusSum / mayPurityReports.size();
-
-        for (int i = 0; i < mayPurityReports.size(); i++) {
-        	mayContamSum = mayContamSum + mayPurityReports.get(i).getContaminantPPM();
-        }
-
-        avgMayContaminantPPM = mayContamSum / mayPurityReports.size();
 
         int avgJuneVirusPPM;
         int avgJuneContaminantPPM;
         int juneVirusSum = 0;
         int juneContamSum = 0;
 
-        for (int i = 0; i < junePurityReports.size(); i++) {
-        	juneVirusSum = juneVirusSum + junePurityReports.get(i).getVirusPPM();
+        if (junePurityReports.size() == 0) {
+        	avgJuneVirusPPM = 0;
+        	avgJuneContaminantPPM = 0;
+        } else {
+        	for (int i = 0; i < junePurityReports.size(); i++) {
+        		juneVirusSum = juneVirusSum + junePurityReports.get(i).getVirusPPM();
+        	}
+
+        	avgJuneVirusPPM = juneVirusSum / junePurityReports.size();
+
+        	for (int i = 0; i < junePurityReports.size(); i++) {
+        		juneContamSum = juneContamSum + junePurityReports.get(i).getContaminantPPM();
+        	}
+
+        	avgJuneContaminantPPM = juneContamSum / junePurityReports.size();
         }
-
-        avgJuneVirusPPM = juneVirusSum / junePurityReports.size();
-
-        for (int i = 0; i < junePurityReports.size(); i++) {
-        	juneContamSum = juneContamSum + junePurityReports.get(i).getContaminantPPM();
-        }
-
-        avgJuneContaminantPPM = juneContamSum / junePurityReports.size();
 
         int avgJulyVirusPPM;
         int avgJulyContaminantPPM;
         int julyVirusSum = 0;
         int julyContamSum = 0;
 
-        for (int i = 0; i < julyPurityReports.size(); i++) {
-        	julyVirusSum = julyVirusSum + julyPurityReports.get(i).getVirusPPM();
+        if (julyPurityReports.size() == 0) {
+        	avgJulyVirusPPM = 0;
+        	avgJulyContaminantPPM = 0;
+        } else {
+        	for (int i = 0; i < julyPurityReports.size(); i++) {
+        		julyVirusSum = julyVirusSum + julyPurityReports.get(i).getVirusPPM();
+        	}
+
+        	avgJulyVirusPPM = julyVirusSum / julyPurityReports.size();
+
+        	for (int i = 0; i < julyPurityReports.size(); i++) {
+        		julyContamSum = julyContamSum + julyPurityReports.get(i).getContaminantPPM();
+        	}
+
+        	avgJulyContaminantPPM = julyContamSum / julyPurityReports.size();
         }
-
-        avgJulyVirusPPM = julyVirusSum / julyPurityReports.size();
-
-        for (int i = 0; i < julyPurityReports.size(); i++) {
-        	julyContamSum = julyContamSum + julyPurityReports.get(i).getContaminantPPM();
-        }
-
-        avgJulyContaminantPPM = julyContamSum / julyPurityReports.size();
 
         int avgAugustVirusPPM;
         int avgAugustContaminantPPM;
         int augVirusSum = 0;
         int augContamSum = 0;
 
-        for (int i = 0; i < augPurityReports.size(); i++) {
-        	augVirusSum = augVirusSum + augPurityReports.get(i).getVirusPPM();
+        if (augPurityReports.size() == 0) {
+        	avgAugustVirusPPM = 0;
+        	avgAugustContaminantPPM = 0;
+        } else {
+        	for (int i = 0; i < augPurityReports.size(); i++) {
+        		augVirusSum = augVirusSum + augPurityReports.get(i).getVirusPPM();
+        	}
+
+        	avgAugustVirusPPM = augVirusSum / augPurityReports.size();
+
+        	for (int i = 0; i < augPurityReports.size(); i++) {
+        		augContamSum = augContamSum + augPurityReports.get(i).getContaminantPPM();
+        	}
+
+        	avgAugustContaminantPPM = augContamSum / augPurityReports.size();
         }
-
-        avgAugustVirusPPM = augVirusSum / augPurityReports.size();
-
-        for (int i = 0; i < augPurityReports.size(); i++) {
-        	augContamSum = augContamSum + augPurityReports.get(i).getContaminantPPM();
-        }
-
-        avgAugustContaminantPPM = augContamSum / augPurityReports.size();
 
         int avgSeptemberVirusPPM;
         int avgSeptemberContaminantPPM;
         int sepVirusSum = 0;
         int sepContamSum = 0;
 
-        for (int i = 0; i < sepPurityReports.size(); i++) {
-        	sepVirusSum = sepVirusSum + sepPurityReports.get(i).getVirusPPM();
+        if (sepPurityReports.size() == 0) {
+        	avgSeptemberVirusPPM = 0;
+        	avgSeptemberContaminantPPM = 0;
+        } else {
+        	for (int i = 0; i < sepPurityReports.size(); i++) {
+        		sepVirusSum = sepVirusSum + sepPurityReports.get(i).getVirusPPM();
+        	}
+
+        	avgSeptemberVirusPPM = sepVirusSum / sepPurityReports.size();
+
+        	for (int i = 0; i < sepPurityReports.size(); i++) {
+        		sepContamSum = sepContamSum + sepPurityReports.get(i).getContaminantPPM();
+        	}
+
+        	avgSeptemberContaminantPPM = sepContamSum / sepPurityReports.size();
         }
-
-        avgSeptemberVirusPPM = sepVirusSum / sepPurityReports.size();
-
-        for (int i = 0; i < sepPurityReports.size(); i++) {
-        	sepContamSum = sepContamSum + sepPurityReports.get(i).getContaminantPPM();
-        }
-
-        avgSeptemberContaminantPPM = sepContamSum / sepPurityReports.size();
 
         int avgOctoberVirusPPM;
         int avgOctoberContaminantPPM;
         int octVirusSum = 0;
         int octContamSum = 0;
 
-        for (int i = 0; i < octPurityReports.size(); i++) {
-        	octVirusSum = octVirusSum + octPurityReports.get(i).getVirusPPM();
+        if (octPurityReports.size() == 0) {
+        	avgOctoberVirusPPM = 0;
+        	avgOctoberContaminantPPM = 0;
+        } else {
+        	for (int i = 0; i < octPurityReports.size(); i++) {
+        		octVirusSum = octVirusSum + octPurityReports.get(i).getVirusPPM();
+        	}
+
+        	avgOctoberVirusPPM = octVirusSum / octPurityReports.size();
+
+        	for (int i = 0; i < octPurityReports.size(); i++) {
+        		octContamSum = octContamSum + octPurityReports.get(i).getContaminantPPM();
+        	}
+
+        	avgOctoberContaminantPPM = octContamSum / octPurityReports.size();
         }
-
-        avgOctoberVirusPPM = octVirusSum / octPurityReports.size();
-
-        for (int i = 0; i < octPurityReports.size(); i++) {
-        	octContamSum = octContamSum + octPurityReports.get(i).getContaminantPPM();
-        }
-
-        avgOctoberContaminantPPM = octContamSum / octPurityReports.size();
 
         int avgNovemberVirusPPM;
         int avgNovemberContaminantPPM;
         int novVirusSum = 0;
         int novContamSum =0;
 
-        for (int i = 0; i < novPurityReports.size(); i++) {
-        	novVirusSum = novVirusSum + novPurityReports.get(i).getVirusPPM();
+        if (novPurityReports.size() == 0) {
+        	avgNovemberVirusPPM = 0;
+        	avgNovemberContaminantPPM = 0;
+        } else {
+        	for (int i = 0; i < novPurityReports.size(); i++) {
+        		novVirusSum = novVirusSum + novPurityReports.get(i).getVirusPPM();
+        	}
+
+        	avgNovemberVirusPPM = marchVirusSum / novPurityReports.size();
+
+        	for (int i = 0; i < novPurityReports.size(); i++) {
+        		novContamSum = novContamSum + novPurityReports.get(i).getContaminantPPM();
+        	}
+
+        	avgNovemberContaminantPPM = novContamSum / novPurityReports.size();
         }
-
-        avgNovemberVirusPPM = marchVirusSum / novPurityReports.size();
-
-        for (int i = 0; i < novPurityReports.size(); i++) {
-        	novContamSum = novContamSum + novPurityReports.get(i).getContaminantPPM();
-        }
-
-        avgNovemberContaminantPPM = novContamSum / novPurityReports.size();
 
         int avgDecemberVirusPPM;
         int avgDecemberContaminantPPM;
         int decVirusSum = 0;
         int decContamSum = 0;
 
-        for (int i = 0; i < decPurityReports.size(); i++) {
-        	decVirusSum = decVirusSum + decPurityReports.get(i).getVirusPPM();
+        if ( decPurityReports.size() == 0) {
+        	avgDecemberVirusPPM = 0;
+        	avgDecemberContaminantPPM = 0;
+        } else {
+        	for (int i = 0; i < decPurityReports.size(); i++) {
+        		decVirusSum = decVirusSum + decPurityReports.get(i).getVirusPPM();
+        	}
+
+        	avgDecemberVirusPPM = decVirusSum / decPurityReports.size();
+
+        	for (int i = 0; i < decPurityReports.size(); i++) {
+        		decContamSum = decContamSum + decPurityReports.get(i).getContaminantPPM();
+        	}
+
+        	avgDecemberContaminantPPM = decContamSum / decPurityReports.size();
         }
-
-        avgDecemberVirusPPM = decVirusSum / decPurityReports.size();
-
-        for (int i = 0; i < decPurityReports.size(); i++) {
-        	decContamSum = decContamSum + decPurityReports.get(i).getContaminantPPM();
-        }
-
-        avgDecemberContaminantPPM = decContamSum / decPurityReports.size();
 
 
         CategoryAxis xAxis = new CategoryAxis();
