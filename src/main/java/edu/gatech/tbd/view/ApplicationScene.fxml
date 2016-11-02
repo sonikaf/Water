@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- 
 <?import com.lynden.gmapsfx.GoogleMapView?>
+ -->
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.CategoryAxis?>
@@ -41,9 +43,11 @@
               <tabs>
                 <Tab fx:id="availabilityMapTab" text="Water Availability Map">
                      <content>
+                     <!-- 
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <GoogleMapView fx:id="mapView" layoutX="15.0" layoutY="15.0" prefHeight="610.0" prefWidth="1024.0" />
                         </AnchorPane>
+                          -->
                      </content>
                 </Tab>
                 <Tab fx:id="reportListTab" text="Report List">
@@ -269,6 +273,7 @@
                                                 <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                 <RowConstraints maxHeight="-Infinity" minHeight="30.0" prefHeight="40.0" vgrow="NEVER" />
+                                                <RowConstraints maxHeight="-Infinity" minHeight="30.0" prefHeight="40.0" vgrow="NEVER" />
                                              </rowConstraints>
                                              <children>
                                                 <Label alignment="CENTER_RIGHT" maxWidth="120.0" minWidth="120.0" prefHeight="17.0" prefWidth="120.0" text="Select Location" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT">
@@ -304,20 +309,23 @@
                                                 </Label>
                                                 <TextField fx:id="histReportView_lat" layoutX="176.0" layoutY="42.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <TextField fx:id="histReportView_long" layoutX="176.0" layoutY="72.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Button mnemonicParsing="false" onAction="#onGraphHistReportButtonPressed" text="Graph Report" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER" alignment="TOP_RIGHT">
-                                                <Label fx:id="errorLabel" prefHeight="17.0" prefWidth="332.0" textFill="RED" GridPane.columnSpan="2" GridPane.rowIndex="7" />
+                                                <Button alignment="TOP_RIGHT" mnemonicParsing="false" onAction="#onGraphHistReportButtonPressed" text="Graph Report" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                                                    <GridPane.margin>
                                                       <Insets right="10.0" top="10.0" />
                                                    </GridPane.margin>
                                                 </Button>
                                                 <TextField fx:id="histReportView_year" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                <Label fx:id="errorLabel" textFill="#f80303" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+                                                   <padding>
+                                                      <Insets left="10.0" right="10.0" />
+                                                   </padding></Label>
                                              </children>
                                           </GridPane>
                                        </children>
                                     </VBox>
                                     <LineChart fx:id="historicalReportGraph" GridPane.columnIndex="1">
-                                      <xAxis><CategoryAxis/></xAxis>
-                                      <yAxis><NumberAxis lowerBound="0" upperBound="100" tickUnit="1"/></yAxis>
+                                      <xAxis><CategoryAxis /></xAxis>
+                                      <yAxis><NumberAxis lowerBound="0" tickUnit="1" upperBound="100" /></yAxis>
                                     </LineChart>
                                  </children>
                               </GridPane>

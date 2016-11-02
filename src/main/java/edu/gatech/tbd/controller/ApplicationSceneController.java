@@ -171,10 +171,10 @@ public class ApplicationSceneController extends SceneController {
 
 		} catch (LocationException e) {
 			errorLabel.setText("You must enter a valid location");
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (NumberFormatException e1) {
 			errorLabel.setText("You must enter a valid year");
-			e1.printStackTrace();
+			//e1.printStackTrace();
 		} catch (Exception e2) {
 		    e2.printStackTrace();
 		}
