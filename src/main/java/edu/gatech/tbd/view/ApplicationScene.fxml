@@ -317,7 +317,7 @@
                                     </VBox>
                                     <LineChart fx:id="historicalReportGraph" GridPane.columnIndex="1">
                                       <xAxis><CategoryAxis/></xAxis>
-                                      <yAxis><NumberAxis label="PPM" lowerBound="0" upperBound="100" tickUnit="1"/></yAxis>
+                                      <yAxis><NumberAxis lowerBound="0" upperBound="100" tickUnit="1"/></yAxis>
                                     </LineChart>
                                  </children>
                               </GridPane>
