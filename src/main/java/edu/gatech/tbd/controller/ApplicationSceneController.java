@@ -676,6 +676,8 @@ public class ApplicationSceneController extends SceneController {
         	avgDecemberContaminantPPM = decContamSum / decPurityReports.size();
         }
 
+        historicalReportGraph.setTitle("Historical Purity Graph");
+
         ObservableList<XYChart.Series<String, Number>> lineChartData = FXCollections.observableArrayList();
 
         LineChart.Series<String, Number> series = new LineChart.Series<String, Number>();
