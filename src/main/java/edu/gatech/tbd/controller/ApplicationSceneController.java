@@ -122,7 +122,7 @@ public class ApplicationSceneController extends SceneController {
 
     @FXML
     Tab historicalReportTab;
-    
+
     @FXML
     HBox submitReportButtonHBox;
 
@@ -387,7 +387,7 @@ public class ApplicationSceneController extends SceneController {
 	}
 
 	public void updateLineChart() {
-	    
+
 		List<PurityReport> purityReports = WaterReportManager.getPurityReportList();
 
 		double locLat = Double.parseDouble(histReportView_lat.getText());
@@ -461,6 +461,15 @@ public class ApplicationSceneController extends SceneController {
 				decPurityReports.add(yearlyPurityReportList.get(i));
 			}
 		}
+
+		/*
+		int[] yearlyVirusPPM = new int[12];
+		int[] yearlyContaminantPPM = new int[12];
+
+		for (int i = 0; i < yearlyPurityReportList.size(); i++) {
+			yearlyPurityReportList.get(i).getMonth() - 1
+		}
+		*/
 
         int avgJanVirusPPM;
         int avgJanContaminantPPM;
@@ -656,7 +665,7 @@ public class ApplicationSceneController extends SceneController {
         		novContamSum = novContamSum + novPurityReports.get(i).getContaminantPPM();
         	}
 
-        	avgNovemberVirusPPM = marchVirusSum / novPurityReports.size();
+        	avgNovemberVirusPPM = novVirusSum / novPurityReports.size();
         	avgNovemberContaminantPPM = novContamSum / novPurityReports.size();
         }
 
@@ -742,7 +751,7 @@ public class ApplicationSceneController extends SceneController {
 		if (histReportView_year.getText().matches("[a-zA-Z]+") || histReportView_year.getText().length() < 4) {
 			throw new NumberFormatException("Must enter valid year");
 		}
-				
+
 		int year = Integer.parseInt(histReportView_year.getText());
 		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
 		List<PurityReport> reports = WaterReportManager.getPurityReportList();
