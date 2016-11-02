@@ -47,7 +47,7 @@ public class WaterReportManager {
     /**
      * The number of reports submitted (availability and purity).
      */
-    protected static int reportCount = 0;
+    protected static int reportCount = 1;
 
 
     /**

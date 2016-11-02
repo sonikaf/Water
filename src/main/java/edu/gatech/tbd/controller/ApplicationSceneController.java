@@ -10,7 +10,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import netscape.javascript.JSObject;
 
@@ -22,13 +21,8 @@ import com.lynden.gmapsfx.*;
 import com.lynden.gmapsfx.javascript.event.UIEventType;
 import com.lynden.gmapsfx.javascript.object.*;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.stage.Stage;
 
 /**
  * Controller for the main application scene.
@@ -129,9 +123,6 @@ public class ApplicationSceneController extends SceneController {
     @FXML
     Tab historicalReportTab;
     
-    @FXML
-    GridPane historicalReportGridPane;
-
     @FXML
     HBox submitReportButtonHBox;
 
@@ -729,11 +720,6 @@ public class ApplicationSceneController extends SceneController {
 
         historicalReportGraph.setData(lineChartData);
         historicalReportGraph.createSymbolsProperty();
-        
-        //historicalReportGraph.getData().add(series);
-        
-        //historicalReportGridPane.getChildren().add(historicalReportGraph);
-
 
 	}
 
@@ -756,15 +742,13 @@ public class ApplicationSceneController extends SceneController {
 		if (histReportView_year.getText().matches("[a-zA-Z]+") || histReportView_year.getText().length() < 4) {
 			throw new NumberFormatException("Must enter valid year");
 		}
-		
-		System.out.println("completed exception checks for year");
-		
+				
 		int year = Integer.parseInt(histReportView_year.getText());
 		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
 		List<PurityReport> reports = WaterReportManager.getPurityReportList();
 		char[] yearChars = new char[4];
 		reports.get(0).getDateTime().getChars(0, 3, yearChars, 0);
-		String yearString = new String(yearChars);
+		//String yearString = new String(yearChars);
 		//Integer firstYear = Integer.parseInt(yearString); // TODO issue here
 		Integer firstYear = 2015;
 		if (year < firstYear || year > currentYear) {
