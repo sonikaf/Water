@@ -85,7 +85,7 @@ public class Main extends Application {
 		    for (int i = 1; i < 13; i++) {
 		        for (int j = 0; j < 3; j++) {
 		            WaterReportManager.testRegisterPurityReport(3, 3, OverallCondition.Safe,
-		                    rand.nextInt(100), rand.nextInt(100), new Date().getYear(), i);
+		                    rand.nextInt(100), rand.nextInt(100), new java.util.Date().getYear(), i);
 		            java.util.concurrent.TimeUnit.MILLISECONDS.sleep(10);
 		        }
 		    }
