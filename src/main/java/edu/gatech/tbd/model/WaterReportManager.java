@@ -85,6 +85,25 @@ public class WaterReportManager {
         purityReportList.add(latestPurityReport);
         PersistenceManager.addObject(latestPurityReport);
     }
+    
+    /**
+     * method to test historical graph by generating reports from different months
+     *
+     * @param locLat
+     * @param locLong
+     * @param overallCondition
+     * @param virusPPM
+     * @param contaminantPPM
+     */
+    public static void testRegisterPurityReport(double locLat, double locLong, OverallCondition overallCondition, int virusPPM, int contaminantPPM, int year, int month) {
+        latestPurityReport = new PurityReport(reportCount++,
+                UserManager.getLoggedInUser().getName(), locLat, locLong,
+                overallCondition, virusPPM, contaminantPPM,
+                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date(year, month, 1)));
+        reportList.add(latestPurityReport);
+        purityReportList.add(latestPurityReport);
+        PersistenceManager.addObject(latestPurityReport);
+    }
 
     /**
      * Updates an availability report.

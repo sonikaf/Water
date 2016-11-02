@@ -1,9 +1,11 @@
 package edu.gatech.tbd;
 
 import java.io.IOException;
+import java.util.Date;
 
 import edu.gatech.tbd.controller.*;
 import edu.gatech.tbd.model.WaterReportManager;
+import edu.gatech.tbd.model.OverallCondition;
 import edu.gatech.tbd.model.UserException;
 import edu.gatech.tbd.model.UserManager;
 import edu.gatech.tbd.model.UserType;
@@ -76,6 +78,25 @@ public class Main extends Application {
 	            e.printStackTrace();
 	        }
 		}
+		
+		/*
+		// create purity reports to test historical graph
+		try {
+		    java.util.Random rand = new java.util.Random();
+		    UserManager.registerUser("test1", "test1", "test1", UserType.Manager, "test1", "test1");
+		    for (int i = 1; i < 13; i++) {
+		        for (int j = 0; j < 3; j++) {
+		            WaterReportManager.testRegisterPurityReport(3, 3, OverallCondition.Safe,
+		                    rand.nextInt(100), rand.nextInt(100), new Date().getYear(), i);
+		            java.util.concurrent.TimeUnit.MILLISECONDS.sleep(10);
+		        }
+		    }
+		    UserManager.logoutUser();
+		    
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+		*/
 	}
 	
 	/**

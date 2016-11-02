@@ -10,6 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import netscape.javascript.JSObject;
 
@@ -127,6 +128,9 @@ public class ApplicationSceneController extends SceneController {
 
     @FXML
     Tab historicalReportTab;
+    
+    @FXML
+    GridPane historicalReportGridPane;
 
     @FXML
     HBox submitReportButtonHBox;
@@ -164,17 +168,24 @@ public class ApplicationSceneController extends SceneController {
 	protected void onGraphHistReportButtonPressed() {
 
 		try {
+		    System.out.println("Started Graph Method");
 			validateLocation();
+	        System.out.println("Validated Location");
 			validateYear();
+	        System.out.println("Validated Year");
 			updateLineChart();
+	        System.out.println("Updated Line Chart");
+
 
 
 		} catch (LocationException e) {
 			errorLabel.setText("You must enter a valid location");
-			//e.printStackTrace();
+			e.printStackTrace();
 		} catch (NumberFormatException e1) {
 			errorLabel.setText("You must enter a valid year");
-			//e.printStackTrace();
+			e1.printStackTrace();
+		} catch (Exception e2) {
+		    e2.printStackTrace();
 		}
 
 	}
@@ -385,7 +396,7 @@ public class ApplicationSceneController extends SceneController {
 	}
 
 	public void updateLineChart() {
-
+	    
 		List<PurityReport> purityReports = WaterReportManager.getPurityReportList();
 
 		double locLat = Double.parseDouble(histReportView_lat.getText());
@@ -718,6 +729,10 @@ public class ApplicationSceneController extends SceneController {
 
         historicalReportGraph.setData(lineChartData);
         historicalReportGraph.createSymbolsProperty();
+        
+        //historicalReportGraph.getData().add(series);
+        
+        //historicalReportGridPane.getChildren().add(historicalReportGraph);
 
 
 	}
@@ -734,19 +749,24 @@ public class ApplicationSceneController extends SceneController {
     }
 
 	protected void validateYear() {
+	    System.out.println("Year: " + histReportView_year.getText());
 		if (histReportView_year.getText().equals("")) {
 			throw new NumberFormatException("year textfield empty");
 		}
 		if (histReportView_year.getText().matches("[a-zA-Z]+") || histReportView_year.getText().length() < 4) {
 			throw new NumberFormatException("Must enter valid year");
 		}
+		
+		System.out.println("completed exception checks for year");
+		
 		int year = Integer.parseInt(histReportView_year.getText());
 		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-		List<Report> reports = WaterReportManager.getReportList();
+		List<PurityReport> reports = WaterReportManager.getPurityReportList();
 		char[] yearChars = new char[4];
 		reports.get(0).getDateTime().getChars(0, 3, yearChars, 0);
 		String yearString = new String(yearChars);
-		Integer firstYear = Integer.parseInt(yearString);
+		//Integer firstYear = Integer.parseInt(yearString); // TODO issue here
+		Integer firstYear = 2015;
 		if (year < firstYear || year > currentYear) {
 			throw new NumberFormatException("Year out of bounds");
 		}
