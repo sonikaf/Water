@@ -2,6 +2,7 @@ package edu.gatech.tbd.controller;
 
 import edu.gatech.tbd.model.*;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -675,52 +676,46 @@ public class ApplicationSceneController extends SceneController {
         	avgDecemberContaminantPPM = decContamSum / decPurityReports.size();
         }
 
+        ObservableList<XYChart.Series<String, Number>> lineChartData = FXCollections.observableArrayList();
 
-        CategoryAxis xAxis = new CategoryAxis();
-        NumberAxis yAxis = new NumberAxis();
-        xAxis.setLabel("Month");
-        yAxis.setLabel("PPM");
-
-        historicalReportGraph = new LineChart<String,Number>(xAxis,yAxis);
-
-        historicalReportGraph.getXAxis().setAutoRanging(true);
-        historicalReportGraph.getYAxis().setAutoRanging(true);
-
-        historicalReportGraph.setTitle("Water Purity History");
-
-        XYChart.Series series = new XYChart.Series<>();
+        LineChart.Series<String, Number> series = new LineChart.Series<String, Number>();
         series.setName("Virus PPM");
 
-        series.getData().add(new XYChart.Data("Jan", avgJanVirusPPM));
-        series.getData().add(new XYChart.Data("Feb", avgFebVirusPPM));
-        series.getData().add(new XYChart.Data("Mar", avgMarchVirusPPM));
-        series.getData().add(new XYChart.Data("Apr", avgAprilVirusPPM));
-        series.getData().add(new XYChart.Data("May", avgMayVirusPPM));
-        series.getData().add(new XYChart.Data("Jun", avgJuneVirusPPM));
-        series.getData().add(new XYChart.Data("Jul", avgJulyVirusPPM));
-        series.getData().add(new XYChart.Data("Aug", avgAugustVirusPPM));
-        series.getData().add(new XYChart.Data("Sep", avgSeptemberVirusPPM));
-        series.getData().add(new XYChart.Data("Oct", avgOctoberVirusPPM));
-        series.getData().add(new XYChart.Data("Nov", avgNovemberVirusPPM));
-        series.getData().add(new XYChart.Data("Dec", avgDecemberVirusPPM));
+        series.getData().add(new XYChart.Data<String, Number>("Jan", avgJanVirusPPM));
+        series.getData().add(new XYChart.Data<String, Number>("Feb", avgFebVirusPPM));
+        series.getData().add(new XYChart.Data<String, Number>("Mar", avgMarchVirusPPM));
+        series.getData().add(new XYChart.Data<String, Number>("Apr", avgAprilVirusPPM));
+        series.getData().add(new XYChart.Data<String, Number>("May", avgMayVirusPPM));
+        series.getData().add(new XYChart.Data<String, Number>("Jun", avgJuneVirusPPM));
+        series.getData().add(new XYChart.Data<String, Number>("Jul", avgJulyVirusPPM));
+        series.getData().add(new XYChart.Data<String, Number>("Aug", avgAugustVirusPPM));
+        series.getData().add(new XYChart.Data<String, Number>("Sep", avgSeptemberVirusPPM));
+        series.getData().add(new XYChart.Data<String, Number>("Oct", avgOctoberVirusPPM));
+        series.getData().add(new XYChart.Data<String, Number>("Nov", avgNovemberVirusPPM));
+        series.getData().add(new XYChart.Data<String, Number>("Dec", avgDecemberVirusPPM));
 
-        XYChart.Series series1 = new XYChart.Series<>();
+        lineChartData.add(series);
+
+        LineChart.Series<String, Number> series1 = new LineChart.Series<String, Number>();
         series1.setName("Contaminent PPM");
 
-        series1.getData().add(new XYChart.Data("Jan", avgJanContaminantPPM));
-        series1.getData().add(new XYChart.Data("Feb", avgFebContaminantPPM));
-        series1.getData().add(new XYChart.Data("Mar", avgMarchContaminantPPM));
-        series1.getData().add(new XYChart.Data("Apr", avgAprilContaminantPPM));
-        series1.getData().add(new XYChart.Data("May", avgMayContaminantPPM));
-        series1.getData().add(new XYChart.Data("Jun", avgJuneContaminantPPM));
-        series1.getData().add(new XYChart.Data("Jul", avgJulyContaminantPPM));
-        series1.getData().add(new XYChart.Data("Aug", avgAugustContaminantPPM));
-        series1.getData().add(new XYChart.Data("Sep", avgSeptemberContaminantPPM));
-        series1.getData().add(new XYChart.Data("Oct", avgOctoberContaminantPPM));
-        series1.getData().add(new XYChart.Data("Nov", avgNovemberContaminantPPM));
-        series1.getData().add(new XYChart.Data("Dec", avgDecemberContaminantPPM));
+        series1.getData().add(new XYChart.Data<String, Number>("Jan", avgJanContaminantPPM));
+        series1.getData().add(new XYChart.Data<String, Number>("Feb", avgFebContaminantPPM));
+        series1.getData().add(new XYChart.Data<String, Number>("Mar", avgMarchContaminantPPM));
+        series1.getData().add(new XYChart.Data<String, Number>("Apr", avgAprilContaminantPPM));
+        series1.getData().add(new XYChart.Data<String, Number>("May", avgMayContaminantPPM));
+        series1.getData().add(new XYChart.Data<String, Number>("Jun", avgJuneContaminantPPM));
+        series1.getData().add(new XYChart.Data<String, Number>("Jul", avgJulyContaminantPPM));
+        series1.getData().add(new XYChart.Data<String, Number>("Aug", avgAugustContaminantPPM));
+        series1.getData().add(new XYChart.Data<String, Number>("Sep", avgSeptemberContaminantPPM));
+        series1.getData().add(new XYChart.Data<String, Number>("Oct", avgOctoberContaminantPPM));
+        series1.getData().add(new XYChart.Data<String, Number>("Nov", avgNovemberContaminantPPM));
+        series1.getData().add(new XYChart.Data<String, Number>("Dec", avgDecemberContaminantPPM));
 
-        historicalReportGraph.getData().addAll(series, series1);
+        lineChartData.add(series1);
+
+        historicalReportGraph.setData(lineChartData);
+        historicalReportGraph.createSymbolsProperty();
 
 
 	}

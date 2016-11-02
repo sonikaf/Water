@@ -316,12 +316,8 @@
                                        </children>
                                     </VBox>
                                     <LineChart fx:id="historicalReportGraph" GridPane.columnIndex="1">
-                                      <xAxis>
-                                        <CategoryAxis side="BOTTOM" />
-                                      </xAxis>
-                                      <yAxis>
-                                        <NumberAxis side="LEFT" />
-                                      </yAxis>
+                                      <xAxis><CategoryAxis/></xAxis>
+                                      <yAxis><NumberAxis label="PPM" lowerBound="0" upperBound="100" tickUnit="1"/></yAxis>
                                     </LineChart>
                                  </children>
                               </GridPane>
