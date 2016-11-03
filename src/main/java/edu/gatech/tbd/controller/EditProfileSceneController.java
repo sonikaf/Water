@@ -36,7 +36,7 @@ public class EditProfileSceneController extends SceneController{
         nameField.setText(UserManager.getLoggedInUser().getName());
         emailField.setText(UserManager.getLoggedInUser().getEmail());
         usernameField.setText(UserManager.getLoggedInUser().getUsername());
-        passwordField.setText(UserManager.getLoggedInUser().getPassword());
+        passwordField.setText("***"); //UserManager.getLoggedInUser().getPassword()); this was printing a long string of random characters
         addressField.setText(UserManager.getLoggedInUser().getAddress());
         typeField.setText(UserManager.getLoggedInUser().getType().toString());
 	}

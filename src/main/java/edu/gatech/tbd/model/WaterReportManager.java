@@ -249,5 +249,11 @@ public class WaterReportManager {
     	reportList.addAll(availabilityReportList);
     	reportList.addAll(purityReportList);
     }
-
+    
+    /**
+     * Setter for reportCount
+     */
+    public static void setReportCount(int count) {
+        reportCount = count;
+    }
 }

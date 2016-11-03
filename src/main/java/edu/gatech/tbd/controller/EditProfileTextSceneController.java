@@ -57,7 +57,7 @@ public class EditProfileTextSceneController extends SceneController {
 			promptLabel.setText("Please enter your new Email.");
 			break;
 		case Password:
-			nameField.setText(u.getPassword());
+			nameField.setText("***"); // u.getPassword()); this was printing a long string of random characters
 			propertyLabel.setText("Password:");
 			promptLabel.setText("Please enter your new Password.");
 			break;
