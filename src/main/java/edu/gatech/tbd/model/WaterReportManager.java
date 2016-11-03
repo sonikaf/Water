@@ -256,4 +256,18 @@ public class WaterReportManager {
     public static void setReportCount(int count) {
         reportCount = count;
     }
+    
+    /**
+     * Setter for availabilityReportList
+     */
+    public static void setAvailabilityReportList(List<AvailabilityReport> list) {
+        availabilityReportList = list;
+    }
+    
+    /**
+     * Setter for purityReportList
+     */
+    public static void setPurityReportList(List<PurityReport> list) {
+        purityReportList = list;
+    }
 }

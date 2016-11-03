@@ -5,7 +5,9 @@ import java.io.IOException;
 import edu.gatech.tbd.controller.*;
 import edu.gatech.tbd.model.WaterReportManager;
 import edu.gatech.tbd.model.Report;
+import edu.gatech.tbd.model.AvailabilityReport;
 import edu.gatech.tbd.model.OverallCondition;
+import edu.gatech.tbd.model.PurityReport;
 import edu.gatech.tbd.model.UserException;
 import edu.gatech.tbd.model.UserManager;
 import edu.gatech.tbd.model.UserType;
@@ -79,17 +81,31 @@ public class Main extends Application {
 	        }
 		}
 		
-		// temporary fix for making reportCount correct number
+		// temporary fix for making reportCount correct number and properly
+		// ordering reports by reportNumber
 		int maxNum = 1;
+		
 		for (Report report : WaterReportManager.getReportList()) {
+		    
+		    // find max report number
 		    if (report.getReportNumber() > maxNum) {
 		        maxNum = report.getReportNumber();
-		    }
+		    }		    
 		}
-		WaterReportManager.setReportCount(maxNum);
-				
+		WaterReportManager.setReportCount(maxNum + 1);
 		
-		/*
+		java.util.List<AvailabilityReport> availReports = WaterReportManager.getAvailabilityReportList();
+        java.util.List<PurityReport> purityReports = WaterReportManager.getPurityReportList();
+        
+		availReports.sort(new comp());
+		purityReports.sort(new comp());
+		
+		WaterReportManager.setAvailabilityReportList(availReports);
+		WaterReportManager.setPurityReportList(purityReports);
+				
+		// temporary fix for ordering reports
+		
+		
 		// create purity reports to test historical graph
 		try {
 		    java.util.Random rand = new java.util.Random();
@@ -106,7 +122,7 @@ public class Main extends Application {
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}
-		*/
+		
 	}
 	
 	/**
@@ -228,5 +244,20 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
+	/**
+	 * Temporary comparator to order reports
+	 */
+	private class comp implements java.util.Comparator<Report> {
 
+        @Override
+        public int compare(Report arg0, Report arg1) {
+            if (arg0.getReportNumber() < arg1.getReportNumber()) {
+                return -1;
+            } else {
+                return 1;
+            }
+        }
+	    
+	}
 }
