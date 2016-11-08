@@ -26,7 +26,7 @@ public class User {
 	/**
 	 * Gets the user's username.
 	 * 
-	 * @return
+	 * @return user's username
 	 */
 	public String getUsername() {
 		return _username;
@@ -35,7 +35,7 @@ public class User {
 	/**
 	 * Gets the user's name.
 	 * 
-	 * @return
+	 * @return user's name
 	 */
 	public String getName() {
 		return _name;
@@ -44,7 +44,7 @@ public class User {
 	/**
 	 * Gets the user's email.
 	 * 
-	 * @return
+	 * @return user's email
 	 */
 	public String getEmail() {
 		return _email;
@@ -53,7 +53,7 @@ public class User {
 	/**
 	 * Gets the user's address.
 	 * 
-	 * @return
+	 * @return user's address
 	 */
 	public String getAddress() {
 		return _address;
@@ -62,7 +62,7 @@ public class User {
 	/**
 	 * Gets the user's password hash string.
 	 * 
-	 * @return
+	 * @return user's password
 	 */
 	public String getPassword() {
 		return _pass;
@@ -71,7 +71,7 @@ public class User {
 	/**
 	 * Gets the user's type.
 	 * 
-	 * @return
+	 * @return user's user type (ex: Manager, Worker, ect)
 	 */
 	public UserType getType() {
 		return _type;
@@ -79,6 +79,8 @@ public class User {
 	
 	/**
      * Returns true if the user is an Administrator, false otherwise.
+	 *
+	 * @return if user is an administrator
      */
      public boolean isAdmin() {
          return _type == UserType.Administrator;

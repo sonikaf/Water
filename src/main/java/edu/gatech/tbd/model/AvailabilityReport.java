@@ -25,7 +25,7 @@ public class AvailabilityReport extends Report {
 	/**
 	 * Gets the water type.
 	 *
-	 * @return
+	 * @return returns the water type
 	 */
 	public WaterType getType() {
 		return _type;
@@ -34,7 +34,7 @@ public class AvailabilityReport extends Report {
 	/**
 	 * Gets the water condition.
 	 *
-	 * @return
+	 * @return returns the water condition
 	 */
 	public WaterCondition getCondition() {
 		return _condition;
@@ -61,7 +61,7 @@ public class AvailabilityReport extends Report {
      * Method to format Availability Report for google map view.
      */
     public String createMapPopupText() {
-        String s = new String(
+        return new String(
                 "<table>" +
                 "<tr><td><b>Water Type: </b></td>" + "<td>" + _type.toString() + "</td>" +
                 "<tr><td><b>Condition:  </b></td>" + "<td>" +_condition.toString() + "</td></tr>" +
@@ -73,7 +73,6 @@ public class AvailabilityReport extends Report {
                 "<tr><td><b>Date:       </b></td>" + "<td>" + _dateTime + "</td></tr>" +
                 "</table>");
         
-        return s;
     }
 	
 	public String toString2() {

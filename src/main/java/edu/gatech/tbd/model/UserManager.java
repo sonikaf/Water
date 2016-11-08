@@ -12,7 +12,7 @@ public class UserManager {
     /**
      * Contains all registered users.
      */
-	private static HashMap<String, User> userList = new HashMap<String, User>();
+	private static HashMap<String, User> userList = new HashMap<>();
 	
 	/**
 	 * The currently logged-in user.
@@ -58,11 +58,11 @@ public class UserManager {
 	/**
 	 * Create a new user object, and logs it in.
 	 * 
-	 * @param username
-	 * @param password
-	 * @param type
-	 * @param email
-	 * @param address
+	 * @param username username of user
+	 * @param password password of user
+	 * @param type user type of user
+	 * @param email email of user
+	 * @param address address of user
 	 * 
 	 * @return user
 	 */
@@ -95,14 +95,14 @@ public class UserManager {
 	/**
 	 * Updates a user's information.
 	 * 
-	 * @param u
-	 * @param name
-	 * @param username
-	 * @param password
-	 * @param type
-	 * @param email
-	 * @param address
-	 * @throws UserException
+	 * @param u user to be updated
+	 * @param name updated name of user
+	 * @param username updated username of user
+	 * @param password updated password of user
+	 * @param type updated type of user
+	 * @param email updated email of user
+	 * @param address updated address of user
+	 * @throws UserException thrown if username is taken
 	 */
 	public static void updateUserInformation(User u, String name, String username, String password, UserType type, String email,
 			String address) throws UserException {
@@ -132,7 +132,7 @@ public class UserManager {
 	
 	/**
 	 * Returns the current user.
-	 * @return
+	 * @return user currently logged in
 	 */
 	public static User getLoggedInUser() {
 		return currentUser;
@@ -140,7 +140,7 @@ public class UserManager {
 	
 	/**
 	 * gets the number of registered users
-	 * @return
+	 * @return number of registered users
 	 */
 	public static int numUsers() {
 		return userList.size();

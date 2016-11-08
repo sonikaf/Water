@@ -30,7 +30,7 @@ public class PurityReportController extends ReportController {
     @FXML
     public void initialize() {
 
-    	List<OverallCondition> list = new ArrayList<OverallCondition>();
+    	List<OverallCondition> list = new ArrayList<>();
         list.add(OverallCondition.Safe);
         list.add(OverallCondition.Treatable);
         list.add(OverallCondition.Unsafe);

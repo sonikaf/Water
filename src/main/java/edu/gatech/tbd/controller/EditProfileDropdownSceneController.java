@@ -47,15 +47,15 @@ public class EditProfileDropdownSceneController extends SceneController {
 	/**
 	 * Sets the user's information with the given property data.
 	 * 
-	 * @param u
-	 * @param p
+	 * @param u User to be edited
+	 * @param p Property of the User u to be edited
 	 */
 	public void setInfo(User u, UserProperty p) {
 		this.p = p;
 		switch (p) {
 		case Type:
 			typeField.setValue(u.getType());
-			List<UserType> list = new ArrayList<UserType>();
+			List<UserType> list = new ArrayList<>();
 			list.add(UserType.User);
 			list.add(UserType.Worker);
 			list.add(UserType.Manager);

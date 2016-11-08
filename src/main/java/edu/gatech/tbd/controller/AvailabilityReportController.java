@@ -27,7 +27,7 @@ public class AvailabilityReportController extends ReportController {
     @FXML
     public void initialize() {
 
-    	List<WaterType> list = new ArrayList<WaterType>();
+    	List<WaterType> list = new ArrayList<>();
         list.add(WaterType.Bottled);
         list.add(WaterType.Well);
         list.add(WaterType.Stream);
@@ -38,13 +38,13 @@ public class AvailabilityReportController extends ReportController {
         typeField.setItems(obList);
         typeField.setValue(WaterType.Bottled);
 
-        List<WaterCondition> list2 = new ArrayList<WaterCondition>();
+        List<WaterCondition> list2 = new ArrayList<>();
         list2.add(WaterCondition.Waste);
         list2.add(WaterCondition.TreatableClear);
         list2.add(WaterCondition.TreatableMuddy);
         list2.add(WaterCondition.Potable);
         ObservableList<WaterCondition> obList2 = FXCollections.observableList(list2);
-        conditionField.setItems(obList2);;
+        conditionField.setItems(obList2);
         conditionField.setValue(WaterCondition.Waste);
 
     }

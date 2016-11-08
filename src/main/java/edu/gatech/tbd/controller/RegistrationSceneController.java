@@ -45,7 +45,7 @@ public class RegistrationSceneController extends SceneController{
      */
 	@FXML
 	public void initialize() {
-        List<UserType> list = new ArrayList<UserType>();
+        List<UserType> list = new ArrayList<>();
         list.add(UserType.User);
         list.add(UserType.Worker);
         list.add(UserType.Manager);

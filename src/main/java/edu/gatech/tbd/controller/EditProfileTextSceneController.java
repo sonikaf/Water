@@ -35,8 +35,8 @@ public class EditProfileTextSceneController extends SceneController {
 	/**
 	 * Sets the user's information from the given property.
 	 * 
-	 * @param u
-	 * @param p
+	 * @param u User to be edited
+	 * @param p Property of User u to be edited
 	 */
 	public void setInfo(User u, UserProperty p) {
 		this.p = p;

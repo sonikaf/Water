@@ -27,7 +27,7 @@ public abstract class Report {
     /**
      * Gets the report number.
      *
-     * @return
+     * @return report number which identifies the report
      */
     public int getReportNumber() {
         return _reportNumber;
@@ -36,7 +36,7 @@ public abstract class Report {
     /**
      * Gets the user's name.
      *
-     * @return
+     * @return user who created the report
      */
     public String getReporter() {
         return _reporter;
@@ -45,7 +45,7 @@ public abstract class Report {
     /**
      * Gets the water location.
      *
-     * @return
+     * @return location of the report in (Lat, Long) format
      */
     public String getLocation() {
         return "(" + _locationLat + ", " + _locationLong + ")";
@@ -53,7 +53,7 @@ public abstract class Report {
 
     /**
      * Gets the location's latitude.
-     * @return
+     * @return latitude of report
      */
     public double getLocationLat() {
         return _locationLat;
@@ -61,7 +61,7 @@ public abstract class Report {
 
     /**
      * Gets the location's longitude.
-     * @return
+     * @return longitude of report
      */
     public double getLocationLong() {
         return _locationLong;
@@ -70,7 +70,7 @@ public abstract class Report {
     /**
      * Gets the date the report was created.
      *
-     * @return
+     * @return date of report
      */
     public String getDateTime() {
         return _dateTime;

@@ -239,7 +239,7 @@ public class Main extends Application {
 	/**
 	 * The main method for the application.
 	 * 
-	 * @param args
+	 * @param args commandline inputs
 	 */
 	public static void main(String[] args) {
 		launch(args);

@@ -265,19 +265,19 @@ public class ApplicationSceneController extends SceneController {
     }
 
 
-	/**
+	/*
 	 * Marker for the currently selected water report.
 	 *
-	private static Marker curMarker;
+	 * private static Marker curMarker;
 	 */
 
 	/**
 	 * Sets the current availability report.
-	 * @param r
+	 * @param r Avaliablity report to set
 	 */
 	public void setCurrentAvailabilityReport(AvailabilityReport r) {
 
-		/**
+		/*
 		if(curMarker != null) {
 			specificMap.removeMarker(curMarker);
 			curMarker = null;
@@ -292,7 +292,7 @@ public class ApplicationSceneController extends SceneController {
 		availReportView_cond.setText("" + r.getCondition());
 
 
-		/**
+		/*
 		LatLong waterLoc = new LatLong(r.getLocationLat(), r.getLocationLong());
 		MarkerOptions markerOptions = new MarkerOptions();
 		markerOptions.position(waterLoc);
@@ -307,7 +307,7 @@ public class ApplicationSceneController extends SceneController {
 
 	/**
      * Sets the current purity report.
-     * @param r
+     * @param r Purity report to set
      */
     public void setCurrentPurityReport(PurityReport r) {
 
@@ -394,7 +394,7 @@ public class ApplicationSceneController extends SceneController {
 		double locLong = Double.parseDouble(histReportView_long.getText());
 	    String year = histReportView_year.getText();
 
-		List<PurityReport> yearlyPurityReportList = new ArrayList<PurityReport>();
+		List<PurityReport> yearlyPurityReportList = new ArrayList<>();
 
 		for (int i = 0; i < purityReports.size(); i++) {
 			if (purityReports.get(i).getDateTime().charAt(0) == year.charAt(0)
@@ -443,39 +443,39 @@ public class ApplicationSceneController extends SceneController {
 
         ObservableList<XYChart.Series<String, Number>> lineChartData = FXCollections.observableArrayList();
 
-        LineChart.Series<String, Number> series = new LineChart.Series<String, Number>();
+        LineChart.Series<String, Number> series = new LineChart.Series<>();
         series.setName("Virus PPM");
 
-        series.getData().add(new XYChart.Data<String, Number>("Jan", virusAveragesByMonth[0]));
-        series.getData().add(new XYChart.Data<String, Number>("Feb", virusAveragesByMonth[1]));
-        series.getData().add(new XYChart.Data<String, Number>("Mar", virusAveragesByMonth[2]));
-        series.getData().add(new XYChart.Data<String, Number>("Apr", virusAveragesByMonth[3]));
-        series.getData().add(new XYChart.Data<String, Number>("May", virusAveragesByMonth[4]));
-        series.getData().add(new XYChart.Data<String, Number>("Jun", virusAveragesByMonth[5]));
-        series.getData().add(new XYChart.Data<String, Number>("Jul", virusAveragesByMonth[6]));
-        series.getData().add(new XYChart.Data<String, Number>("Aug", virusAveragesByMonth[7]));
-        series.getData().add(new XYChart.Data<String, Number>("Sep", virusAveragesByMonth[8]));
-        series.getData().add(new XYChart.Data<String, Number>("Oct", virusAveragesByMonth[9]));
-        series.getData().add(new XYChart.Data<String, Number>("Nov", virusAveragesByMonth[10]));
-        series.getData().add(new XYChart.Data<String, Number>("Dec", virusAveragesByMonth[11]));
+        series.getData().add(new XYChart.Data<>("Jan", virusAveragesByMonth[0]));
+        series.getData().add(new XYChart.Data<>("Feb", virusAveragesByMonth[1]));
+        series.getData().add(new XYChart.Data<>("Mar", virusAveragesByMonth[2]));
+        series.getData().add(new XYChart.Data<>("Apr", virusAveragesByMonth[3]));
+        series.getData().add(new XYChart.Data<>("May", virusAveragesByMonth[4]));
+        series.getData().add(new XYChart.Data<>("Jun", virusAveragesByMonth[5]));
+        series.getData().add(new XYChart.Data<>("Jul", virusAveragesByMonth[6]));
+        series.getData().add(new XYChart.Data<>("Aug", virusAveragesByMonth[7]));
+        series.getData().add(new XYChart.Data<>("Sep", virusAveragesByMonth[8]));
+        series.getData().add(new XYChart.Data<>("Oct", virusAveragesByMonth[9]));
+        series.getData().add(new XYChart.Data<>("Nov", virusAveragesByMonth[10]));
+        series.getData().add(new XYChart.Data<>("Dec", virusAveragesByMonth[11]));
 
         lineChartData.add(series);
 
-        LineChart.Series<String, Number> series1 = new LineChart.Series<String, Number>();
+        LineChart.Series<String, Number> series1 = new LineChart.Series<>();
         series1.setName("Contaminent PPM");
 
-        series1.getData().add(new XYChart.Data<String, Number>("Jan", contamAveragesByMonth[0]));
-        series1.getData().add(new XYChart.Data<String, Number>("Feb", contamAveragesByMonth[1]));
-        series1.getData().add(new XYChart.Data<String, Number>("Mar", contamAveragesByMonth[2]));
-        series1.getData().add(new XYChart.Data<String, Number>("Apr", contamAveragesByMonth[3]));
-        series1.getData().add(new XYChart.Data<String, Number>("May", contamAveragesByMonth[4]));
-        series1.getData().add(new XYChart.Data<String, Number>("Jun", contamAveragesByMonth[5]));
-        series1.getData().add(new XYChart.Data<String, Number>("Jul", contamAveragesByMonth[6]));
-        series1.getData().add(new XYChart.Data<String, Number>("Aug", contamAveragesByMonth[7]));
-        series1.getData().add(new XYChart.Data<String, Number>("Sep", contamAveragesByMonth[8]));
-        series1.getData().add(new XYChart.Data<String, Number>("Oct", contamAveragesByMonth[9]));
-        series1.getData().add(new XYChart.Data<String, Number>("Nov", contamAveragesByMonth[10]));
-        series1.getData().add(new XYChart.Data<String, Number>("Dec", contamAveragesByMonth[11]));
+        series1.getData().add(new XYChart.Data<>("Jan", contamAveragesByMonth[0]));
+        series1.getData().add(new XYChart.Data<>("Feb", contamAveragesByMonth[1]));
+        series1.getData().add(new XYChart.Data<>("Mar", contamAveragesByMonth[2]));
+        series1.getData().add(new XYChart.Data<>("Apr", contamAveragesByMonth[3]));
+        series1.getData().add(new XYChart.Data<>("May", contamAveragesByMonth[4]));
+        series1.getData().add(new XYChart.Data<>("Jun", contamAveragesByMonth[5]));
+        series1.getData().add(new XYChart.Data<>("Jul", contamAveragesByMonth[6]));
+        series1.getData().add(new XYChart.Data<>("Aug", contamAveragesByMonth[7]));
+        series1.getData().add(new XYChart.Data<>("Sep", contamAveragesByMonth[8]));
+        series1.getData().add(new XYChart.Data<>("Oct", contamAveragesByMonth[9]));
+        series1.getData().add(new XYChart.Data<>("Nov", contamAveragesByMonth[10]));
+        series1.getData().add(new XYChart.Data<>("Dec", contamAveragesByMonth[11]));
 
         lineChartData.add(series1);
 

@@ -53,12 +53,10 @@ public class WaterReportManager {
     /**
      * Registers a new availability report and adds it to the list.
      *
-     * @param rNumber
-     * @param reporter
-     * @param location
-     * @param type
-     * @param condition
-     * @param dateTime
+     * @param locLat report's latitude
+     * @param locLong report's longitude
+     * @param type report's water type
+     * @param condition report's water condition
      */
     public static void registerAvailabilityReport(double locLat, double locLong, WaterType type, WaterCondition condition) {
         latestAvailiabilityReport = new AvailabilityReport(reportCount++, UserManager.getLoggedInUser().getName(), locLat, locLong, type, condition, new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
@@ -70,11 +68,11 @@ public class WaterReportManager {
     /**
      * Registers a new purity report and adds it to the list.
      *
-     * @param locLat
-     * @param locLong
-     * @param overallCondition
-     * @param virusPPM
-     * @param contaminantPPM
+     * @param locLat report's latitude
+     * @param locLong report's longitude
+     * @param overallCondition report's overall condition
+     * @param virusPPM report's virus PPM
+     * @param contaminantPPM report's contaminant PPM
      */
     public static void registerPurityReport(double locLat, double locLong, OverallCondition overallCondition, int virusPPM, int contaminantPPM) {
         latestPurityReport = new PurityReport(reportCount++,
@@ -89,11 +87,11 @@ public class WaterReportManager {
     /**
      * method to test historical graph by generating reports from different months
      *
-     * @param locLat
-     * @param locLong
-     * @param overallCondition
-     * @param virusPPM
-     * @param contaminantPPM
+     * @param locLat report's latitude
+     * @param locLong report's longitude
+     * @param overallCondition report's overall condition
+     * @param virusPPM report's virus PPM
+     * @param contaminantPPM report's contaminant PPM
      */
     public static void testRegisterPurityReport(double locLat, double locLong, OverallCondition overallCondition, int virusPPM, int contaminantPPM, int year, int month) {
         latestPurityReport = new PurityReport(reportCount++,
@@ -108,14 +106,14 @@ public class WaterReportManager {
     /**
      * Updates an availability report.
      *
-     * @param r
-     * @param rNumber
-     * @param reporter
-     * @param locLat
-     * @param locLong
-     * @param type
-     * @param condition
-     * @param dateTime
+     * @param r Availability report to be updated
+     * @param rNumber report's number
+     * @param reporter name or user who reported it
+     * @param locLat report's latitude
+     * @param locLong report's longitude
+     * @param type report's type
+     * @param condition report's condition
+     * @param dateTime report's date/time
      */
     public static void updateAvailabilityReportInformation(AvailabilityReport r, int rNumber, String reporter, double locLat, double locLong, WaterType type, WaterCondition condition, String dateTime) {
     	
@@ -132,15 +130,15 @@ public class WaterReportManager {
     /**
      * Updates a purity report.
      *
-     * @param r
-     * @param rNumber
-     * @param reporter
-     * @param locLat
-     * @param locLong
-     * @param overallCondition
-     * @param virusPPM
-     * @param contaminantPPM
-     * @param dateTime
+     * @param r purity report to be updated
+     * @param rNumber report's number
+     * @param reporter user who reported the report
+     * @param locLat report's latitude
+     * @param locLong report's longitude
+     * @param overallCondition report's overall condition
+     * @param virusPPM report's virus PPM
+     * @param contaminantPPM report's contaminant PPM
+     * @param dateTime report's data/ time
      */
     public static void updatePurityReportInformation(PurityReport r,
             int rNumber, String reporter, double locLat, double locLong,
@@ -162,12 +160,12 @@ public class WaterReportManager {
 	/**
 	 * Private helper to update a report.
 	 *
-	 * @param r
-	 * @param rNumber
-	 * @param reporter
-	 * @param locLat
-	 * @param locLong
-	 * @param dateTime
+	 * @param r report to be updated
+	 * @param rNumber number of report
+	 * @param reporter person who submitted the report
+	 * @param locLat report's latitude
+	 * @param locLong report's longitude
+	 * @param dateTime report's date/time
 	 */
 	private static void updateReportInformation(Report r, int rNumber,
 	        String reporter, double locLat, double locLong, String dateTime) {
@@ -186,7 +184,7 @@ public class WaterReportManager {
 	/**
 	 * Returns the most recent water report.
 	 *
-	 * @return
+	 * @return latest water report
 	 */
 	public static Report getLatestReport() {
 		return latestReport;
@@ -195,7 +193,7 @@ public class WaterReportManager {
     /**
      * Returns the most recent water availability report.
      *
-     * @return
+     * @return latest availability report
      */
     public static AvailabilityReport getLatestAvailabilityReport() {
         return latestAvailiabilityReport;
@@ -204,7 +202,7 @@ public class WaterReportManager {
     /**
      * Returns the most recent water purity report.
      *
-     * @return
+     * @return latest purity report
      */
     public static PurityReport getLatestPurityReport() {
         return latestPurityReport;
@@ -214,28 +212,28 @@ public class WaterReportManager {
 	/**
 	 * Returns the list of water reports.
 	 *
-	 * @return
+	 * @return list of current water reports
 	 */
 	public static List<Report> getReportList() {
-		return new ArrayList<Report>(reportList);
+		return new ArrayList<>(reportList);
 	}
 
 	/**
      * Returns the list of water availability reports.
      *
-     * @return
+     * @return list of current water availability reports
      */
     public static List<AvailabilityReport> getAvailabilityReportList() {
-        return new ArrayList<AvailabilityReport>(availabilityReportList);
+        return new ArrayList<>(availabilityReportList);
     }
 
 	/**
      * Returns the list of water purity reports.
      *
-     * @return
+     * @return list of current water purity reports
      */
     public static List<PurityReport> getPurityReportList() {
-        return new ArrayList<PurityReport>(purityReportList);
+        return new ArrayList<>(purityReportList);
     }
     
     /**
@@ -245,7 +243,7 @@ public class WaterReportManager {
     	availabilityReportList = PersistenceManager.getObjects(AvailabilityReport.class);
     	purityReportList = PersistenceManager.getObjects(PurityReport.class);
     	
-    	reportList = new ArrayList<Report>();
+    	reportList = new ArrayList<>();
     	reportList.addAll(availabilityReportList);
     	reportList.addAll(purityReportList);
     }

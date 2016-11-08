@@ -42,8 +42,6 @@ public abstract class ReportController extends SceneController {
     /**
      * Checks that the entered lattitude and logitude are correct values.
      *
-     * @param lat
-     * @param lon
      */
     protected void validateLocation() {
         if (locationLongField.getText().equals("") || locationLatField.getText().equals("")) {

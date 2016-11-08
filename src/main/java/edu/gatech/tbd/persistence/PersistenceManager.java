@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 
 public class PersistenceManager {
 
-	private static ArrayList<Object> objectList = new ArrayList<Object>();
+	private static ArrayList<Object> objectList = new ArrayList<>();
 
 	/**
 	 * Add a persistant object to the data store
@@ -38,7 +38,7 @@ public class PersistenceManager {
 	/**
 	 * removes an object from the data store
 	 * 
-	 * @param s
+	 * @param o object to be removed
 	 */
 	public static void removeObject(Object o) {
 		objectList.remove(o);
@@ -66,7 +66,7 @@ public class PersistenceManager {
 	
 	@SuppressWarnings("unchecked")
 	public static <T> List<T> getObjects(Class<T> theClass) {
-		ArrayList<T> ret = new ArrayList<T>();
+		ArrayList<T> ret = new ArrayList<>();
 		for(Object o : objectList) {
 			if(o.getClass().equals(theClass)) {
 				ret.add((T)o);
@@ -147,7 +147,7 @@ public class PersistenceManager {
 	private static Object openObject(File file) {
 		Gson g = new Gson();
 		
-		byte[] contentInBytes = null;
+		byte[] contentInBytes;
 
 		try (FileInputStream fip = new FileInputStream(file)) {
 			contentInBytes = new byte[fip.available()];
@@ -188,7 +188,7 @@ public class PersistenceManager {
 	}
 	
 	public static int generateObjectHash(Object o) {
-		ArrayList<Field> fields = new ArrayList<Field>();
+		ArrayList<Field> fields = new ArrayList<>();
 		Class<?> cur = o.getClass();
 		// iterate through all the way up to the top
 		while(cur != Object.class) {

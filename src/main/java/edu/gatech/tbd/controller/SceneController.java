@@ -24,7 +24,7 @@ public abstract class SceneController {
      * Routes user, worker, manager to main app and
      * routes admin to admin scene.
      * 
-     * @param user
+     * @param user current user
      */
     public void routeUserOnLogin(User user) {
         if (user.isAdmin()) {
