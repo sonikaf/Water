@@ -222,9 +222,6 @@ public class ApplicationSceneController extends SceneController {
 		}
 	}
 
-	/**
-	 * Private helper method to populate combo boxes.
-	 */
 	/*
 	private void createComboBoxes() {
 	    List<WaterType> list = new ArrayList<WaterType>();
@@ -376,7 +373,7 @@ public class ApplicationSceneController extends SceneController {
 
 
 
-		/**
+		/*
 		MapOptions specificMapOptions = new MapOptions();
 
 		specificMapOptions.center(gaTechLoc).mapType(MapTypeIdEnum.HYBRID).overviewMapControl(false).panControl(true)

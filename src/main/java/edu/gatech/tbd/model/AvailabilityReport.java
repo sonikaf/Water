@@ -61,17 +61,16 @@ public class AvailabilityReport extends Report {
      * Method to format Availability Report for google map view.
      */
     public String createMapPopupText() {
-        return new String(
-                "<table>" +
+        return "<table>" +
                 "<tr><td><b>Water Type: </b></td>" + "<td>" + _type.toString() + "</td>" +
-                "<tr><td><b>Condition:  </b></td>" + "<td>" +_condition.toString() + "</td></tr>" +
+                "<tr><td><b>Condition:  </b></td>" + "<td>" + _condition.toString() + "</td></tr>" +
                 "<tr><td>&nbsp;</td></tr>" +
                 "<tr><td><b>Lattitude:  </b></td>" + "<td>" + _locationLat + "</td><tr>" +
-                "<tr><td><b>Longitude:  </b></td>" + "<td>" +_locationLong + "</td></tr>" +
+                "<tr><td><b>Longitude:  </b></td>" + "<td>" + _locationLong + "</td></tr>" +
                 "<tr><td>&nbsp;</td></tr>" +
                 "<tr><td><b>Reporter:   </b></td>" + "<td>" + _reporter + "</td></tr>" +
                 "<tr><td><b>Date:       </b></td>" + "<td>" + _dateTime + "</td></tr>" +
-                "</table>");
+                "</table>";
         
     }
 	
