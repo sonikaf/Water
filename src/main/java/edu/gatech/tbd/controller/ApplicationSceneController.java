@@ -129,24 +129,6 @@ public class ApplicationSceneController extends SceneController {
     @FXML
     Button submitPurityReportButton;
 
-	@FXML
-	Button deleteAvailReportButton;
-
-	@FXML
-	Button deletePurityReportButton;
-
-	@FXML
-	Button historicalReportGridPane;
-
-	@FXML
-	Button submitAvailabilityReportButton;
-
-	@FXML
-	Button editProfileButton;
-
-	@FXML
-	Button logoutButton;
-
 
 	/**
 	 * Handler for the Logout button.
@@ -240,9 +222,6 @@ public class ApplicationSceneController extends SceneController {
 		}
 	}
 
-	/*
-	 * Private helper method to populate combo boxes.
-	 */
 	/*
 	private void createComboBoxes() {
 	    List<WaterType> list = new ArrayList<WaterType>();
@@ -480,7 +459,7 @@ public class ApplicationSceneController extends SceneController {
         lineChartData.add(series);
 
         LineChart.Series<String, Number> series1 = new LineChart.Series<>();
-        series1.setName("Contaminent PPM");
+        series1.setName("Contaminant PPM");
 
         series1.getData().add(new XYChart.Data<>("Jan", contamAveragesByMonth[0]));
         series1.getData().add(new XYChart.Data<>("Feb", contamAveragesByMonth[1]));

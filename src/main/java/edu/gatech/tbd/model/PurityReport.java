@@ -33,7 +33,7 @@ public class PurityReport extends Report {
     }
 
     /**
-     * @param overallCondition the OverallCondition to set
+     * @param OverallCondition the OverallCondition to set
      */
     public void setOverallCondition(OverallCondition overallCondition) {
         _overallCondition = overallCondition;
@@ -75,7 +75,7 @@ public class PurityReport extends Report {
 			return false;
 		} else {
 			PurityReport other = (PurityReport) o;
-			return super.equals((Report)other)
+			return super.equals(other)
 			        && other._overallCondition.equals(_overallCondition)
 			        && other._virusPPM == _virusPPM
 			        && other._contaminantPPM == _contaminantPPM;

@@ -2,6 +2,7 @@ package edu.gatech.tbd.model;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class WaterReportManager {
      * @param condition report's water condition
      */
     public static void registerAvailabilityReport(double locLat, double locLong, WaterType type, WaterCondition condition) {
-        latestAvailiabilityReport = new AvailabilityReport(reportCount++, UserManager.getLoggedInUser().getName(), locLat, locLong, type, condition, new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
+        latestAvailiabilityReport = new AvailabilityReport(reportCount++, UserManager.getLoggedInUser().getName(), locLat, locLong, type, condition, new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance()));
         reportList.add(latestAvailiabilityReport);
         availabilityReportList.add(latestAvailiabilityReport);
         PersistenceManager.addObject(latestAvailiabilityReport);
@@ -78,7 +79,7 @@ public class WaterReportManager {
         latestPurityReport = new PurityReport(reportCount++,
                 UserManager.getLoggedInUser().getName(), locLat, locLong,
                 overallCondition, virusPPM, contaminantPPM,
-                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
+                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance()));
         reportList.add(latestPurityReport);
         purityReportList.add(latestPurityReport);
         PersistenceManager.addObject(latestPurityReport);
@@ -94,10 +95,12 @@ public class WaterReportManager {
      * @param contaminantPPM report's contaminant PPM
      */
     public static void testRegisterPurityReport(double locLat, double locLong, OverallCondition overallCondition, int virusPPM, int contaminantPPM, int year, int month) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, 1);
         latestPurityReport = new PurityReport(reportCount++,
                 UserManager.getLoggedInUser().getName(), locLat, locLong,
                 overallCondition, virusPPM, contaminantPPM,
-                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date(year, month, 1)));
+                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(calendar));
         reportList.add(latestPurityReport);
         purityReportList.add(latestPurityReport);
         PersistenceManager.addObject(latestPurityReport);

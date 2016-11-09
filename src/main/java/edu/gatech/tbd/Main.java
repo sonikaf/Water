@@ -1,6 +1,7 @@
 package edu.gatech.tbd;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import edu.gatech.tbd.controller.*;
 import edu.gatech.tbd.model.WaterReportManager;
@@ -102,10 +103,8 @@ public class Main extends Application {
 		
 		WaterReportManager.setAvailabilityReportList(availReports);
 		WaterReportManager.setPurityReportList(purityReports);
-				
-		// temporary fix for ordering reports
-		
-		
+						
+		/*
 		// create purity reports to test historical graph
 		try {
 		    java.util.Random rand = new java.util.Random();
@@ -113,8 +112,7 @@ public class Main extends Application {
 		    for (int i = 0; i < 12; i++) {
 		        for (int j = 0; j < 3; j++) {
 		            WaterReportManager.testRegisterPurityReport(3, 3, OverallCondition.Safe,
-		                    rand.nextInt(100), rand.nextInt(100), new java.util.Date().getYear(), i);
-		            java.util.concurrent.TimeUnit.MILLISECONDS.sleep(10);
+		                    rand.nextInt(100), rand.nextInt(100), Calendar.getInstance().get(Calendar.YEAR), i);
 		        }
 		    }
 		    UserManager.logoutUser();
@@ -122,7 +120,7 @@ public class Main extends Application {
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}
-		
+		*/
 	}
 	
 	/**
