@@ -97,7 +97,7 @@ public class PasswordStorage
             );
         }
 
-        int iterations = 0;
+        int iterations;
         try {
             iterations = Integer.parseInt(params[ITERATION_INDEX]);
         } catch (NumberFormatException ex) {
@@ -114,7 +114,7 @@ public class PasswordStorage
         }
 
 
-        byte[] salt = null;
+        byte[] salt;
         try {
             salt = fromBase64(params[SALT_INDEX]);
         } catch (IllegalArgumentException ex) {
@@ -124,7 +124,7 @@ public class PasswordStorage
             );
         }
 
-        byte[] hash = null;
+        byte[] hash;
         try {
             hash = fromBase64(params[PBKDF2_INDEX]);
         } catch (IllegalArgumentException ex) {
@@ -135,7 +135,7 @@ public class PasswordStorage
         }
 
 
-        int storedHashSize = 0;
+        int storedHashSize;
         try {
             storedHashSize = Integer.parseInt(params[HASH_SIZE_INDEX]);
         } catch (NumberFormatException ex) {

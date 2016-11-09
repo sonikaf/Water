@@ -2,6 +2,7 @@ package edu.gatech.tbd.model;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class WaterReportManager {
      * @param condition report's water condition
      */
     public static void registerAvailabilityReport(double locLat, double locLong, WaterType type, WaterCondition condition) {
-        latestAvailiabilityReport = new AvailabilityReport(reportCount++, UserManager.getLoggedInUser().getName(), locLat, locLong, type, condition, new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
+        latestAvailiabilityReport = new AvailabilityReport(reportCount++, UserManager.getLoggedInUser().getName(), locLat, locLong, type, condition, new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance()));
         reportList.add(latestAvailiabilityReport);
         availabilityReportList.add(latestAvailiabilityReport);
         PersistenceManager.addObject(latestAvailiabilityReport);
