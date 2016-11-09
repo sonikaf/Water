@@ -24,41 +24,65 @@ public class LoginUserTests {
     }
     
     
+    /**
+     * Tests null username
+     */
     @Test (expected = UserException.class)
     public void testNullUsername() {
         UserManager.loginUser(null, "123");
     }
     
+    /**
+     * Tests null password
+     */
     @Test (expected = UserException.class)
     public void testNullPassword() {
         UserManager.loginUser("scott", null);
     }
     
+    /**
+     * Tests username not in system
+     */
     // test missing username
-    @Test
+    @Test (expected = UserException.class)
+    public void testMissingUsername() {
+        UserManager.loginUser("incorrectName", "pass");
+    }
     
-    // test missing password
-    @Test
+    /**
+     * Tests incorrect password
+     */
+    @Test (expected = UserException.class)
+    public void testIncorrectPassword() {
+        UserManager.loginUser("scott", "incorrectPass");
+    }
     
-    
+    /**
+     * Tests when user is alreadly logged in
+     */
     @Test (expected = UserException.class)
     public void testCurrentUserNotNull() {
         UserManager.loginUser("scott", "pass");
         UserManager.loginUser("dummy", "password");
     }
     
+    /**
+     * Tests that current user is correct
+     */
     @Test ()
     public void testCurrentUser () {
         UserManager.loginUser("scott", "pass");
         assertEquals("scott", UserManager.getLoggedInUser().getUsername());
     }
     
+    /**
+     * Tests the return value
+     */
     @Test
     public void testMethodReturn() {
-        /*
-        assertEquals(UserManager.getLoggedInUser(),
-                UserManager.loginUser("scott", "pass")
-                */
+        assertEquals(UserManager.getUser("scott"),
+                UserManager.loginUser("scott", "pass"));
+                
     }
     
 }

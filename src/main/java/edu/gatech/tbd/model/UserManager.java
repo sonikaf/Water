@@ -165,4 +165,11 @@ public class UserManager {
 	    currentUser = null;
 	}
 	
+	/**
+	 * Used in JUnit to test loginMethod.
+	 */
+	public static User getUser(String username) {
+	    return userList.get(username);
+	}
+	
 }
