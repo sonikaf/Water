@@ -26,9 +26,9 @@ public class UserManager {
 	 * @param password The user's password.
 	 * @return the logged-in user.
 	 */
-	public static User loginUser(String username, String password) throws UserException {
+	public static User loginUser(String username, String password) {
 		if (currentUser != null) {
-			throw new UserException("Another user is alreday logged in.");
+			throw new UserException("Another user is already logged in.");
 		}
 		User u = userList.get(username);
 		

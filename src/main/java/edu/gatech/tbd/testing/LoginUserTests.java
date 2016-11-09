@@ -20,6 +20,7 @@ public class LoginUserTests {
         UserManager.registerUser("Scott", "scott", "pass",
                 UserType.User, "scott@email.com",
                 "123 First Street");
+        UserManager.logoutUser();
     }
     
     
@@ -30,8 +31,34 @@ public class LoginUserTests {
     
     @Test (expected = UserException.class)
     public void testNullPassword() {
-        
         UserManager.loginUser("scott", null);
     }
-
+    
+    // test missing username
+    @Test
+    
+    // test missing password
+    @Test
+    
+    
+    @Test (expected = UserException.class)
+    public void testCurrentUserNotNull() {
+        UserManager.loginUser("scott", "pass");
+        UserManager.loginUser("dummy", "password");
+    }
+    
+    @Test ()
+    public void testCurrentUser () {
+        UserManager.loginUser("scott", "pass");
+        assertEquals("scott", UserManager.getLoggedInUser().getUsername());
+    }
+    
+    @Test
+    public void testMethodReturn() {
+        /*
+        assertEquals(UserManager.getLoggedInUser(),
+                UserManager.loginUser("scott", "pass")
+                */
+    }
+    
 }
