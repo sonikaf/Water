@@ -86,7 +86,7 @@ public class RegistrationSceneController extends SceneController{
 		try {	
 		    User user = UserManager.registerUser(nameField.getText(),
 		            usernameField.getText(), passwordField.getText(),
-		            (UserType) typeField.getSelectionModel().getSelectedItem(),
+                    typeField.getSelectionModel().getSelectedItem(),
 		            emailField.getText(), addressField.getText());
 		    
 		    // route administrator to admin screen

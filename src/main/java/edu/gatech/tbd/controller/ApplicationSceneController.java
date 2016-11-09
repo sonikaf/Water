@@ -462,7 +462,7 @@ public class ApplicationSceneController extends SceneController {
         lineChartData.add(series);
 
         LineChart.Series<String, Number> series1 = new LineChart.Series<>();
-        series1.setName("Contaminent PPM");
+        series1.setName("Contaminant PPM");
 
         series1.getData().add(new XYChart.Data<>("Jan", contamAveragesByMonth[0]));
         series1.getData().add(new XYChart.Data<>("Feb", contamAveragesByMonth[1]));

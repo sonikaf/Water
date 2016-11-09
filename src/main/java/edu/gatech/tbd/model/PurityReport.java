@@ -75,7 +75,7 @@ public class PurityReport extends Report {
 			return false;
 		} else {
 			PurityReport other = (PurityReport) o;
-			return super.equals((Report)other)
+			return super.equals(other)
 			        && other._overallCondition.equals(_overallCondition)
 			        && other._virusPPM == _virusPPM
 			        && other._contaminantPPM == _contaminantPPM;
