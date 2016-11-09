@@ -1,6 +1,6 @@
 package edu.gatech.tbd.model;
 
-public class UserException extends Exception {
+public class UserException extends RuntimeException {
 	
     /**
      * Creates a UserException instance. 

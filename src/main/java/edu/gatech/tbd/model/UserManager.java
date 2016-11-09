@@ -156,4 +156,13 @@ public class UserManager {
 		}
 	}
 	
+	/**
+	 * used in JUnit to test loginMethod. Clears all
+	 * class data.
+	 */
+	public static void clearUserManager() {
+	    userList = new HashMap<>();
+	    currentUser = null;
+	}
+	
 }
