@@ -79,7 +79,7 @@ public class WaterReportManager {
         latestPurityReport = new PurityReport(reportCount++,
                 UserManager.getLoggedInUser().getName(), locLat, locLong,
                 overallCondition, virusPPM, contaminantPPM,
-                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
+                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance()));
         reportList.add(latestPurityReport);
         purityReportList.add(latestPurityReport);
         PersistenceManager.addObject(latestPurityReport);
@@ -95,10 +95,12 @@ public class WaterReportManager {
      * @param contaminantPPM report's contaminant PPM
      */
     public static void testRegisterPurityReport(double locLat, double locLong, OverallCondition overallCondition, int virusPPM, int contaminantPPM, int year, int month) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, 1);
         latestPurityReport = new PurityReport(reportCount++,
                 UserManager.getLoggedInUser().getName(), locLat, locLong,
                 overallCondition, virusPPM, contaminantPPM,
-                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date(year, month, 1)));
+                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(calendar));
         reportList.add(latestPurityReport);
         purityReportList.add(latestPurityReport);
         PersistenceManager.addObject(latestPurityReport);
