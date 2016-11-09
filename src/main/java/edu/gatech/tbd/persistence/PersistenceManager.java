@@ -8,6 +8,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
 
@@ -21,7 +22,7 @@ public class PersistenceManager {
 	 * @param o the object to save
 	 * @param save save the object to disk when adding
 	 */
-	public static void addObject(Object o, boolean save) {
+	private static void addObject(Object o, boolean save) {
 		objectList.add(o);
 		if(save) saveObject(o);
 	}
@@ -66,13 +67,7 @@ public class PersistenceManager {
 	
 	@SuppressWarnings("unchecked")
 	public static <T> List<T> getObjects(Class<T> theClass) {
-		ArrayList<T> ret = new ArrayList<>();
-		for(Object o : objectList) {
-			if(o.getClass().equals(theClass)) {
-				ret.add((T)o);
-			}
-		}
-		return ret;
+		return objectList.stream().filter(o -> o.getClass().equals(theClass)).map(o -> (T) o).collect(Collectors.toCollection(ArrayList::new));
 	}
 
 	/**
@@ -128,16 +123,16 @@ public class PersistenceManager {
 	/**
 	 * loads the objects in from the disk
 	 */
-	public static void openObjects() {
+	private static void openObjects() {
 		File folder = new File("data/");
-		File[] listOfFiles = folder.listFiles((dir, fileName) -> { return fileName.endsWith(".txt"); });
+		File[] listOfFiles = folder.listFiles((dir, fileName) -> fileName.endsWith(".txt"));
 		
 		if(listOfFiles == null) return; // this happens when the data folder is missing
 		// we just dont have anything to load here
 
-		for (int i = 0; i < listOfFiles.length; i++) {
-			if (listOfFiles[i].isFile()) {
-				addObject(openObject(listOfFiles[i]), false);
+		for(File f : listOfFiles) {
+			if (f.isFile()) {
+				addObject(openObject(f), false);
 			}
 		}
 		

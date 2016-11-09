@@ -4,17 +4,17 @@ import edu.gatech.tbd.persistence.PersistenceManager;
 
 public class User {
 
-	protected String _name;
-	protected String _pass;
-	protected String _email;
-	protected String _address;
-	protected UserType _type;
-	protected String _username;
+	String _name;
+	String _pass;
+	String _email;
+	String _address;
+	UserType _type;
+	String _username;
 
 	/**
 	 * Creates a new user object.
 	 */
-	protected User(String name, String uname, String pass, UserType type, String email, String address) {
+    User(String name, String uname, String pass, UserType type, String email, String address) {
 		_name = name;
 		_username = uname;
 		_pass = pass;

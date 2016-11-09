@@ -9,7 +9,7 @@ import edu.gatech.tbd.model.LocationException;
 /**
  * Abstract base Controller for the submit Availability and Purity Report Scenes.
  */
-public abstract class ReportController extends SceneController {
+abstract class ReportController extends SceneController {
 
     @FXML
     protected TextField locationLatField;
@@ -43,7 +43,7 @@ public abstract class ReportController extends SceneController {
      * Checks that the entered lattitude and logitude are correct values.
      *
      */
-    protected void validateLocation() {
+    void validateLocation() {
         if (locationLongField.getText().equals("") || locationLatField.getText().equals("")) {
             throw new LocationException("textfields empty");
         }

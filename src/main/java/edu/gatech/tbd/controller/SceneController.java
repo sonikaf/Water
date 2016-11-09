@@ -11,7 +11,7 @@ public abstract class SceneController {
 	/**
     * reference to main application class
     */
-	protected Main mainApp;
+    Main mainApp;
 	
     /**
      * sets the mainApp field
@@ -26,7 +26,7 @@ public abstract class SceneController {
      * 
      * @param user current user
      */
-    public void routeUserOnLogin(User user) {
+    void routeUserOnLogin(User user) {
         if (user.isAdmin()) {
             mainApp.changeScene("AdminScene");
         } else {

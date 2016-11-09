@@ -8,16 +8,16 @@ public class PurityReport extends Report {
     /**
      * TODO Javadocs
      */
-	protected OverallCondition _overallCondition;
-	protected int _virusPPM;
-	protected int _contaminantPPM;
+	OverallCondition _overallCondition;
+	int _virusPPM;
+	int _contaminantPPM;
 
 	/**
 	 * Creates a new Availability Report.
 	 */
-	protected PurityReport(int rNumber, String reporter, double locLat,
-	        double locLong, OverallCondition condition, int virusPPM,
-	        int contaminantPPM, String date) {
+	PurityReport(int rNumber, String reporter, double locLat,
+				 double locLong, OverallCondition condition, int virusPPM,
+				 int contaminantPPM, String date) {
 	    super(rNumber, reporter, locLat, locLong, date);
 		_overallCondition = condition;
 		_virusPPM = virusPPM;

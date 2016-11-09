@@ -50,6 +50,7 @@ public class Main extends Application {
 	 */
 	private static SceneController popupController;
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void start(Stage primaryStage) {
 		// Save our stage for later use.
@@ -195,9 +196,9 @@ public class Main extends Application {
 			popup.setScene(scene);
 			popup.show();
 			
-			popup.setOnCloseRequest((e) -> {
-				popup = null;
-			});
+			popup.setOnCloseRequest((e) ->
+				popup = null
+			);
 		} catch (IOException e) {
 			System.err.println("Error loading stage!");
 			e.printStackTrace();

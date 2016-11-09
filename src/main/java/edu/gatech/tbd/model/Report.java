@@ -7,16 +7,16 @@ public abstract class Report {
     /**
      * TODO Javadocs
      */
-    protected int _reportNumber;
-    protected String _reporter;
-    protected double _locationLat;
-    protected double _locationLong;
-    protected String _dateTime;
+    int _reportNumber;
+    String _reporter;
+    double _locationLat;
+    double _locationLong;
+    String _dateTime;
 
     /**
      * Creates a new Water Report.
      */
-    protected Report(int rNumber, String reporter, double locLat, double locLong, String date) {
+    Report(int rNumber, String reporter, double locLat, double locLong, String date) {
         _reportNumber = rNumber;
         _reporter = reporter;
         _locationLat = locLat;
@@ -47,7 +47,7 @@ public abstract class Report {
      *
      * @return location of the report in (Lat, Long) format
      */
-    public String getLocation() {
+    String getLocation() {
         return "(" + _locationLat + ", " + _locationLong + ")";
     }
 

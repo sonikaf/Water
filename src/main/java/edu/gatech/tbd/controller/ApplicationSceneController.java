@@ -16,6 +16,7 @@ import netscape.javascript.JSObject;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.lynden.gmapsfx.*;
 import com.lynden.gmapsfx.javascript.event.UIEventType;
@@ -192,19 +193,19 @@ public class ApplicationSceneController extends SceneController {
 	public void initialize() {
 		// these might be null depending on which tabs are open
 		if(mapView != null)
-			mapView.addMapInializedListener(() -> mapInitialized());
+			mapView.addMapInializedListener(this::mapInitialized);
 
 		//if(specificMapView != null)
 			//specificMapView.addMapInializedListener(() -> specificMapInitialized());
 
 
-		availReportList.setOnMouseClicked((e) -> {
-			setCurrentAvailabilityReport(availReportList.getSelectionModel().getSelectedItem());
-		});
+		availReportList.setOnMouseClicked((e) ->
+			setCurrentAvailabilityReport(availReportList.getSelectionModel().getSelectedItem())
+		);
 
-		purityReportList.setOnMouseClicked((e) -> {
-            setCurrentPurityReport(purityReportList.getSelectionModel().getSelectedItem());
-        });
+		purityReportList.setOnMouseClicked((e) ->
+            setCurrentPurityReport(purityReportList.getSelectionModel().getSelectedItem())
+        );
 
 		//createComboBoxes();
 		updateAvailabilityReportList();
@@ -272,7 +273,7 @@ public class ApplicationSceneController extends SceneController {
 	 * Sets the current availability report.
 	 * @param r Avaliablity report to set
 	 */
-	public void setCurrentAvailabilityReport(AvailabilityReport r) {
+	private void setCurrentAvailabilityReport(AvailabilityReport r) {
 
 		/*
 		if(curMarker != null) {
@@ -306,7 +307,7 @@ public class ApplicationSceneController extends SceneController {
      * Sets the current purity report.
      * @param r Purity report to set
      */
-    public void setCurrentPurityReport(PurityReport r) {
+	private void setCurrentPurityReport(PurityReport r) {
 
         purityReportView_num.setText("" + r.getReportNumber());
         purityReportView_reporter.setText(r.getReporter());
@@ -334,7 +335,7 @@ public class ApplicationSceneController extends SceneController {
 		populateAvailabilityMap();
 	}
 
-	public void mapInitialized() {
+	private void mapInitialized() {
 		LatLong center = new LatLong(0, 0);
 		//LatLong gaTechLoc = new LatLong(33.774804, -84.3976288);
 
@@ -383,7 +384,7 @@ public class ApplicationSceneController extends SceneController {
 		*/
 	}
 
-	public void updateLineChart() {
+	private void updateLineChart() {
 
 		List<PurityReport> purityReports = WaterReportManager.getPurityReportList();
 
@@ -391,18 +392,12 @@ public class ApplicationSceneController extends SceneController {
 		double locLong = Double.parseDouble(histReportView_long.getText());
 	    String year = histReportView_year.getText();
 
-		List<PurityReport> yearlyPurityReportList = new ArrayList<>();
-
-		for (int i = 0; i < purityReports.size(); i++) {
-			if (purityReports.get(i).getDateTime().charAt(0) == year.charAt(0)
-					&& purityReports.get(i).getDateTime().charAt(1) == year.charAt(1)
-					&& purityReports.get(i).getDateTime().charAt(2) == year.charAt(2)
-					&& purityReports.get(i).getDateTime().charAt(3) == year.charAt(3)
-					&& purityReports.get(i).getLocationLat() == locLat
-					&& purityReports.get(i).getLocationLong() == locLong) {
-				yearlyPurityReportList.add(purityReports.get(i));
-			}
-		}
+		List<PurityReport> yearlyPurityReportList = purityReports.stream().filter(purityReport -> purityReport.getDateTime().charAt(0) == year.charAt(0)
+				&& purityReport.getDateTime().charAt(1) == year.charAt(1)
+				&& purityReport.getDateTime().charAt(2) == year.charAt(2)
+				&& purityReport.getDateTime().charAt(3) == year.charAt(3)
+				&& purityReport.getLocationLat() == locLat
+				&& purityReport.getLocationLong() == locLong).collect(Collectors.toList());
 
 		int[] virusSumsByMonth = new int[12];
 		int[] contamSumsByMonth = new int[12];
@@ -481,7 +476,7 @@ public class ApplicationSceneController extends SceneController {
 
 	}
 
-	protected void validateLocation() {
+	private void validateLocation() {
         if (histReportView_long.getText().equals("") || histReportView_lat.getText().equals("")) {
             throw new LocationException("location textfield empty");
         }
@@ -492,7 +487,7 @@ public class ApplicationSceneController extends SceneController {
         }
     }
 
-	protected void validateYear() {
+	private void validateYear() {
 	    System.out.println("Year: " + histReportView_year.getText());
 		if (histReportView_year.getText().equals("")) {
 			throw new NumberFormatException("year textfield empty");
