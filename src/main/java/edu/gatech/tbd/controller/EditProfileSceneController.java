@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import edu.gatech.tbd.model.UserManager;
 import edu.gatech.tbd.model.UserProperty;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+
 
 /**
  * Controller for the Edit Profile Scene.
@@ -27,6 +30,31 @@ public class EditProfileSceneController extends SceneController{
     
     @FXML
     private Text typeField;
+
+    @FXML
+    Label errorLabel;
+
+    @FXML
+    Button editNameButton;
+
+    @FXML
+    Button editEmailButton;
+
+    @FXML
+    Button editUsernameButton;
+
+    @FXML
+    Button editPasswordButton;
+
+    @FXML
+    Button editAddressButton;
+
+    @FXML
+    Button editTypeButton;
+
+    @FXML
+    Button goBackButton;
+
     
     /**
      * Initializes the fields with the logged-in user's data.

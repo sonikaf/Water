@@ -13,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
+
 
 /**
  * Controller for the Registration Scene.
@@ -39,6 +41,12 @@ public class RegistrationSceneController extends SceneController{
     
     @FXML
     private Label errorLabel;
+
+	@FXML
+	Button registerButton;
+
+	@FXML
+	Button goBackButtonRegister;
     
     /**
      * Initializes the user type combobox with available options.

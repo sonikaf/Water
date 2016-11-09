@@ -129,6 +129,24 @@ public class ApplicationSceneController extends SceneController {
     @FXML
     Button submitPurityReportButton;
 
+	@FXML
+	Button deleteAvailReportButton;
+
+	@FXML
+	Button deletePurityReportButton;
+
+	@FXML
+	Button historicalReportGridPane;
+
+	@FXML
+	Button submitAvailabilityReportButton;
+
+	@FXML
+	Button editProfileButton;
+
+	@FXML
+	Button logoutButton;
+
 
 	/**
 	 * Handler for the Logout button.
@@ -222,7 +240,7 @@ public class ApplicationSceneController extends SceneController {
 		}
 	}
 
-	/**
+	/*
 	 * Private helper method to populate combo boxes.
 	 */
 	/*
@@ -376,7 +394,7 @@ public class ApplicationSceneController extends SceneController {
 
 
 
-		/**
+		/*
 		MapOptions specificMapOptions = new MapOptions();
 
 		specificMapOptions.center(gaTechLoc).mapType(MapTypeIdEnum.HYBRID).overviewMapControl(false).panControl(true)

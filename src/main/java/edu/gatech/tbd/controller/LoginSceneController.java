@@ -3,11 +3,12 @@ package edu.gatech.tbd.controller;
 import edu.gatech.tbd.model.User;
 import edu.gatech.tbd.model.UserException;
 import edu.gatech.tbd.model.UserManager;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
+
 
 /**
  * Controller for the Login Scene.
@@ -22,7 +23,13 @@ public class LoginSceneController extends SceneController{
 	
 	@FXML
 	PasswordField passwordField;
-	
+
+	@FXML
+	Button loginButton;
+
+	@FXML
+	Button goBackButton;
+
 	@FXML
 	public void initialize() {
 		
@@ -30,10 +37,9 @@ public class LoginSceneController extends SceneController{
 	
 	/**
 	 * Handler for the Login button.
-	 * @param e
 	 */
 	@FXML
-	protected void onLoginButtonPressed(ActionEvent e) {
+	protected void onLoginButtonPressed() {
         
 	    // Getting username/password data from textfields
 	    String username = usernameField.getText();
@@ -58,10 +64,9 @@ public class LoginSceneController extends SceneController{
 	
 	/**
 	 * Handler for the Go Back button.
-	 * @param e
 	 */
 	@FXML
-	protected void onGoBackButtonPressed(ActionEvent e) {
+	protected void onGoBackButtonPressed() {
 		mainApp.changeScene("WelcomeScene");
 	}
 

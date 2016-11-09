@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -30,12 +31,19 @@ public class EditProfileDropdownSceneController extends SceneController {
 
 	@FXML
 	private Label promptLabel;
+
+	@FXML
+	Button submitButton;
+
+	@FXML
+	Button goBackButton;
+
 	
 	/**
 	 * Displays error message if user does not enter data correctly.
 	 */
 	@FXML
-	private Label errorLabel;
+	Label errorLabel;
 	
 	private UserProperty p;
 

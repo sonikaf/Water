@@ -1,6 +1,5 @@
 package edu.gatech.tbd.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
@@ -17,19 +16,17 @@ public class WelcomeSceneController extends SceneController{
 	
 	/**
 	 * Handler for the Login button.
-	 * @param e
 	 */
 	@FXML
-	protected void onSelectLoginButtonPressed(ActionEvent e) {
+	protected void onSelectLoginButtonPressed() {
 		mainApp.changeScene("LoginScene");
 	}
 	
 	/**
 	 * Handler for the Register button.
-	 * @param e
 	 */
 	@FXML
-	protected void onSelectRegisterButtonPressed(ActionEvent e) {
+	protected void onSelectRegisterButtonPressed() {
 		mainApp.changeScene("RegistrationScene");
 	}
 

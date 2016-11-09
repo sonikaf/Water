@@ -1,6 +1,7 @@
 package edu.gatech.tbd.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import edu.gatech.tbd.model.User;
@@ -24,6 +25,12 @@ public class EditProfileTextSceneController extends SceneController {
 
 	@FXML
 	private Label errorLabel;
+
+	@FXML
+	Button submitButton;
+
+    @FXML
+	Button goBackButton;
 
 	private UserProperty p;
 
