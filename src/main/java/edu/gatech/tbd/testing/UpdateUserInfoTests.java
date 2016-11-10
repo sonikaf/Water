@@ -9,12 +9,10 @@ import org.junit.Test;
 
 import edu.gatech.tbd.model.UserManager;
 import edu.gatech.tbd.model.UserType;
-import edu.gatech.tbd.model.User;
 import edu.gatech.tbd.model.UserException;
 import edu.gatech.tbd.persistence.PasswordStorage;
 import edu.gatech.tbd.persistence.PasswordStorage.CannotPerformOperationException;
 import edu.gatech.tbd.persistence.PasswordStorage.InvalidHashException;
-
 
 
 public class UpdateUserInfoTests {
@@ -114,11 +112,20 @@ public class UpdateUserInfoTests {
      * Tests that Password is updated
      */
     @Test
-    public void testPasswordUpdate() throws CannotPerformOperationException, InvalidHashException {
+    public void testPasswordUpdate() {
         UserManager.updateUserInformation(UserManager.getLoggedInUser(), "Sonika", "sonika", "foobar",
                 UserType.User, "sonika@email.com", "123 First Street");
 
-		assertEquals(true, PasswordStorage.verifyPassword("foobar", UserManager.getLoggedInUser().getPassword()));
+		try {
+			assertEquals(true, PasswordStorage.verifyPassword("foobar", UserManager.getLoggedInUser().getPassword()));
+		} catch (CannotPerformOperationException e) {
+			// failed test
+			assertEquals(0, 1);
+			e.printStackTrace();
+		} catch (InvalidHashException e) {
+			// failed test
+			assertEquals(0, 1);
+		}
 	
     }
     
