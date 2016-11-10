@@ -52,7 +52,7 @@ public class RegisterUserTests {
         UserManager.registerUser("Chase", "chase", "pass",
         		UserType.User, "chase@email.com",
         		"123 second street");
-        assertEquals("chase", UserManager.getLoggedInUser().getUsername());
+        assertEquals(UserManager.getUser("chase"), UserManager.getLoggedInUser());
     }
 
     /**
