@@ -15,7 +15,7 @@ import edu.gatech.tbd.persistence.PasswordStorage.CannotPerformOperationExceptio
 import edu.gatech.tbd.persistence.PasswordStorage.InvalidHashException;
 
 
-public class UpdateUserInfoTests {
+class UpdateUserInfoTests {
 	
         
     @Before

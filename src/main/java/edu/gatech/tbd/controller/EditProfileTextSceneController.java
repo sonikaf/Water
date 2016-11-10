@@ -33,11 +33,6 @@ public class EditProfileTextSceneController extends SceneController {
 	Button goBackButton;
 
 	private UserProperty p;
-
-	@FXML
-	public void initialize() {
-
-	}
 	
 	/**
 	 * Sets the user's information from the given property.

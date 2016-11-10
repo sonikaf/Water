@@ -1,13 +1,11 @@
 package edu.gatech.tbd;
 
 import java.io.IOException;
-import java.util.Calendar;
 
 import edu.gatech.tbd.controller.*;
 import edu.gatech.tbd.model.WaterReportManager;
 import edu.gatech.tbd.model.Report;
 import edu.gatech.tbd.model.AvailabilityReport;
-import edu.gatech.tbd.model.OverallCondition;
 import edu.gatech.tbd.model.PurityReport;
 import edu.gatech.tbd.model.UserException;
 import edu.gatech.tbd.model.UserManager;

@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 public class PersistenceManager {
 
 	private static ArrayList<Object> objectList = new ArrayList<>();
+	private static boolean testing;
 
 	/**
 	 * Add a persistant object to the data store
@@ -22,7 +23,8 @@ public class PersistenceManager {
 	 * @param o the object to save
 	 * @param save save the object to disk when adding
 	 */
-	private static void addObject(Object o, boolean save) {
+	private static void addObject(Object o, boolean save) throws IOException {
+		if(o == null) throw new IOException("Can't save null object!");
 		objectList.add(o);
 		if(save) saveObject(o);
 	}
@@ -32,7 +34,7 @@ public class PersistenceManager {
 	 * 
 	 * @param o the object to save
 	 */
-	public static void addObject(Object o) {
+	public static void addObject(Object o) throws IOException {
 		addObject(o, true);
 	}
 
@@ -42,6 +44,7 @@ public class PersistenceManager {
 	 * @param o object to be removed
 	 */
 	public static void removeObject(Object o) {
+		if(testing) return;
 		objectList.remove(o);
 		
 		String fn = String.format("data/%s_%x.txt", o.getClass().getTypeName(), o.hashCode());
@@ -53,6 +56,7 @@ public class PersistenceManager {
 	}
 
 	public static void updateObject(Object o, int oldHash) {
+		if(testing) return;
 		String fn = String.format("data/%s_%x.txt", o.getClass().getTypeName(), oldHash);
 		File file = new File(fn);
 			
@@ -84,6 +88,8 @@ public class PersistenceManager {
 	*/
 
 	private static void saveObject(Object o) {
+		
+		if(testing) return;
 		
 		File dataFolder = new File("data/");
 		dataFolder.mkdir();
@@ -132,7 +138,11 @@ public class PersistenceManager {
 
 		for(File f : listOfFiles) {
 			if (f.isFile()) {
-				addObject(openObject(f), false);
+				try {
+					addObject(openObject(f), false);
+				} catch (IOException e) {
+					System.err.println("Error re-saving object " + f);
+				}
 			}
 		}
 		
@@ -212,5 +222,13 @@ public class PersistenceManager {
 			}
 		}
 		return ret;
+	}
+	
+	/**
+	 * Tells the manager if we are testing. If so, don't save anything to the disk
+	 * @param test if the program is in a unit test
+	 */
+	public static void setTesting(boolean test) {
+		testing = test;
 	}
 }

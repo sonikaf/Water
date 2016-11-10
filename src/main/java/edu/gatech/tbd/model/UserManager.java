@@ -1,5 +1,6 @@
 package edu.gatech.tbd.model;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -77,6 +78,10 @@ public class UserManager {
 			throw new UserException("Another user with that username already exists.");
 		}
 		
+		if(name == null || username == null || password == null || email == null || address == null) {
+			throw new UserException("Missing required field for user Registration");
+		}
+		
 		String hashedPassword = "";
 		try {
 			 hashedPassword = PasswordStorage.createHash(password);
@@ -87,7 +92,11 @@ public class UserManager {
 		currentUser = new User(name, username, hashedPassword, type, email, address);
 		userList.put(username, currentUser);
 		
-		PersistenceManager.addObject(currentUser);
+		try {
+			PersistenceManager.addObject(currentUser);
+		} catch (IOException e) {
+			throw new UserException("Filesystem Error: " + e.getLocalizedMessage());
+		}
 		
 		return currentUser;
 	}

@@ -33,7 +33,7 @@ public class PurityReport extends Report {
     }
 
     /**
-     * @param OverallCondition the OverallCondition to set
+     * @param overallCondition the OverallCondition to set
      */
     public void setOverallCondition(OverallCondition overallCondition) {
         _overallCondition = overallCondition;

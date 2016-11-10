@@ -8,15 +8,15 @@ public class AvailabilityReport extends Report {
     /**
      * TODO Javadocs
      */
-	protected WaterType _type;
-	protected WaterCondition _condition;
+	WaterType _type;
+	WaterCondition _condition;
 
 	/**
 	 * Creates a new Availability Report.
 	 */
-	protected AvailabilityReport(int rNumber, String reporter, double locLat,
-	        double locLong, WaterType type, WaterCondition condition,
-	        String date) {
+	AvailabilityReport(int rNumber, String reporter, double locLat,
+					   double locLong, WaterType type, WaterCondition condition,
+					   String date) {
 	    super(rNumber, reporter, locLat, locLong, date);
 		_type = type;
 		_condition = condition;
@@ -65,7 +65,7 @@ public class AvailabilityReport extends Report {
                 "<tr><td><b>Water Type: </b></td>" + "<td>" + _type.toString() + "</td>" +
                 "<tr><td><b>Condition:  </b></td>" + "<td>" + _condition.toString() + "</td></tr>" +
                 "<tr><td>&nbsp;</td></tr>" +
-                "<tr><td><b>Lattitude:  </b></td>" + "<td>" + _locationLat + "</td><tr>" +
+                "<tr><td><b>Latitude:  </b></td>" + "<td>" + _locationLat + "</td><tr>" +
                 "<tr><td><b>Longitude:  </b></td>" + "<td>" + _locationLong + "</td></tr>" +
                 "<tr><td>&nbsp;</td></tr>" +
                 "<tr><td><b>Reporter:   </b></td>" + "<td>" + _reporter + "</td></tr>" +

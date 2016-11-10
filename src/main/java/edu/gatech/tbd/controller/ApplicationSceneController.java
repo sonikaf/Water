@@ -13,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import netscape.javascript.JSObject;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -271,7 +270,7 @@ public class ApplicationSceneController extends SceneController {
 
 	/**
 	 * Sets the current availability report.
-	 * @param r Avaliablity report to set
+	 * @param r Availability report to set
 	 */
 	private void setCurrentAvailabilityReport(AvailabilityReport r) {
 

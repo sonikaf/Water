@@ -12,7 +12,7 @@ import edu.gatech.tbd.model.UserType;
 import edu.gatech.tbd.model.UserException;
 
 
-public class LoginUserTests {
+class LoginUserTests {
         
     @Before
     public void setUp() {

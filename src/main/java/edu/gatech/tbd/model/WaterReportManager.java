@@ -1,9 +1,9 @@
 package edu.gatech.tbd.model;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import edu.gatech.tbd.persistence.PersistenceManager;
@@ -48,7 +48,7 @@ public class WaterReportManager {
     /**
      * The number of reports submitted (availability and purity).
      */
-    protected static int reportCount = 1;
+    private static int reportCount = 1;
 
 
     /**
@@ -63,7 +63,11 @@ public class WaterReportManager {
         latestAvailiabilityReport = new AvailabilityReport(reportCount++, UserManager.getLoggedInUser().getName(), locLat, locLong, type, condition, new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance()));
         reportList.add(latestAvailiabilityReport);
         availabilityReportList.add(latestAvailiabilityReport);
-        PersistenceManager.addObject(latestAvailiabilityReport);
+        try {
+        	PersistenceManager.addObject(latestAvailiabilityReport);
+        } catch (IOException e) {
+        	System.err.println("Filesysem Error: " + e.getMessage());
+        }
     }
 
     /**
@@ -82,7 +86,11 @@ public class WaterReportManager {
                 new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance()));
         reportList.add(latestPurityReport);
         purityReportList.add(latestPurityReport);
-        PersistenceManager.addObject(latestPurityReport);
+        try {
+        	PersistenceManager.addObject(latestPurityReport);
+	    } catch (IOException e) {
+	    	System.err.println("Filesysem Error: " + e.getMessage());
+	    }
     }
     
     /**
@@ -103,7 +111,11 @@ public class WaterReportManager {
                 new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(calendar));
         reportList.add(latestPurityReport);
         purityReportList.add(latestPurityReport);
-        PersistenceManager.addObject(latestPurityReport);
+        try {
+        	PersistenceManager.addObject(latestPurityReport);
+        } catch (IOException e) {
+        	System.err.println("Filesysem Error: " + e.getMessage());
+        }
     }
 
     /**

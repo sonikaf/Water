@@ -46,11 +46,6 @@ public class EditProfileDropdownSceneController extends SceneController {
 	Label errorLabel;
 	
 	private UserProperty p;
-
-	@FXML
-	public void initialize() {
-
-	}
 	
 	/**
 	 * Sets the user's information with the given property data.

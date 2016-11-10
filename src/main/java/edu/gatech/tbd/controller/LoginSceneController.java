@@ -29,11 +29,6 @@ public class LoginSceneController extends SceneController{
 
 	@FXML
 	Button goBackButton;
-
-	@FXML
-	public void initialize() {
-		
-	} 
 	
 	/**
 	 * Handler for the Login button.
