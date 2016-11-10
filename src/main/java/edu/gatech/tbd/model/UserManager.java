@@ -53,6 +53,9 @@ public class UserManager {
 	 * Log out the current user.
 	 */
 	public static void logoutUser() {
+		if(currentUser == null) {
+			throw new UserException("Cannot logout a null user");
+		}
 		currentUser = null;
 	}
 
