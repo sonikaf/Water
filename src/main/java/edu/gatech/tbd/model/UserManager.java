@@ -107,6 +107,11 @@ public class UserManager {
 	public static void updateUserInformation(User u, String name, String username, String password, UserType type, String email,
 			String address) throws UserException {
 		// here if there is a user with the specified username and it isn't the same object as our User then we can't change
+		
+		if (name == null || username == null || password == null || email == null || address == null) {
+			throw new UserException("One or more fields is not completed.");
+		}
+		
 		if (userList.containsKey(username) && !userList.containsValue(u)) {
 			throw new UserException("A User with that username already exists.");
 		}
