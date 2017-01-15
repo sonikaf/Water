@@ -39,7 +39,6 @@ public class PurityReportController extends ReportController {
         oConditionBox.setValue(OverallCondition.Safe);
     }
 
-    @Override
     @FXML
     protected void onSubmitButtonPressed() {
 		try {

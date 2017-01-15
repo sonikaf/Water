@@ -49,23 +49,22 @@ public class AvailabilityReportController extends ReportController {
 
     }
 
-    @Override
     @FXML
     protected void onSubmitButtonPressed() {
 		try {
 			validateLocation();
 			double locLat = Double.parseDouble(locationLatField.getText());
 			double locLong = Double.parseDouble(locationLongField.getText());
-				
+
 			WaterReportManager.registerAvailabilityReport(locLat, locLong,
 			        typeField.getSelectionModel().getSelectedItem(),
 			        conditionField.getSelectionModel().getSelectedItem());
-			
+
 			errorLabel.setText("You have submitted a water availability report.");
-			
+
 			((ApplicationSceneController)mainApp.getCurrentController())
 			    .updateAvailabilityReportList();
-			
+
 			mainApp.closePopup();
 		} catch (LocationException e) {
 			errorLabel.setText("You must enter a valid location");

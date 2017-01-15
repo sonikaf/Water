@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import edu.gatech.tbd.persistence.PersistenceManager;
@@ -60,7 +61,7 @@ public class WaterReportManager {
      * @param condition report's water condition
      */
     public static void registerAvailabilityReport(double locLat, double locLong, WaterType type, WaterCondition condition) {
-        latestAvailiabilityReport = new AvailabilityReport(reportCount++, UserManager.getLoggedInUser().getName(), locLat, locLong, type, condition, new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance()));
+        latestAvailiabilityReport = new AvailabilityReport(reportCount++, UserManager.getLoggedInUser().getName(), locLat, locLong, type, condition, new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
         reportList.add(latestAvailiabilityReport);
         availabilityReportList.add(latestAvailiabilityReport);
         try {
@@ -83,7 +84,7 @@ public class WaterReportManager {
         latestPurityReport = new PurityReport(reportCount++,
                 UserManager.getLoggedInUser().getName(), locLat, locLong,
                 overallCondition, virusPPM, contaminantPPM,
-                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance()));
+                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
         reportList.add(latestPurityReport);
         purityReportList.add(latestPurityReport);
         try {
@@ -92,7 +93,7 @@ public class WaterReportManager {
 	    	System.err.println("Filesysem Error: " + e.getMessage());
 	    }
     }
-    
+
     /**
      * method to test historical graph by generating reports from different months
      *
@@ -131,14 +132,14 @@ public class WaterReportManager {
      * @param dateTime report's date/time
      */
     public static void updateAvailabilityReportInformation(AvailabilityReport r, int rNumber, String reporter, double locLat, double locLong, WaterType type, WaterCondition condition, String dateTime) {
-    	
+
     	int oldHash = r.hashCode();
-    	
+
     	r._type = type;
         r._condition = condition;
-        
+
         PersistenceManager.updateObject(r, oldHash);
-        
+
         updateReportInformation(r, rNumber, reporter, locLat, locLong, dateTime);
     }
 
@@ -159,13 +160,13 @@ public class WaterReportManager {
             int rNumber, String reporter, double locLat, double locLong,
             OverallCondition overallCondition, int virusPPM, int contaminantPPM,
             String dateTime) {
-    	
+
     	int oldHash = r.hashCode();
-    	
+
     	r._overallCondition = overallCondition;
         r._virusPPM = virusPPM;
         r._contaminantPPM = contaminantPPM;
-        
+
         PersistenceManager.updateObject(r, oldHash);
 
         updateReportInformation(r, rNumber, reporter,
@@ -185,13 +186,13 @@ public class WaterReportManager {
 	private static void updateReportInformation(Report r, int rNumber,
 	        String reporter, double locLat, double locLong, String dateTime) {
 		int oldHash = r.hashCode();
-		
+
 		r._reportNumber = rNumber;
 		r._reporter = reporter;
 		r._locationLat = locLat;
 		r._locationLong = locLong;
 		r._dateTime = dateTime;
-		
+
 		PersistenceManager.updateObject(r, oldHash);
 	}
 
@@ -250,33 +251,33 @@ public class WaterReportManager {
     public static List<PurityReport> getPurityReportList() {
         return new ArrayList<>(purityReportList);
     }
-    
+
     /**
      * loads all of our data from the disk
      */
     public static void setup() {
     	availabilityReportList = PersistenceManager.getObjects(AvailabilityReport.class);
     	purityReportList = PersistenceManager.getObjects(PurityReport.class);
-    	
+
     	reportList = new ArrayList<>();
     	reportList.addAll(availabilityReportList);
     	reportList.addAll(purityReportList);
     }
-    
+
     /**
      * Setter for reportCount
      */
     public static void setReportCount(int count) {
         reportCount = count;
     }
-    
+
     /**
      * Setter for availabilityReportList
      */
     public static void setAvailabilityReportList(List<AvailabilityReport> list) {
         availabilityReportList = list;
     }
-    
+
     /**
      * Setter for purityReportList
      */
